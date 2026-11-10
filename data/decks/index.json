@@ -1,0 +1,20 @@
+[
+  { "id": "street", "kind": "vocab", "title": "Street Essentials", "he": "סְלֶנְג וּבִיטּוּיִים", "level": "Start here",
+    "description": "The words you hear every five minutes in Tel Aviv: סבבה, יאללה, תכלס, באסה, חבל על הזמן…" },
+  { "id": "smalltalk", "kind": "vocab", "title": "Small Talk & People", "he": "שִׂיחָה וַאֲנָשִׁים", "level": "Start here",
+    "description": "Meeting people, being polite, and surviving a conversation: asking someone to repeat, slow down, explain." },
+  { "id": "cafe", "kind": "vocab", "title": "Café, Food & Going Out", "he": "אוֹכֶל וְיוֹצְאִים", "level": "Beginner",
+    "description": "Ordering a הפוך, asking for the bill, sabich and shakshuka, and saying 'it's on me'." },
+  { "id": "around", "kind": "vocab", "title": "Getting Around the City", "he": "בָּעִיר", "level": "Beginner",
+    "description": "Buses, Rav-Kav, scooters, directions, the beach and the shuk." },
+  { "id": "time", "kind": "vocab", "title": "Time & Making Plans", "he": "זְמַן וְתוֹכְנִיּוֹת", "level": "Beginner",
+    "description": "Now, later, tomorrow, 'I feel like…', 'I can't be bothered', running late." },
+  { "id": "verbs", "kind": "vocab", "title": "Core Verbs", "he": "פְּעָלִים חֲשׁוּבִים", "level": "Beginner",
+    "description": "35 everyday verbs as infinitives, with their present-tense forms and binyan in the notes.", "grammar": "binyanim" },
+  { "id": "phrases", "kind": "sentences", "title": "Sentence Builder", "he": "מִשְׁפָּטִים", "level": "Beginner",
+    "description": "Whole sentences the way people actually say them. Type the full sentence in Hebrew." },
+  { "id": "paal", "kind": "conjugation", "title": "Pa'al drills", "he": "בִּנְיַן פָּעַל", "level": "Grammar", "grammar": "paal",
+    "description": "Conjugate regular pa'al verbs: לִכְתּוֹב, לִגְמוֹר, לִסְגּוֹר, לִפְגּוֹשׁ — present, past, future and commands." },
+  { "id": "piel", "kind": "conjugation", "title": "Pi'el drills", "he": "בִּנְיַן פִּיעֵל", "level": "Grammar", "grammar": "piel",
+    "description": "Conjugate pi'el verbs: לְדַבֵּר, לְשַׁלֵּם, לְסַדֵּר, לְחַפֵּשׂ — present, past, future and commands." }
+]

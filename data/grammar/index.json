@@ -1,0 +1,15 @@
+{
+  "sections": [
+    { "title": "Start here", "pages": [
+      { "id": "reading", "title": "Reading Hebrew", "he": "קְרִיאָה", "summary": "Letters and their final forms, vowel points, the dot that changes b/v k/ch p/f, and modern 'full' spelling. Plus where the keys are." },
+      { "id": "binyanim", "title": "Roots & binyanim", "he": "שׁוֹרָשִׁים וּבִנְיָנִים", "summary": "How three-letter roots plus seven verb patterns build almost every Hebrew verb — and how to spot the pattern.", "deck": "verbs", "deckTitle": "Core Verbs" }
+    ] },
+    { "title": "Verbs", "pages": [
+      { "id": "paal", "title": "Pa'al", "he": "פָּעַל", "summary": "The basic binyan: כָּתַב, כּוֹתֵב, יִכְתּוֹב. Full tables, how people really use it, and the common irregular verbs.", "deck": "paal", "deckTitle": "Pa'al drills" },
+      { "id": "piel", "title": "Pi'el", "he": "פִּיעֵל", "summary": "The doubled-middle binyan: דִּיבֵּר, מְדַבֵּר, יְדַבֵּר. Where slang verbs like לְסַמֵּס and לְפַרְגֵּן live.", "deck": "piel", "deckTitle": "Pi'el drills" }
+    ] },
+    { "title": "Spoken Hebrew", "pages": [
+      { "id": "spoken", "title": "How people actually talk", "he": "עִבְרִית מְדוּבֶּרֶת", "summary": "שלי instead of suffixes, commands in the future tense, 'עשרים שקל', אצלי, כזה — the gap between the textbook and the street.", "deck": "phrases", "deckTitle": "Sentence Builder" }
+    ] }
+  ]
+}
