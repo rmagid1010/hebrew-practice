@@ -1,0 +1,166 @@
+{
+ "items": [
+  {
+   "id": "l00",
+   "he": "א",
+   "en": "alef",
+   "note": "A slanted stroke plus a backwards c — like \"lc\" written right-to-left."
+  },
+  {
+   "id": "l01",
+   "he": "ב",
+   "en": "bet / vet",
+   "note": "A backwards c sitting on a base line that sticks out — a rounded print ב."
+  },
+  {
+   "id": "l02",
+   "he": "ג",
+   "en": "gimel",
+   "note": "A small hook with a tail — like a backwards S or ζ."
+  },
+  {
+   "id": "l03",
+   "he": "ד",
+   "en": "dalet",
+   "note": "Like the number 3 with a flat top — careful not to mix it up with צ."
+  },
+  {
+   "id": "l04",
+   "he": "ה",
+   "en": "he",
+   "note": "Like ד, with a separate short stroke underneath on the left."
+  },
+  {
+   "id": "l05",
+   "he": "ו",
+   "en": "vav",
+   "note": "A short slanted stroke."
+  },
+  {
+   "id": "l06",
+   "he": "ז",
+   "en": "zayin",
+   "note": "A small zig-zag, like a 5 or ʒ."
+  },
+  {
+   "id": "l07",
+   "he": "ח",
+   "en": "chet",
+   "note": "Like a rounded n — close to the print shape."
+  },
+  {
+   "id": "l08",
+   "he": "ט",
+   "en": "tet",
+   "note": "A C (opening to the right) with a curl at the top."
+  },
+  {
+   "id": "l09",
+   "he": "י",
+   "en": "yod",
+   "note": "A tiny apostrophe high on the line."
+  },
+  {
+   "id": "l10",
+   "he": "כ",
+   "en": "kaf / chaf",
+   "note": "A backwards C."
+  },
+  {
+   "id": "l11",
+   "he": "ך",
+   "en": "final chaf",
+   "note": "A curl at the top and a long stroke dropping below the line."
+  },
+  {
+   "id": "l12",
+   "he": "ל",
+   "en": "lamed",
+   "note": "A tall loop rising high above the line — like a cursive ℓ."
+  },
+  {
+   "id": "l13",
+   "he": "מ",
+   "en": "mem",
+   "note": "Like a handwritten N."
+  },
+  {
+   "id": "l14",
+   "he": "ם",
+   "en": "final mem",
+   "note": "A closed loop — like a small o."
+  },
+  {
+   "id": "l15",
+   "he": "נ",
+   "en": "nun",
+   "note": "A small hook curving left at the bottom — like a backwards J."
+  },
+  {
+   "id": "l16",
+   "he": "ן",
+   "en": "final nun",
+   "note": "A long straight stroke going below the line (longer than ו)."
+  },
+  {
+   "id": "l17",
+   "he": "ס",
+   "en": "samech",
+   "note": "A simple circle, like O."
+  },
+  {
+   "id": "l18",
+   "he": "ע",
+   "en": "ayin",
+   "note": "A loop at the bottom with two strokes — like a backwards δ."
+  },
+  {
+   "id": "l19",
+   "he": "פ",
+   "en": "pe / fe",
+   "note": "A backwards C with a curl inside — like a rounded print פ."
+  },
+  {
+   "id": "l20",
+   "he": "ף",
+   "en": "final fe",
+   "note": "A tall curl with a long stroke — the final form of פ."
+  },
+  {
+   "id": "l21",
+   "he": "צ",
+   "en": "tsadi",
+   "note": "Like the number 3."
+  },
+  {
+   "id": "l22",
+   "he": "ץ",
+   "en": "final tsadi",
+   "note": "A curl with a long tail — the final form of צ."
+  },
+  {
+   "id": "l23",
+   "he": "ק",
+   "en": "kuf",
+   "note": "A hook at the top with a long stroke below the line — like a backwards p."
+  },
+  {
+   "id": "l24",
+   "he": "ר",
+   "en": "resh",
+   "note": "A rounded upside-down U — like the print ר."
+  },
+  {
+   "id": "l25",
+   "he": "ש",
+   "en": "shin / sin",
+   "note": "A cup shape — like a backwards e."
+  },
+  {
+   "id": "l26",
+   "he": "ת",
+   "en": "tav",
+   "note": "Like a backwards n with a little foot curling out on the left."
+  }
+ ]
+}

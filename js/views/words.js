@@ -1,4 +1,4 @@
-import { getCatalog, getDeck, itemKey } from '../decks.js';
+import { getCatalog, getDeck, itemKey, lockInfo, itemByKey, typesFor } from '../decks.js';
 import { stripNiqqud } from '../hebrew.js';
 import { State, formatInterval } from '../fsrs.js';
 import * as store from '../store.js';
@@ -24,8 +24,12 @@ export function renderWords(app, deckId) {
   function status(item) {
     const st = store.get();
     const key = itemKey(item);
-    const cs = ['r', 'w'].map((t) => st.cards[`${key}:${t}`]).filter(Boolean);
-    if (!cs.length) return '<span class="status-new">new</span>';
+    const cs = typesFor(item).map((t) => st.cards[`${key}:${t}`]).filter(Boolean);
+    if (!cs.length) {
+      const lock = lockInfo(item);
+      if (lock?.missing.length) return `<span class="muted" title="Learn these first: ${esc(lock.missing.map((k) => itemByKey(k)?.he || k).join(', '))}">🔒 needs ${lock.missing.length} more word${lock.missing.length === 1 ? '' : 's'}</span>`;
+      return '<span class="status-new">new</span>';
+    }
     const now = Date.now();
     if (cs.some((c) => c.state === State.Learning || c.state === State.Relearning)) return '<span class="status-learning">learning</span>';
     const due = Math.min(...cs.map((c) => c.due));
@@ -58,7 +62,7 @@ export function renderWords(app, deckId) {
       const extra = item.note || item.ex?.length || item.alt?.length;
       const label = item.kind === 'conj' ? `${item.en} · ${item.tense}${item.person ? ' · ' + item.person : ''}` : item.en;
       return `<div class="word">
-        <div class="word-he">${he(item.he)}</div>
+        <div class="word-he">${item.kind === 'cursive' ? `<span class="cursive" lang="he">${esc(item.he)}</span>` : he(item.he)}</div>
         <div><div class="word-en">${esc(label)}</div>
           <div class="word-sub">${regChip(item.reg)}${status(item)}${state.deck ? '' : `<span>· ${esc(getDeck(item.deck)?.meta.title || '')}</span>`}</div></div>
         <div class="word-actions">${sayBtn(item.he)}

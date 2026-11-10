@@ -1,7 +1,7 @@
 // Builds and runs a review session: what to show next, and recording answers.
 import { Scheduler, State, newCard, dayKey } from './fsrs.js';
 import * as store from './store.js';
-import { cards, getCatalog, itemKey } from './decks.js';
+import { cards, getCatalog, itemKey, isLocked } from './decks.js';
 
 const LEARN_AHEAD = 20 * 60 * 1000;
 
@@ -16,13 +16,13 @@ export function cardState(id) {
 /** Counts for the dashboard / deck list. */
 export function counts(deckFilter = null, now = Date.now()) {
   const st = store.get();
-  const out = { due: 0, learning: 0, newAvail: 0, seen: 0, total: 0, mature: 0 };
+  const out = { due: 0, learning: 0, newAvail: 0, seen: 0, total: 0, mature: 0, locked: 0 };
   for (const c of cards().values()) {
     if (deckFilter && c.deck !== deckFilter) continue;
     out.total++;
     if (st.suspended[c.id]) continue;
     const s = st.cards[c.id];
-    if (!s) { out.newAvail++; continue; }
+    if (!s) { if (isLocked(c.item)) out.locked++; else out.newAvail++; continue; }
     out.seen++;
     if (s.state === State.Review && s.s >= 21) out.mature++;
     if (s.due <= now) {
@@ -77,7 +77,7 @@ export class Session {
         } else if (s.due <= now) {
           reviews.push(c);
         }
-      } else if (this.deckAllowed(c.deck)) {
+      } else if (this.deckAllowed(c.deck) && !isLocked(c.item)) {
         if (!newByDeck.has(c.deck)) newByDeck.set(c.deck, []);
         newByDeck.get(c.deck).push(c);
       }

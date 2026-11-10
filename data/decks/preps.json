@@ -1,0 +1,369 @@
+{
+ "items": [
+  {
+   "id": "le-1s",
+   "he": "לִי",
+   "en": "to me",
+   "hint": "ל + אני"
+  },
+  {
+   "id": "le-2ms",
+   "he": "לְךָ",
+   "en": "to you (m)",
+   "hint": "ל + אתה",
+   "note": "To a woman: לָךְ (same spelling)."
+  },
+  {
+   "id": "le-3ms",
+   "he": "לוֹ",
+   "en": "to him",
+   "hint": "ל + הוא"
+  },
+  {
+   "id": "le-3fs",
+   "he": "לָהּ",
+   "en": "to her",
+   "hint": "ל + היא"
+  },
+  {
+   "id": "le-1p",
+   "he": "לָנוּ",
+   "en": "to us",
+   "hint": "ל + אנחנו"
+  },
+  {
+   "id": "le-2mp",
+   "he": "לָכֶם",
+   "en": "to you (pl)",
+   "hint": "ל + אתם"
+  },
+  {
+   "id": "le-3p",
+   "he": "לָהֶם",
+   "en": "to them",
+   "hint": "ל + הם"
+  },
+  {
+   "id": "shel-1s",
+   "he": "שֶׁלִּי",
+   "en": "of / belonging to me",
+   "hint": "של + אני"
+  },
+  {
+   "id": "shel-2ms",
+   "he": "שֶׁלְּךָ",
+   "en": "of / belonging to you (m)",
+   "hint": "של + אתה",
+   "note": "To a woman: שֶׁלָּךְ (same spelling)."
+  },
+  {
+   "id": "shel-3ms",
+   "he": "שֶׁלּוֹ",
+   "en": "of / belonging to him",
+   "hint": "של + הוא"
+  },
+  {
+   "id": "shel-3fs",
+   "he": "שֶׁלָּהּ",
+   "en": "of / belonging to her",
+   "hint": "של + היא"
+  },
+  {
+   "id": "shel-1p",
+   "he": "שֶׁלָּנוּ",
+   "en": "of / belonging to us",
+   "hint": "של + אנחנו"
+  },
+  {
+   "id": "shel-2mp",
+   "he": "שֶׁלָּכֶם",
+   "en": "of / belonging to you (pl)",
+   "hint": "של + אתם"
+  },
+  {
+   "id": "shel-3p",
+   "he": "שֶׁלָּהֶם",
+   "en": "of / belonging to them",
+   "hint": "של + הם"
+  },
+  {
+   "id": "im-1s",
+   "he": "אִיתִּי",
+   "en": "with me",
+   "hint": "עם + אני",
+   "alt": [
+    "אתי"
+   ]
+  },
+  {
+   "id": "im-2ms",
+   "he": "אִיתְּךָ",
+   "en": "with you (m)",
+   "hint": "עם + אתה",
+   "alt": [
+    "אתך"
+   ],
+   "note": "To a woman: אִיתָּךְ (same spelling). עם + ending uses the old form את־."
+  },
+  {
+   "id": "im-3ms",
+   "he": "אִיתּוֹ",
+   "en": "with him",
+   "hint": "עם + הוא",
+   "alt": [
+    "אתו"
+   ]
+  },
+  {
+   "id": "im-3fs",
+   "he": "אִיתָּהּ",
+   "en": "with her",
+   "hint": "עם + היא",
+   "alt": [
+    "אתה"
+   ]
+  },
+  {
+   "id": "im-1p",
+   "he": "אִיתָּנוּ",
+   "en": "with us",
+   "hint": "עם + אנחנו"
+  },
+  {
+   "id": "im-2mp",
+   "he": "אִיתְּכֶם",
+   "en": "with you (pl)",
+   "hint": "עם + אתם"
+  },
+  {
+   "id": "im-3p",
+   "he": "אִיתָּם",
+   "en": "with them",
+   "hint": "עם + הם"
+  },
+  {
+   "id": "etzel-1s",
+   "he": "אֶצְלִי",
+   "en": "at (someone's place) me",
+   "hint": "אצל + אני",
+   "note": "'בוא אליי' = come to my place; 'אצלי' = at my place."
+  },
+  {
+   "id": "etzel-2ms",
+   "he": "אֶצְלְךָ",
+   "en": "at (someone's place) you (m)",
+   "hint": "אצל + אתה"
+  },
+  {
+   "id": "etzel-3ms",
+   "he": "אֶצְלוֹ",
+   "en": "at (someone's place) him",
+   "hint": "אצל + הוא"
+  },
+  {
+   "id": "etzel-3fs",
+   "he": "אֶצְלָהּ",
+   "en": "at (someone's place) her",
+   "hint": "אצל + היא"
+  },
+  {
+   "id": "etzel-1p",
+   "he": "אֶצְלֵנוּ",
+   "en": "at (someone's place) us",
+   "hint": "אצל + אנחנו"
+  },
+  {
+   "id": "etzel-2mp",
+   "he": "אֶצְלְכֶם",
+   "en": "at (someone's place) you (pl)",
+   "hint": "אצל + אתם"
+  },
+  {
+   "id": "etzel-3p",
+   "he": "אֶצְלָם",
+   "en": "at (someone's place) them",
+   "hint": "אצל + הם"
+  },
+  {
+   "id": "al-1s",
+   "he": "עָלַיי",
+   "en": "on / about me",
+   "hint": "על + אני",
+   "alt": [
+    "עלי"
+   ],
+   "note": "'עליי' also means 'it's on me (I'm paying)'."
+  },
+  {
+   "id": "al-2ms",
+   "he": "עָלֶיךָ",
+   "en": "on / about you (m)",
+   "hint": "על + אתה"
+  },
+  {
+   "id": "al-3ms",
+   "he": "עָלָיו",
+   "en": "on / about him",
+   "hint": "על + הוא"
+  },
+  {
+   "id": "al-3fs",
+   "he": "עָלֶיהָ",
+   "en": "on / about her",
+   "hint": "על + היא"
+  },
+  {
+   "id": "al-1p",
+   "he": "עָלֵינוּ",
+   "en": "on / about us",
+   "hint": "על + אנחנו"
+  },
+  {
+   "id": "al-2mp",
+   "he": "עֲלֵיכֶם",
+   "en": "on / about you (pl)",
+   "hint": "על + אתם"
+  },
+  {
+   "id": "al-3p",
+   "he": "עֲלֵיהֶם",
+   "en": "on / about them",
+   "hint": "על + הם"
+  },
+  {
+   "id": "mi-1s",
+   "he": "מִמֶּנִּי",
+   "en": "from me",
+   "hint": "מ + אני"
+  },
+  {
+   "id": "mi-2ms",
+   "he": "מִמְּךָ",
+   "en": "from you (m)",
+   "hint": "מ + אתה"
+  },
+  {
+   "id": "mi-3ms",
+   "he": "מִמֶּנּוּ",
+   "en": "from him",
+   "hint": "מ + הוא",
+   "note": "Careful: ממנו means both \"from him\" and (formally) \"from us\"; for \"from us\" people say מאיתנו."
+  },
+  {
+   "id": "mi-3fs",
+   "he": "מִמֶּנָּה",
+   "en": "from her",
+   "hint": "מ + היא"
+  },
+  {
+   "id": "mi-1p",
+   "he": "מֵאִיתָּנוּ",
+   "en": "from us",
+   "hint": "מ + אנחנו",
+   "alt": [
+    "ממנו"
+   ]
+  },
+  {
+   "id": "mi-2mp",
+   "he": "מִכֶּם",
+   "en": "from you (pl)",
+   "hint": "מ + אתם"
+  },
+  {
+   "id": "mi-3p",
+   "he": "מֵהֶם",
+   "en": "from them",
+   "hint": "מ + הם"
+  },
+  {
+   "id": "bishvil-1s",
+   "he": "בִּשְׁבִילִי",
+   "en": "for me",
+   "hint": "בשביל + אני"
+  },
+  {
+   "id": "bishvil-2ms",
+   "he": "בִּשְׁבִילְךָ",
+   "en": "for you (m)",
+   "hint": "בשביל + אתה"
+  },
+  {
+   "id": "bishvil-3ms",
+   "he": "בִּשְׁבִילוֹ",
+   "en": "for him",
+   "hint": "בשביל + הוא"
+  },
+  {
+   "id": "bishvil-3fs",
+   "he": "בִּשְׁבִילָהּ",
+   "en": "for her",
+   "hint": "בשביל + היא"
+  },
+  {
+   "id": "bishvil-1p",
+   "he": "בִּשְׁבִילֵנוּ",
+   "en": "for us",
+   "hint": "בשביל + אנחנו"
+  },
+  {
+   "id": "bishvil-2mp",
+   "he": "בִּשְׁבִילְכֶם",
+   "en": "for you (pl)",
+   "hint": "בשביל + אתם"
+  },
+  {
+   "id": "bishvil-3p",
+   "he": "בִּשְׁבִילָם",
+   "en": "for them",
+   "hint": "בשביל + הם"
+  },
+  {
+   "id": "et-1s",
+   "he": "אוֹתִי",
+   "en": "me — as a direct object (\"he saw ___\")",
+   "hint": "את + אני"
+  },
+  {
+   "id": "et-2ms",
+   "he": "אוֹתְךָ",
+   "en": "you (m) — as a direct object (\"he saw ___\")",
+   "hint": "את + אתה",
+   "note": "To a woman: אוֹתָךְ (same spelling)."
+  },
+  {
+   "id": "et-3ms",
+   "he": "אוֹתוֹ",
+   "en": "him — as a direct object (\"he saw ___\")",
+   "hint": "את + הוא"
+  },
+  {
+   "id": "et-3fs",
+   "he": "אוֹתָהּ",
+   "en": "her — as a direct object (\"he saw ___\")",
+   "hint": "את + היא"
+  },
+  {
+   "id": "et-1p",
+   "he": "אוֹתָנוּ",
+   "en": "us — as a direct object (\"he saw ___\")",
+   "hint": "את + אנחנו"
+  },
+  {
+   "id": "et-2mp",
+   "he": "אֶתְכֶם",
+   "en": "you (pl) — as a direct object (\"he saw ___\")",
+   "hint": "את + אתם",
+   "alt": [
+    "אותכם"
+   ],
+   "note": "In speech you will also hear אותכם."
+  },
+  {
+   "id": "et-3p",
+   "he": "אוֹתָם",
+   "en": "them — as a direct object (\"he saw ___\")",
+   "hint": "את + הם"
+  }
+ ]
+}

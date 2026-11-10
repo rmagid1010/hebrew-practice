@@ -53,17 +53,49 @@ function expand(meta, data) {
     }
     return items;
   }
-  return data.items.map((it) => ({ ...it, deck: meta.id, kind: meta.kind === 'sentences' ? 'sentence' : 'vocab' }));
+  const kind = meta.kind === 'sentences' ? 'sentence' : meta.kind === 'cursive' ? 'cursive' : 'vocab';
+  return data.items.map((it) => ({ ...it, deck: meta.id, kind, types: it.types || meta.types }));
 }
 
 export function getCatalog() { return catalog; }
 export function getDeck(id) { return decks.get(id); }
 export function itemKey(item) { return `${item.deck}/${item.id}`; }
 
-/** The card types an item produces. r = read (Hebrew→meaning), w = write (English→Hebrew). */
-function typesFor(item) {
+/**
+ * The card types an item produces.
+ * r = read (Hebrew → meaning), w = write (English → Hebrew), c = read cursive (type it in print).
+ */
+export function typesFor(item) {
   if (item.kind === 'conj') return ['w'];
-  return ['r', 'w'];
+  if (item.kind === 'cursive') return ['c'];
+  return item.types || ['r', 'w'];
+}
+
+/** An item counts as "learnt" once any of its cards has graduated to review. */
+export function isLearnt(key) {
+  const st = store.get().cards;
+  for (const t of ['r', 'w', 'c']) {
+    const c = st[`${key}:${t}`];
+    if (c && c.state >= 2) return true;
+  }
+  return false;
+}
+
+/** Items with `req` stay locked until every required item is learnt. */
+export function lockInfo(item) {
+  if (!item.req?.length) return null;
+  const missing = item.req.filter((k) => !isLearnt(k));
+  return { total: item.req.length, missing };
+}
+export function isLocked(item) {
+  const info = lockInfo(item);
+  return !!(info && info.missing.length);
+}
+
+/** Look up an item by its key ("deck/id"). */
+export function itemByKey(key) {
+  const [deck, id] = key.split('/');
+  return decks.get(deck)?.items.find((i) => i.id === id) || null;
 }
 
 export function cards() {

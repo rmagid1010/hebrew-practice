@@ -27,6 +27,7 @@ export function renderSettings(app) {
         <section class="card">
           <h2>Display &amp; audio</h2>
           <label class="switch"><span>Show vowel points (niqqud)<div class="field-hint">Shown on prompts and answers. You never need to type them.</div></span><input type="checkbox" data-set="niqqud" ${s.niqqud ? 'checked' : ''}></label>
+          <label class="switch"><span>Show reading cards in cursive<div class="field-hint">Handwriting practice on every reading card. You can also flip a single card with the ✍ button or the C key.</div></span><input type="checkbox" data-set="cursiveReading" ${s.cursiveReading ? 'checked' : ''}></label>
           <label class="switch"><span>Audio (text-to-speech)<div class="field-hint">${esc(voiceNote)}</div></span><input type="checkbox" data-set="audio" ${s.audio ? 'checked' : ''} ${tts.supported() ? '' : 'disabled'}></label>
           <label class="switch"><span>Play audio automatically</span><input type="checkbox" data-set="autoplay" ${s.autoplay ? 'checked' : ''}></label>
           <label class="switch"><span>Speech speed</span><select data-set="rate">${[[0.7, 'Slow'], [0.9, 'Relaxed'], [1, 'Normal']].map(([r, l]) => `<option value="${r}" ${s.rate === r ? 'selected' : ''}>${l}</option>`).join('')}</select></label>

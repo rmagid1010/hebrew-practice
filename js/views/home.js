@@ -70,8 +70,8 @@ export function renderHome(app) {
       ${[
         ['reading', 'Reading Hebrew', 'Letters, vowels, final forms and full spelling.'],
         ['binyanim', 'What are binyanim?', 'The seven verb patterns, and why roots matter.'],
-        ['paal', 'Pa\'al', 'The basic binyan: לִכְתּוֹב, לִגְמוֹר, לִסְגּוֹר…'],
-        ['piel', 'Pi\'el', 'Intensive and everyday: לְדַבֵּר, לְשַׁלֵּם, לְחַפֵּשׂ…'],
+        ['cursive', 'Reading cursive', 'The handwritten alphabet, with practice notes.'],
+        ['spoken', 'How people actually talk', 'The gap between the textbook and the street.'],
       ].map(([id, t, s]) => `<a href="#/grammar/${id}"><div class="card"><h3>${esc(t)}</h3><p class="muted small" style="margin:0">${s.replace(/[֐-׿][֐-׿ ]*[֐-׿]/g, (m) => he(m))}</p></div></a>`).join('')}
     </div>
   `;

@@ -1,20 +1,267 @@
 [
-  { "id": "street", "kind": "vocab", "title": "Street Essentials", "he": "סְלֶנְג וּבִיטּוּיִים", "level": "Start here",
-    "description": "The words you hear every five minutes in Tel Aviv: סבבה, יאללה, תכלס, באסה, חבל על הזמן…" },
-  { "id": "smalltalk", "kind": "vocab", "title": "Small Talk & People", "he": "שִׂיחָה וַאֲנָשִׁים", "level": "Start here",
-    "description": "Meeting people, being polite, and surviving a conversation: asking someone to repeat, slow down, explain." },
-  { "id": "cafe", "kind": "vocab", "title": "Café, Food & Going Out", "he": "אוֹכֶל וְיוֹצְאִים", "level": "Beginner",
-    "description": "Ordering a הפוך, asking for the bill, sabich and shakshuka, and saying 'it's on me'." },
-  { "id": "around", "kind": "vocab", "title": "Getting Around the City", "he": "בָּעִיר", "level": "Beginner",
-    "description": "Buses, Rav-Kav, scooters, directions, the beach and the shuk." },
-  { "id": "time", "kind": "vocab", "title": "Time & Making Plans", "he": "זְמַן וְתוֹכְנִיּוֹת", "level": "Beginner",
-    "description": "Now, later, tomorrow, 'I feel like…', 'I can't be bothered', running late." },
-  { "id": "verbs", "kind": "vocab", "title": "Core Verbs", "he": "פְּעָלִים חֲשׁוּבִים", "level": "Beginner",
-    "description": "35 everyday verbs as infinitives, with their present-tense forms and binyan in the notes.", "grammar": "binyanim" },
-  { "id": "phrases", "kind": "sentences", "title": "Sentence Builder", "he": "מִשְׁפָּטִים", "level": "Beginner",
-    "description": "Whole sentences the way people actually say them. Type the full sentence in Hebrew." },
-  { "id": "paal", "kind": "conjugation", "title": "Pa'al drills", "he": "בִּנְיַן פָּעַל", "level": "Grammar", "grammar": "paal",
-    "description": "Conjugate regular pa'al verbs: לִכְתּוֹב, לִגְמוֹר, לִסְגּוֹר, לִפְגּוֹשׁ — present, past, future and commands." },
-  { "id": "piel", "kind": "conjugation", "title": "Pi'el drills", "he": "בִּנְיַן פִּיעֵל", "level": "Grammar", "grammar": "piel",
-    "description": "Conjugate pi'el verbs: לְדַבֵּר, לְשַׁלֵּם, לְסַדֵּר, לְחַפֵּשׂ — present, past, future and commands." }
+ {
+  "id": "street",
+  "kind": "vocab",
+  "title": "Street Essentials",
+  "he": "סְלֶנְג וּבִיטּוּיִים",
+  "level": "A1 · start here",
+  "description": "The words you hear every five minutes in Tel Aviv: סבבה, יאללה, תכלס, באסה, חבל על הזמן…"
+ },
+ {
+  "id": "smalltalk",
+  "kind": "vocab",
+  "title": "Small Talk & People",
+  "he": "שִׂיחָה וַאֲנָשִׁים",
+  "level": "A1 · start here",
+  "description": "Meeting people, being polite, and surviving a conversation: asking someone to repeat, slow down, explain."
+ },
+ {
+  "id": "cafe",
+  "kind": "vocab",
+  "title": "Café, Food & Going Out",
+  "he": "אוֹכֶל וְיוֹצְאִים",
+  "level": "A1",
+  "description": "Ordering a הפוך, asking for the bill, sabich and shakshuka, and saying 'it's on me'."
+ },
+ {
+  "id": "around",
+  "kind": "vocab",
+  "title": "Getting Around the City",
+  "he": "בָּעִיר",
+  "level": "A1",
+  "description": "Buses, Rav-Kav, scooters, directions, the beach and the shuk."
+ },
+ {
+  "id": "time",
+  "kind": "vocab",
+  "title": "Time & Making Plans",
+  "he": "זְמַן וְתוֹכְנִיּוֹת",
+  "level": "A1",
+  "description": "Now, later, tomorrow, 'I feel like…', 'I can't be bothered', running late."
+ },
+ {
+  "id": "verbs",
+  "kind": "vocab",
+  "title": "Core Verbs",
+  "he": "פְּעָלִים חֲשׁוּבִים",
+  "level": "A1",
+  "description": "35 everyday verbs as infinitives, with their present-tense forms and binyan in the notes.",
+  "grammar": "binyanim"
+ },
+ {
+  "id": "connectors",
+  "kind": "vocab",
+  "title": "Question Words & Connectors",
+  "he": "מִילּוֹת קִישּׁוּר",
+  "level": "A1–A2",
+  "description": "Why, how, because, if, when, but, only, still, even — the glue that turns words into sentences.",
+  "grammar": "questions"
+ },
+ {
+  "id": "numbers",
+  "kind": "vocab",
+  "title": "Numbers & Time",
+  "he": "מִסְפָּרִים",
+  "level": "A1–A2",
+  "description": "1–1,000, halves and quarters, first/second/third, and telling the time. Counting uses the feminine forms.",
+  "grammar": "numbers"
+ },
+ {
+  "id": "home",
+  "kind": "vocab",
+  "title": "Home & Apartment",
+  "he": "בַּבַּיִת",
+  "level": "A2",
+  "description": "Rooms, furniture, rent, the landlord, the AC, the mamad and the building committee."
+ },
+ {
+  "id": "shopping",
+  "kind": "vocab",
+  "title": "Shopping & Money",
+  "he": "קְנִיּוֹת וְכֶסֶף",
+  "level": "A2",
+  "description": "Paying, discounts, returns, installments, Bit — and not being a freier."
+ },
+ {
+  "id": "food",
+  "kind": "vocab",
+  "title": "Food & Cooking",
+  "he": "אוֹכֶל וּבִישּׁוּל",
+  "level": "A2",
+  "description": "Groceries, cooking verbs, meals and tastes."
+ },
+ {
+  "id": "family",
+  "kind": "vocab",
+  "title": "Family & Relationships",
+  "he": "מִשְׁפָּחָה",
+  "level": "A2",
+  "description": "Family members, partners, dating, weddings, Friday dinner."
+ },
+ {
+  "id": "feelings",
+  "kind": "vocab",
+  "title": "Feelings & Personality",
+  "he": "רְגָשׁוֹת",
+  "level": "A2",
+  "description": "Happy, stressed, fed up, I don't care, annoying, chutzpah — how people feel and what they're like."
+ },
+ {
+  "id": "adjectives",
+  "kind": "vocab",
+  "title": "Describing Things",
+  "he": "שְׁמוֹת תּוֹאַר",
+  "level": "A2",
+  "description": "35 everyday adjectives, mostly in opposite pairs.",
+  "grammar": "adjectives"
+ },
+ {
+  "id": "health",
+  "kind": "vocab",
+  "title": "Body & Health",
+  "he": "גּוּף וּבְרִיאוּת",
+  "level": "A2",
+  "description": "Body parts, \"it hurts\", the kupat cholim, sick notes, the gym."
+ },
+ {
+  "id": "weather",
+  "kind": "vocab",
+  "title": "Weather & Outdoors",
+  "he": "מֶזֶג אֲוִויר",
+  "level": "A2",
+  "description": "Heat, humidity, rain, seasons, the beach and trips out of town."
+ },
+ {
+  "id": "work",
+  "kind": "vocab",
+  "title": "Work & Study",
+  "he": "עֲבוֹדָה וְלִימּוּדִים",
+  "level": "A2",
+  "description": "Office, meetings, salary, hi-tech, deadlines, ulpan and exams."
+ },
+ {
+  "id": "clothes",
+  "kind": "vocab",
+  "title": "Clothes & Colors",
+  "he": "בְּגָדִים וּצְבָעִים",
+  "level": "A2",
+  "description": "What you wear and the colors to describe it."
+ },
+ {
+  "id": "tech",
+  "kind": "vocab",
+  "title": "Phone & Tech",
+  "he": "טֶלֶפוֹן",
+  "level": "A2",
+  "description": "WhatsApp, chargers, voice notes, \"send me your location\", googling and texting."
+ },
+ {
+  "id": "freetime",
+  "kind": "vocab",
+  "title": "Free Time",
+  "he": "פְּנַאי",
+  "level": "A2",
+  "description": "Movies, shows, matkot, BBQs, hanging out and having a good time."
+ },
+ {
+  "id": "phrases",
+  "kind": "sentences",
+  "title": "Sentence Builder",
+  "he": "מִשְׁפָּטִים",
+  "level": "A1",
+  "description": "Whole sentences the way people actually say them. Type the full sentence in Hebrew."
+ },
+ {
+  "id": "phrases2",
+  "kind": "sentences",
+  "title": "Sentence Builder 2",
+  "he": "מִשְׁפָּטִים 2",
+  "level": "A2",
+  "description": "Past and future in real sentences: what you did, what you will do, if/when/because."
+ },
+ {
+  "id": "challenge",
+  "kind": "sentences",
+  "group": "challenge",
+  "title": "Challenge Sentences",
+  "he": "אֶתְגָּר",
+  "level": "A2",
+  "description": "Longer sentences built from words you already know. Each unlocks when you have learnt all the words it uses."
+ },
+ {
+  "id": "cursive-letters",
+  "kind": "cursive",
+  "title": "Cursive Letters",
+  "he": "אוֹתִיּוֹת כְּתַב יָד",
+  "level": "Cursive",
+  "grammar": "cursive",
+  "description": "All 27 handwritten letter shapes. See the letter, type its print form."
+ },
+ {
+  "id": "cursive-words",
+  "kind": "cursive",
+  "title": "Cursive Words & Notes",
+  "he": "כְּתַב יָד",
+  "level": "Cursive",
+  "grammar": "cursive",
+  "description": "Notes, signs, shopping lists and messages in handwriting. Read it, type it in print."
+ },
+ {
+  "id": "preps",
+  "kind": "vocab",
+  "group": "forms",
+  "types": [
+   "w"
+  ],
+  "title": "Pronoun Endings",
+  "he": "לִי, אִיתִּי, אוֹתִי",
+  "level": "Grammar",
+  "grammar": "prepositions",
+  "description": "לי, שלי, איתי, אצלי, עליי, ממני, בשבילי, אותי — produce them instantly."
+ },
+ {
+  "id": "paal",
+  "kind": "conjugation",
+  "title": "Pa'al drills",
+  "he": "בִּנְיַן פָּעַל",
+  "level": "Grammar",
+  "grammar": "paal",
+  "description": "Conjugate regular pa'al verbs: לִכְתּוֹב, לִגְמוֹר, לִסְגּוֹר, לִפְגּוֹשׁ — present, past, future and commands."
+ },
+ {
+  "id": "piel",
+  "kind": "conjugation",
+  "title": "Pi'el drills",
+  "he": "בִּנְיַן פִּיעֵל",
+  "level": "Grammar",
+  "grammar": "piel",
+  "description": "Conjugate pi'el verbs: לְדַבֵּר, לְשַׁלֵּם, לְסַדֵּר, לְחַפֵּשׂ — present, past, future and commands."
+ },
+ {
+  "id": "nifal",
+  "kind": "conjugation",
+  "title": "Nif'al drills",
+  "he": "בִּנְיַן נִפְעַל",
+  "level": "Grammar",
+  "grammar": "nifal",
+  "description": "לְהִיכָּנֵס, לְהִיפָּגֵשׁ, לְהִישָּׁאֵר, לְהִיזָּהֵר — present, past, future, commands."
+ },
+ {
+  "id": "hifil",
+  "kind": "conjugation",
+  "title": "Hif'il drills",
+  "he": "בִּנְיַן הִפְעִיל",
+  "level": "Grammar",
+  "grammar": "hifil",
+  "description": "לְהַזְמִין, לְהַתְחִיל, לְהַרְגִּישׁ, לְהַסְבִּיר — present, past, future, commands."
+ },
+ {
+  "id": "hitpael",
+  "kind": "conjugation",
+  "title": "Hitpa'el drills",
+  "he": "בִּנְיַן הִתְפַּעֵל",
+  "level": "Grammar",
+  "grammar": "hitpael",
+  "description": "לְהִתְלַבֵּשׁ, לְהִתְקַלֵּחַ, לְהִתְקַשֵּׁר, לְהִתְרַגֵּשׁ — present, past, future, commands."
+ }
 ]

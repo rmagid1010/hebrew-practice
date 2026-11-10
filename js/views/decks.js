@@ -9,13 +9,16 @@ export function renderDecks(app) {
     const groups = [
       ['vocab', 'Vocabulary', 'Each word makes two cards: reading it (Hebrew → meaning) and writing it (English → Hebrew).'],
       ['sentences', 'Sentences', 'Whole phrases to read and write. Write the full sentence with your Hebrew keyboard.'],
+      ['challenge', 'Challenge sentences', 'Longer sentences that combine words you already know. Each one unlocks once you have learnt every word it uses — keep studying the vocabulary decks to unlock more.'],
+      ['cursive', 'Cursive (handwriting)', 'Read Hebrew handwriting: letters first, then words and phrases. Type what you read in print letters.'],
+      ['forms', 'Grammar drills', 'Short forms you need to produce instantly: prepositions with endings, object pronouns, numbers.'],
       ['conjugation', 'Verb drills', 'Given a verb, tense and person, type the right form. Strict checking: one letter can change the meaning.'],
     ];
     app.innerHTML = `
       <h1>Decks</h1>
       <p class="muted">Switch decks on to add their new cards to your daily mix. Cards you've already started keep coming back for review either way.</p>
       ${groups.map(([kind, title, desc]) => {
-        const list = getCatalog().filter((d) => (d.kind || 'vocab') === kind);
+        const list = getCatalog().filter((d) => (d.group || d.kind || 'vocab') === kind);
         if (!list.length) return '';
         return `<div class="section-title"><h2>${title}</h2></div><p class="muted small">${desc}</p>
           <div class="grid grid-2">${list.map((d) => deckCard(d, st)).join('')}</div>`;
@@ -49,7 +52,7 @@ function deckCard(d, st) {
     <p class="deck-desc">${esc(d.description || '')}</p>
     <div class="progress"><span style="width:${pct}%"></span></div>
     <div class="deck-stats">
-      <span><b>${c.newAvail}</b> new</span><span><b>${c.learning}</b> learning</span><span><b>${c.due}</b> due</span><span><b>${c.mature}</b> solid</span>
+      <span><b>${c.newAvail}</b> new</span>${c.locked ? `<span title="Unlock by learning the words these sentences use">🔒 <b>${c.locked}</b> locked</span>` : ''}<span><b>${c.learning}</b> learning</span><span><b>${c.due}</b> due</span><span><b>${c.mature}</b> solid</span>
     </div>
     <div class="row">
       <label class="toggle"><input type="checkbox" data-toggle="${esc(d.id)}" ${on ? 'checked' : ''}> In daily mix</label>

@@ -9,6 +9,7 @@ export const DEFAULT_SETTINGS = {
   niqqud: true,        // show vowel points on Hebrew prompts & answers
   audio: true,         // text-to-speech buttons
   autoplay: false,     // speak Hebrew automatically when shown
+  cursiveReading: false, // show reading prompts in handwriting
   rate: 0.9,           // speech rate
   retention: 0.9,      // FSRS target retention
   theme: 'auto',
@@ -21,11 +22,12 @@ function blank() {
     cards: {},          // cardId -> FSRS card
     suspended: {},      // cardId -> true
     flagged: {},        // itemKey -> note
-    enabledDecks: ['street', 'smalltalk'],
+    enabledDecks: ['street', 'smalltalk', 'challenge'],
     custom: [],         // user-added vocab items
     log: [],            // [timestamp, cardId, rating, verdict]
     newDone: {},        // dayKey -> number of new cards introduced
     created: Date.now(),
+    migratedV2: true,
   };
 }
 
@@ -39,7 +41,13 @@ function load() {
     if (!raw) return blank();
     const s = JSON.parse(raw);
     const b = blank();
-    return { ...b, ...s, settings: { ...b.settings, ...(s.settings || {}) } };
+    const st = { ...b, ...s, settings: { ...b.settings, ...(s.settings || {}) } };
+    // v2: challenge sentences unlock automatically, so switch that deck on for existing learners.
+    if (!st.migratedV2) {
+      if (!st.enabledDecks.includes('challenge')) st.enabledDecks.push('challenge');
+      st.migratedV2 = true;
+    }
+    return st;
   } catch {
     return blank();
   }

@@ -1,5 +1,5 @@
 import { Session, scheduler, newLeftToday } from '../session.js';
-import { cards, answersFor, personLabel, tenseLabel, getDeck } from '../decks.js';
+import { cards, answersFor, personLabel, tenseLabel, getDeck, itemByKey } from '../decks.js';
 import { checkAnswer, diff, stripNiqqud } from '../hebrew.js';
 import { previewLabel, newCard, State } from '../fsrs.js';
 import * as store from '../store.js';
@@ -18,6 +18,7 @@ export function renderReview(app, deckId, opts = {}) {
   let suggested = 3;
   let verdict = null;
   let waitTimer = null;
+  let cursiveView = !!store.settings().cursiveReading; // show reading prompts in cursive
 
   const deckTitle = deckId ? getDeck(deckId)?.meta.title : null;
 
@@ -51,7 +52,7 @@ export function renderReview(app, deckId, opts = {}) {
 
   function metaRow(c) {
     const item = c.item;
-    const label = c.type === 'r' ? 'Read it' : item.kind === 'conj' ? 'Conjugate' : 'Write it in Hebrew';
+    const label = c.type === 'r' ? 'Read it' : c.type === 'c' ? 'Read the cursive' : item.kind === 'conj' ? 'Conjugate' : 'Write it in Hebrew';
     const st = store.get().cards[c.id];
     const isNew = !st;
     return `<div class="flash-meta">
@@ -77,10 +78,19 @@ export function renderReview(app, deckId, opts = {}) {
         <div class="conj-slots">${slots.join('')}</div>
       </div>`;
     }
+    if (c.type === 'c') {
+      const plain = stripNiqqud(item.he);
+      return `<div class="prompt-cursive ${plain.length > 16 ? 'long' : ''}" lang="he" dir="rtl">${esc(plain)}</div>
+        <p class="prompt-hint">${plain.length <= 2 ? 'Which letter is this? Type it in print.' : 'Read the handwriting, then type it in print letters.'}</p>`;
+    }
     if (c.type === 'r') {
       const long = stripNiqqud(item.he).length > 14;
-      return `<div class="prompt-row"><div class="prompt-he ${long ? 'long' : ''}">${he(item.he)}</div>${sayBtn(item.he)}</div>
-        <p class="prompt-hint">Read it out loud. What does it mean?</p>`;
+      const main = cursiveView
+        ? `<div class="prompt-cursive ${long ? 'long' : ''}" lang="he" dir="rtl">${esc(stripNiqqud(item.he))}</div>`
+        : `<div class="prompt-he ${long ? 'long' : ''}">${he(item.he)}</div>`;
+      return `<div class="prompt-row">${main}${sayBtn(item.he)}</div>
+        <p class="prompt-hint">Read it out loud. What does it mean?
+          <button type="button" class="btn btn-ghost btn-sm cursive-toggle" data-act="cursive" title="Switch between print and handwriting (C)">${cursiveView ? 'Show print' : '✍ Show in cursive'}</button></p>`;
     }
     return `<div class="prompt-en">${esc(item.en)}</div>
       ${item.hint ? `<p class="prompt-hint">${esc(item.hint)}</p>` : '<p class="prompt-hint">&nbsp;</p>'}`;
@@ -98,7 +108,12 @@ export function renderReview(app, deckId, opts = {}) {
       if (store.settings().niqqud) parts.push(`<p class="answer-plain">spelled ${he(stripNiqqud(target))}</p>`);
       const others = answersFor(item).filter((a) => stripNiqqud(a) !== stripNiqqud(target));
       if (others.length) parts.push(`<p class="answer-plain">also accepted: ${others.map((o) => he(o)).join(' · ')}</p>`);
+      if (c.type === 'c') parts.push(`<div class="answer-en">${esc(item.en)}</div>`);
       if (item.kind === 'conj' && item.verb.note) parts.push(`<div class="note">${esc(heb(item.verb.note))}</div>`);
+    }
+    if (item.req?.length) {
+      const used = item.req.map(itemByKey).filter(Boolean);
+      if (used.length) parts.push(`<p class="answer-plain">Builds on: ${used.map((u) => he(u.he)).join(' · ')}</p>`);
     }
     if (item.note) parts.push(`<div class="note">${esc(heb(item.note))}</div>`);
     if (item.ex?.length) {
@@ -139,7 +154,7 @@ export function renderReview(app, deckId, opts = {}) {
   }
 
   function render(c, _st, inputValue = '') {
-    const write = c.type === 'w';
+    const write = c.type === 'w' || c.type === 'c';
     let body = '';
     if (phase === 'ask') {
       body = write
@@ -169,7 +184,7 @@ export function renderReview(app, deckId, opts = {}) {
 
   function check(input) {
     const c = cards().get(current);
-    const mode = c.item.kind === 'conj' ? 'strict' : 'vocab';
+    const mode = c.item.kind === 'conj' || (c.type === 'c' && stripNiqqud(c.item.he).length <= 2) ? 'strict' : 'vocab';
     verdict = input.trim() ? checkAnswer(input, answersFor(c.item), mode) : { verdict: 'wrong', target: c.item.he, note: '' };
     suggested = VERDICT_RATING[verdict.verdict];
     phase = 'answered';
@@ -216,6 +231,7 @@ export function renderReview(app, deckId, opts = {}) {
     if (t.dataset.rate) return rate(Number(t.dataset.rate));
     const act = t.dataset.act;
     if (act === 'show') reveal();
+    else if (act === 'cursive') { cursiveView = !cursiveView; store.setSetting('cursiveReading', cursiveView); render(cards().get(current)); }
     else if (act === 'idk') check('');
     else if (act === 'undo') { if (session.undo()) { updateBadge(); show(); } }
     else if (act === 'more') {
@@ -243,6 +259,7 @@ export function renderReview(app, deckId, opts = {}) {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); rate(suggested); return; }
     }
     if ((e.key === 'z' || e.key === 'ז') && session.canUndo()) { if (session.undo()) { updateBadge(); show(); } }
+    if ((e.key === 'c' || e.key === 'ב') && current && phase === 'ask' && cards().get(current).type === 'r') { cursiveView = !cursiveView; store.setSetting('cursiveReading', cursiveView); render(cards().get(current)); return; }
     if ((e.key === 'r' || e.key === 'ר') && current) { const c = cards().get(current); if (phase === 'answered' || c.type === 'r') tts.speak(c.item.he); }
   }
 

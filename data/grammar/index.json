@@ -1,15 +1,164 @@
 {
-  "sections": [
-    { "title": "Start here", "pages": [
-      { "id": "reading", "title": "Reading Hebrew", "he": "קְרִיאָה", "summary": "Letters and their final forms, vowel points, the dot that changes b/v k/ch p/f, and modern 'full' spelling. Plus where the keys are." },
-      { "id": "binyanim", "title": "Roots & binyanim", "he": "שׁוֹרָשִׁים וּבִנְיָנִים", "summary": "How three-letter roots plus seven verb patterns build almost every Hebrew verb — and how to spot the pattern.", "deck": "verbs", "deckTitle": "Core Verbs" }
-    ] },
-    { "title": "Verbs", "pages": [
-      { "id": "paal", "title": "Pa'al", "he": "פָּעַל", "summary": "The basic binyan: כָּתַב, כּוֹתֵב, יִכְתּוֹב. Full tables, how people really use it, and the common irregular verbs.", "deck": "paal", "deckTitle": "Pa'al drills" },
-      { "id": "piel", "title": "Pi'el", "he": "פִּיעֵל", "summary": "The doubled-middle binyan: דִּיבֵּר, מְדַבֵּר, יְדַבֵּר. Where slang verbs like לְסַמֵּס and לְפַרְגֵּן live.", "deck": "piel", "deckTitle": "Pi'el drills" }
-    ] },
-    { "title": "Spoken Hebrew", "pages": [
-      { "id": "spoken", "title": "How people actually talk", "he": "עִבְרִית מְדוּבֶּרֶת", "summary": "שלי instead of suffixes, commands in the future tense, 'עשרים שקל', אצלי, כזה — the gap between the textbook and the street.", "deck": "phrases", "deckTitle": "Sentence Builder" }
-    ] }
-  ]
+ "sections": [
+  {
+   "title": "Start here",
+   "pages": [
+    {
+     "id": "reading",
+     "title": "Reading Hebrew",
+     "he": "קְרִיאָה",
+     "summary": "Letters and their final forms, vowel points, the dot that changes b/v k/ch p/f, and modern 'full' spelling. Plus where the keys are."
+    },
+    {
+     "id": "cursive",
+     "title": "Reading cursive",
+     "he": "כְּתַב יָד",
+     "summary": "The handwritten alphabet, the letters that look nothing like print, confusable pairs, and practice notes.",
+     "deck": "cursive-letters",
+     "deckTitle": "Cursive Letters"
+    },
+    {
+     "id": "binyanim",
+     "title": "Roots & binyanim",
+     "he": "שׁוֹרָשִׁים וּבִנְיָנִים",
+     "summary": "How three-letter roots plus seven verb patterns build almost every Hebrew verb — and how to spot the pattern.",
+     "deck": "verbs",
+     "deckTitle": "Core Verbs"
+    }
+   ]
+  },
+  {
+   "title": "Nouns, adjectives & little words",
+   "pages": [
+    {
+     "id": "nouns",
+     "title": "Nouns: gender & plural",
+     "he": "שֵׁם עֶצֶם",
+     "summary": "Masculine or feminine, -im and -ot, pairs in -ayim, \"the\" as a prefix, and the one-letter prefixes ו ב ל מ ש."
+    },
+    {
+     "id": "adjectives",
+     "title": "Adjectives & comparisons",
+     "he": "שֵׁם תּוֹאַר",
+     "summary": "Agreement, word order, the little ה that turns a phrase into a sentence, this/that, more/most/too.",
+     "deck": "adjectives",
+     "deckTitle": "Describing Things"
+    },
+    {
+     "id": "smichut",
+     "title": "Smichut (noun + noun)",
+     "he": "סְמִיכוּת",
+     "summary": "Bedroom, bus stop, birthday: how Hebrew glues nouns together, and when to just use של."
+    },
+    {
+     "id": "prepositions",
+     "title": "Prepositions with endings",
+     "he": "לִי, אִיתִּי, אוֹתִי",
+     "summary": "לי, שלי, איתי, אצלי, עליי, ממני, אותי — the forms, את before objects, and which verbs take which preposition.",
+     "deck": "preps",
+     "deckTitle": "Pronoun Endings"
+    },
+    {
+     "id": "numbers",
+     "title": "Numbers & time",
+     "he": "מִסְפָּרִים",
+     "summary": "The two sets of numbers (and which one people really use), prices, telling the time, days of the week.",
+     "deck": "numbers",
+     "deckTitle": "Numbers & Time"
+    },
+    {
+     "id": "questions",
+     "title": "Questions & connectors",
+     "he": "שְׁאֵלוֹת",
+     "summary": "Question words, ש־ (that), because / when / if, unreal \"if\" sentences, and Hebrew double negatives.",
+     "deck": "connectors",
+     "deckTitle": "Question Words & Connectors"
+    },
+    {
+     "id": "modals",
+     "title": "Must, can, allowed",
+     "he": "צָרִיךְ, יָכוֹל, אֶפְשָׁר",
+     "summary": "צריך, יכול, חייב, אמור, אפשר, אסור, מותר, כדאי — with an infinitive, and how to add \"who\"."
+    }
+   ]
+  },
+  {
+   "title": "Verbs",
+   "pages": [
+    {
+     "id": "be-have",
+     "title": "Was, will be, had",
+     "he": "הָיָה, יִהְיֶה",
+     "summary": "Past and future of \"to be\", \"I had / I will have\" (and why it agrees with the thing), plus \"would\" and \"used to\".",
+     "deck": "phrases2",
+     "deckTitle": "Sentence Builder 2"
+    },
+    {
+     "id": "paal",
+     "title": "Pa'al",
+     "he": "פָּעַל",
+     "summary": "The basic binyan: כָּתַב, כּוֹתֵב, יִכְתּוֹב. Full tables, how people really use it, and the common irregular verbs.",
+     "deck": "paal",
+     "deckTitle": "Pa'al drills"
+    },
+    {
+     "id": "nifal",
+     "title": "Nif'al",
+     "he": "נִפְעַל",
+     "summary": "Passive and \"it happened\": נִכְנַס, נִשְׁאַר, נִגְמַר. The doubled letter in the future and the f/p switch.",
+     "deck": "nifal",
+     "deckTitle": "Nif'al drills"
+    },
+    {
+     "id": "piel",
+     "title": "Pi'el",
+     "he": "פִּיעֵל",
+     "summary": "The doubled-middle binyan: דִּיבֵּר, מְדַבֵּר, יְדַבֵּר. Where slang verbs like לְסַמֵּס and לְפַרְגֵּן live.",
+     "deck": "piel",
+     "deckTitle": "Pi'el drills"
+    },
+    {
+     "id": "hifil",
+     "title": "Hif'il",
+     "he": "הִפְעִיל",
+     "summary": "Causative and everyday: הִתְחִיל, הִזְמִין, הֵבִין, הִגִּיעַ. Full tables and the common weak hif'il verbs.",
+     "deck": "hifil",
+     "deckTitle": "Hif'il drills"
+    },
+    {
+     "id": "hitpael",
+     "title": "Hitpa'el",
+     "he": "הִתְפַּעֵל",
+     "summary": "Reflexive and reciprocal: get dressed, shower, call, get excited — and the ת that jumps places.",
+     "deck": "hitpael",
+     "deckTitle": "Hitpa'el drills"
+    },
+    {
+     "id": "passives",
+     "title": "Pu'al & huf'al",
+     "he": "פּוּעַל וְהוּפְעַל",
+     "summary": "The two passive binyanim — and the everyday adjectives they give you: מסודר, מוזמן, מומלץ, מוכן."
+    },
+    {
+     "id": "weak-roots",
+     "title": "Weak roots",
+     "he": "גְּזָרוֹת",
+     "summary": "Why קונה, גר, נוסע and יושב bend the rules — five root types that explain most \"irregular\" verbs."
+    }
+   ]
+  },
+  {
+   "title": "Spoken Hebrew",
+   "pages": [
+    {
+     "id": "spoken",
+     "title": "How people actually talk",
+     "he": "עִבְרִית מְדוּבֶּרֶת",
+     "summary": "שלי instead of suffixes, commands in the future tense, 'עשרים שקל', אצלי, כזה — the gap between the textbook and the street.",
+     "deck": "phrases",
+     "deckTitle": "Sentence Builder"
+    }
+   ]
+  }
+ ]
 }
