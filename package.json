@@ -3,6 +3,6 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "validate": "node tools/validate-verbs.mjs"
+    "validate": "node tools/validate-verbs.mjs && node tools/validate-course.mjs"
   }
 }

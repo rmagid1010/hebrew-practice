@@ -23,7 +23,7 @@ function blank() {
     cards: {},          // cardId -> FSRS card
     suspended: {},      // cardId -> true
     flagged: {},        // itemKey -> note
-    enabledDecks: ['street', 'smalltalk', 'challenge'],
+    enabledDecks: [],   // the course drives new cards; switch decks on to study them separately
     custom: [],         // user-added vocab items
     log: [],            // [timestamp, cardId, rating, verdict]
     newDone: {},        // dayKey -> number of new cards introduced

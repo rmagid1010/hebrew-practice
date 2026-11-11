@@ -160,3 +160,39 @@ function merge(parts) {
   }
   return out;
 }
+
+// One-letter (and stacked) prefixes that can stick to a word: ו ה ב ל מ ש כש and combinations.
+const PREFIX_RE = /^(?:ו|ש|כש|מ|ה|ב|ל|כ){0,3}$/;
+
+function tokens(s) {
+  return lenient(s).split(' ').filter(Boolean);
+}
+
+/** Does `phrase` (one or more words) appear in the token list, allowing prefixes on its first word? */
+function containsPhrase(toks, phrase) {
+  const p = tokens(phrase);
+  if (!p.length) return false;
+  for (let i = 0; i + p.length <= toks.length; i++) {
+    const t0 = toks[i];
+    const firstOk = t0 === p[0] || (t0.endsWith(p[0]) && PREFIX_RE.test(t0.slice(0, t0.length - p[0].length)));
+    if (!firstOk) continue;
+    let ok = true;
+    for (let j = 1; j < p.length; j++) if (toks[i + j] !== p[j]) { ok = false; break; }
+    if (ok) return true;
+  }
+  // Prefix-only elements like "כש" are matched as the start of any word.
+  if (p.length === 1 && p[0].length <= 2) return toks.some((t) => t.startsWith(p[0]) && t.length > p[0].length);
+  return false;
+}
+
+/**
+ * Check a free-writing answer against required elements.
+ * elements: [{label, any: [alternatives]}] → [{label, ok, hit}]
+ */
+export function checkElements(text, elements) {
+  const toks = tokens(text);
+  return elements.map((el) => {
+    const hit = el.any.find((a) => containsPhrase(toks, a));
+    return { label: el.label, ok: !!hit, hit: hit || null, any: el.any };
+  });
+}

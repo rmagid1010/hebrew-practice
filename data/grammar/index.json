@@ -16,14 +16,6 @@
      "summary": "The handwritten alphabet, the letters that look nothing like print, confusable pairs, and practice notes.",
      "deck": "cursive-letters",
      "deckTitle": "Cursive Letters"
-    },
-    {
-     "id": "binyanim",
-     "title": "Roots & binyanim",
-     "he": "שׁוֹרָשִׁים וּבִנְיָנִים",
-     "summary": "How three-letter roots plus seven verb patterns build almost every Hebrew verb — and how to spot the pattern.",
-     "deck": "verbs",
-     "deckTitle": "Core Verbs"
     }
    ]
   },
@@ -83,15 +75,15 @@
    ]
   },
   {
-   "title": "Verbs",
+   "title": "Verb explainers",
    "pages": [
     {
-     "id": "be-have",
-     "title": "Was, will be, had",
-     "he": "הָיָה, יִהְיֶה",
-     "summary": "Past and future of \"to be\", \"I had / I will have\" (and why it agrees with the thing), plus \"would\" and \"used to\".",
-     "deck": "phrases2",
-     "deckTitle": "Sentence Builder 2"
+     "id": "binyanim",
+     "title": "Roots & binyanim",
+     "he": "שׁוֹרָשִׁים וּבִנְיָנִים",
+     "summary": "How three-letter roots plus seven verb patterns build almost every Hebrew verb — and how to spot the pattern.",
+     "deck": "verbs",
+     "deckTitle": "Core Verbs"
     },
     {
      "id": "paal",
@@ -144,8 +136,17 @@
      "title": "Weak roots",
      "he": "גְּזָרוֹת",
      "summary": "Why קונה, גר, נוסע and יושב bend the rules — five root types that explain most \"irregular\" verbs."
+    },
+    {
+     "id": "be-have",
+     "title": "Was, will be, had",
+     "he": "הָיָה, יִהְיֶה",
+     "summary": "Past and future of \"to be\", \"I had / I will have\" (and why it agrees with the thing), plus \"would\" and \"used to\".",
+     "deck": "phrases2",
+     "deckTitle": "Sentence Builder 2"
     }
-   ]
+   ],
+   "area": "verbs"
   },
   {
    "title": "Spoken Hebrew",

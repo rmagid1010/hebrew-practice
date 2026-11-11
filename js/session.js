@@ -2,6 +2,7 @@
 import { Scheduler, State, newCard, dayKey } from './fsrs.js';
 import * as store from './store.js';
 import { cards, getCatalog, itemKey, isLocked } from './decks.js';
+import { courseNewCards, cardsOfLesson } from './course.js';
 
 const LEARN_AHEAD = 20 * 60 * 1000;
 
@@ -50,12 +51,14 @@ export class Session {
   }
 
   deckAllowed(deck) {
+    if (this.opts.course) return false; // the course picks its own new cards
     if (this.opts.deck) return deck === this.opts.deck;
     return store.get().enabledDecks.includes(deck);
   }
 
   build(now = Date.now()) {
     if (this.opts.practice) return this.buildPractice();
+    this.lessonSet = this.opts.lesson ? new Set(cardsOfLesson(this.opts.lesson)) : null;
     const st = store.get();
     const reviews = [];
     const newByDeck = new Map();
@@ -73,6 +76,7 @@ export class Session {
       if (s) {
         // Due cards from any deck you've started (even if later disabled) when studying "all".
         if (this.opts.deck && c.deck !== this.opts.deck) continue;
+        if (this.lessonSet && !this.lessonSet.has(c.id)) continue;
         if (s.state === State.Learning || s.state === State.Relearning) {
           this.learning.push(c.id);
         } else if (s.due <= now) {
@@ -108,6 +112,17 @@ export class Session {
           progress = true;
         }
         pointers.set(deck, p);
+      }
+    }
+    if (this.opts.course) {
+      // Course: new cards in lesson order, still one card per item per day, skipping anything locked.
+      for (const id of courseNewCards(this.opts.lesson || null)) {
+        if (picked.length >= limit) break;
+        const c = cards().get(id);
+        if (!c || st.suspended[id] || isLocked(c.item)) continue;
+        if (usedItems.has(itemKey(c.item))) continue;
+        usedItems.add(itemKey(c.item));
+        picked.push(c);
       }
     }
     this.newCards = picked;

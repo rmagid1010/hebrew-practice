@@ -1,5 +1,6 @@
 import { counts, newLeftToday, dailyCounts, streak, retention30 } from '../session.js';
-import { getCatalog } from '../decks.js';
+import { getCatalog, cards, isLocked } from '../decks.js';
+import { currentLesson, lessonStatuses, courseNewCards, UNLOCK_SHARE } from '../course.js';
 import * as store from '../store.js';
 import { esc, he } from '../ui.js';
 import { dayKey } from '../fsrs.js';
@@ -10,7 +11,13 @@ export function renderHome(app) {
   const newAvailEnabled = getCatalog()
     .filter((d) => st.enabledDecks.includes(d.id))
     .reduce((n, d) => n + counts(d.id).newAvail, 0);
-  const newToday = Math.min(newLeftToday(), newAvailEnabled);
+  const courseNew = courseNewCards().filter((id) => { const cc = cards().get(id); return cc && !isLocked(cc.item); }).length;
+  const newToday = Math.min(newLeftToday(), courseNew);
+  void newAvailEnabled;
+  const lessons = lessonStatuses();
+  const cur = currentLesson();
+  const curN = lessons.findIndex((x) => x.lesson.id === cur.lesson.id) + 1;
+  const doneLessons = lessons.filter((x) => x.status === 'done').length;
   const total = c.due + c.learning + newToday;
   const today = dayKey(Date.now());
   const doneToday = st.log.filter(([ts]) => dayKey(ts) === today).length;
@@ -32,20 +39,26 @@ export function renderHome(app) {
 
   app.innerHTML = `
     ${first ? `<div class="notice notice-info" style="margin-bottom:16px">
-      <b>Welcome!</b> Each day you'll get reviews (cards you've seen) plus a few new cards from the decks you've switched on.
-      Start with <b>Street Essentials</b>, and read <a href="#/grammar/reading">Reading Hebrew</a> and <a href="#/grammar/binyanim">What are binyanim?</a> when you have 10 minutes.
+      <b>Welcome!</b> Press <b>Continue course</b> and the site takes you through A1 and A2 step by step: a few new words, verbs and sentences each day,
+      your reviews mixed in, and short writing tasks. Read <a href="#/grammar/reading">Reading Hebrew</a> when you have 10 minutes.
     </div>` : ''}
-    <section class="card hero">
+    <section class="card hero course-hero">
       <div>
-        <h1>${total ? 'Ready when you are' : 'All caught up'} ${he(total ? 'יַאלְלָה, מַתְחִילִים' : 'יֵשׁ! סִיַּמְנוּ', 'muted')}</h1>
-        <p class="muted" style="margin:0">${total ? 'Reviews first, then new cards mixed in.' : 'Nothing is due. Learn extra cards from a deck, or read a grammar page.'}</p>
+        <div class="small muted">Course · ${esc(cur.lesson.level)} · lesson ${curN} of ${lessons.length}</div>
+        <h1>${esc(cur.lesson.title)} ${he(cur.lesson.he, 'muted')}</h1>
+        <div class="progress" style="max-width:420px" title="${cur.stats.learnt}/${cur.stats.total} cards learnt"><span style="width:${Math.round(cur.stats.share * 100)}%"></span></div>
+        <p class="muted small" style="margin:6px 0 0">${cur.stats.learnt}/${cur.stats.total} cards learnt in this lesson · next lesson opens at ${Math.round(UNLOCK_SHARE * 100)}% · ${doneLessons} lesson${doneLessons === 1 ? '' : 's'} complete</p>
         <div class="hero-counts">
           <div class="count new"><b>${newToday}</b><span>new today</span></div>
           <div class="count learn"><b>${c.learning}</b><span>learning</span></div>
           <div class="count due"><b>${c.due}</b><span>to review</span></div>
         </div>
       </div>
-      <a class="btn btn-primary btn-lg" href="#/review">${total ? 'Start review' : 'Open review'}</a>
+      <div class="hero-actions">
+        <a class="btn btn-primary btn-lg" href="#/study">${total ? 'Continue course' : 'Open course session'}</a>
+        <a class="btn" href="#/course/${esc(cur.lesson.id)}">Lesson notes</a>
+        <a class="btn btn-ghost btn-sm" href="#/review">Reviews &amp; my decks only</a>
+      </div>
     </section>
 
     ${needBackup ? `<div class="notice" style="margin-top:16px">Your progress is only stored in this browser. <a href="#/settings">Download a backup</a> so you don't lose it.</div>` : ''}

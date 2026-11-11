@@ -1,5 +1,13 @@
 [
  {
+  "id": "basics",
+  "kind": "vocab",
+  "title": "First Words",
+  "he": "מִילִּים רִאשׁוֹנוֹת",
+  "level": "A1 · start here",
+  "description": "The very first words: hello, yes/no, pronouns, this, there is / isn't, mine, coffee and tea."
+ },
+ {
   "id": "street",
   "kind": "vocab",
   "title": "Street Essentials",
@@ -263,5 +271,23 @@
   "level": "Grammar",
   "grammar": "hitpael",
   "description": "לְהִתְלַבֵּשׁ, לְהִתְקַלֵּחַ, לְהִתְקַשֵּׁר, לְהִתְרַגֵּשׁ — present, past, future, commands."
+ },
+ {
+  "id": "course-phrases",
+  "kind": "sentences",
+  "hidden": true,
+  "title": "Course sentences",
+  "he": "מִשְׁפְּטֵי הַקּוּרְס",
+  "level": "Course",
+  "description": "Sentences written for the course lessons."
+ },
+ {
+  "id": "course-write",
+  "kind": "write",
+  "hidden": true,
+  "title": "Writing tasks",
+  "he": "כְּתִיבָה",
+  "level": "Course",
+  "description": "Free-writing tasks from the course: answer an English prompt in your own Hebrew."
  }
 ]

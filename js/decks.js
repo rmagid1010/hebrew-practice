@@ -21,7 +21,7 @@ export async function loadAll() {
   catalog = await (await fetch('data/decks/index.json')).json();
   await Promise.all(catalog.map(async (meta) => {
     const data = await (await fetch(`data/decks/${meta.id}.json`)).json();
-    decks.set(meta.id, { meta, items: expand(meta, data) });
+    decks.set(meta.id, { meta, items: expand(meta, data), raw: data });
   }));
   catalog.push({ id: 'mine', title: 'My Words', he: 'הַמִּילִּים שֶׁלִּי', kind: 'vocab', description: 'Words and phrases you added yourself.' });
   rebuildCustom();
@@ -35,11 +35,18 @@ export function rebuildCustom() {
 
 function expand(meta, data) {
   if (meta.kind === 'conjugation') return expandVerbDeck(meta, data);
-  const kind = meta.kind === 'sentences' ? 'sentence' : meta.kind === 'cursive' ? 'cursive' : 'vocab';
+  const kind = meta.kind === 'sentences' ? 'sentence' : meta.kind === 'cursive' ? 'cursive' : meta.kind === 'write' ? 'write' : 'vocab';
   return data.items.map((it) => ({ ...it, deck: meta.id, kind, types: it.types || meta.types }));
 }
 
 export function getCatalog() { return catalog; }
+/** Decks to show in lists (course-only decks are hidden). */
+export function visibleCatalog() { return catalog.filter((d) => !d.hidden); }
+export function verbData() {
+  const out = {};
+  for (const d of catalog) if (d.kind === 'conjugation') out[d.id] = decks.get(d.id)?.raw;
+  return out;
+}
 export function getDeck(id) { return decks.get(id); }
 export function itemKey(item) { return `${item.deck}/${item.id}`; }
 
@@ -50,13 +57,14 @@ export function itemKey(item) { return `${item.deck}/${item.id}`; }
 export function typesFor(item) {
   if (item.kind === 'conj') return ['w'];
   if (item.kind === 'cursive') return ['c'];
+  if (item.kind === 'write') return ['p'];
   return item.types || ['r', 'w'];
 }
 
 /** An item counts as "learnt" once any of its cards has graduated to review. */
 export function isLearnt(key) {
   const st = store.get().cards;
-  for (const t of ['r', 'w', 'c']) {
+  for (const t of ['r', 'w', 'c', 'p']) {
     const c = st[`${key}:${t}`];
     if (c && c.state >= 2) return true;
   }

@@ -1,5 +1,5 @@
 import { counts } from '../session.js';
-import { getCatalog } from '../decks.js';
+import { visibleCatalog } from '../decks.js';
 import * as store from '../store.js';
 import { esc, he } from '../ui.js';
 
@@ -12,13 +12,13 @@ export function renderDecks(app) {
       ['challenge', 'Challenge sentences', 'Longer sentences that combine words you already know. Each one unlocks once you have learnt every word it uses — keep studying the vocabulary decks to unlock more.'],
       ['cursive', 'Cursive (handwriting)', 'Read Hebrew handwriting: letters first, then words and phrases. Type what you read in print letters.'],
       ['forms', 'Grammar drills', 'Short forms you need to produce instantly: prepositions with endings, object pronouns, numbers.'],
-      ['conjugation', 'Verb drills', 'Given a verb, tense and person, type the right form. Strict checking: one letter can change the meaning.'],
     ];
     app.innerHTML = `
       <h1>Decks</h1>
+      <div class="notice notice-info" style="margin-bottom:12px">Following the <a href="#/course">course</a>? It takes a little from each of these decks for you. You can still study any deck on its own here. Verb drills and verb explainers are in <a href="#/verbs">Verbs</a>.</div>
       <p class="muted">Switch decks on to add their new cards to your daily mix. Cards you've already started keep coming back for review either way.</p>
       ${groups.map(([kind, title, desc]) => {
-        const list = getCatalog().filter((d) => (d.group || d.kind || 'vocab') === kind);
+        const list = visibleCatalog().filter((d) => (d.group || d.kind || 'vocab') === kind);
         if (!list.length) return '';
         return `<div class="section-title"><h2>${title}</h2></div><p class="muted small">${desc}</p>
           <div class="grid grid-2">${list.map((d) => deckCard(d, st)).join('')}</div>`;

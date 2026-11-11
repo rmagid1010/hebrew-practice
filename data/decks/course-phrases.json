@@ -1,0 +1,331 @@
+{
+ "items": [
+  {
+   "id": "cp01",
+   "he": "שָׁלוֹם! קוֹרְאִים לִי דָּנִי.",
+   "en": "Hi! My name is Dani.",
+   "req": [
+    "basics/shalom",
+    "smalltalk/korim-li"
+   ],
+   "reg": "casual"
+  },
+  {
+   "id": "cp02",
+   "he": "מָה נִשְׁמָע? — הַכּוֹל בְּסֵדֶר, תּוֹדָה.",
+   "en": "What's up? — Everything's fine, thanks.",
+   "req": [
+    "street/ma-nishma",
+    "street/beseder",
+    "smalltalk/toda-raba"
+   ],
+   "reg": "casual",
+   "alt": [
+    "מה נשמע הכל בסדר תודה",
+    "מה נשמע הכול טוב תודה"
+   ]
+  },
+  {
+   "id": "cp03",
+   "he": "נָעִים מְאוֹד, אֲנִי דָּנָה.",
+   "en": "Nice to meet you, I'm Dana.",
+   "req": [
+    "smalltalk/naim-meod",
+    "basics/ani"
+   ],
+   "reg": "casual"
+  },
+  {
+   "id": "cp04",
+   "he": "מִי זֶה? — זֶה חָבֵר שֶׁלִּי.",
+   "en": "Who's that? — That's a friend of mine.",
+   "req": [
+    "connectors/mi",
+    "basics/ze",
+    "smalltalk/chaver",
+    "basics/sheli"
+   ],
+   "reg": "casual"
+  },
+  {
+   "id": "cp05",
+   "he": "אֲנִי דָּנִי, וְהִיא מִיכַל.",
+   "en": "I'm Dani, and she's Michal.",
+   "req": [
+    "basics/ani",
+    "basics/hi"
+   ],
+   "reg": "casual"
+  },
+  {
+   "id": "cp06",
+   "he": "מָה זֶה? — זֶה קָפֶה.",
+   "en": "What's this? — It's coffee.",
+   "req": [
+    "connectors/ma",
+    "basics/ze",
+    "basics/kafe"
+   ],
+   "reg": "casual"
+  },
+  {
+   "id": "cp07",
+   "he": "סַבָּבָה, אֵין בְּעָיָה.",
+   "en": "Cool, no problem.",
+   "req": [
+    "street/sababa",
+    "street/ein-baaya"
+   ],
+   "reg": "casual",
+   "alt": [
+    "סבבא אין בעיה"
+   ]
+  },
+  {
+   "id": "cp08",
+   "he": "רֶגַע, בֶּאֱמֶת? וַאלְלָה!",
+   "en": "Wait, really? Wow!",
+   "req": [
+    "street/rega",
+    "street/beemet",
+    "street/walla"
+   ],
+   "reg": "casual"
+  },
+  {
+   "id": "cp09",
+   "he": "אַחְלָה, יַאלְלָה בַּיי!",
+   "en": "Great, OK bye!",
+   "req": [
+    "street/achla",
+    "street/yalla",
+    "basics/bye"
+   ],
+   "reg": "casual",
+   "alt": [
+    "אחלה יאלה ביי"
+   ]
+  },
+  {
+   "id": "cp10",
+   "he": "אֲנִי רוֹצֶה קָפֶה, בְּבַקָּשָׁה.",
+   "en": "I'd like a coffee, please.",
+   "req": [
+    "verbs/lirtzot",
+    "basics/kafe",
+    "smalltalk/bevakasha"
+   ],
+   "reg": "casual"
+  },
+  {
+   "id": "cp11",
+   "he": "אֲנִי אוֹהֵב קָפֶה, אֲבָל לֹא תֵּה.",
+   "en": "I like coffee, but not tea.",
+   "req": [
+    "verbs/leehov",
+    "basics/kafe",
+    "connectors/aval",
+    "basics/te"
+   ],
+   "reg": "casual",
+   "alt": [
+    "אני אוהבת קפה אבל לא תה"
+   ],
+   "hint": "(male or female speaker)"
+  },
+  {
+   "id": "cp12",
+   "he": "אֲנִי קוֹנֶה קָפֶה כָּל בּוֹקֶר.",
+   "en": "I buy a coffee every morning.",
+   "req": [
+    "paal/kana-present-ms",
+    "basics/kafe"
+   ],
+   "reg": "casual",
+   "alt": [
+    "אני קונה קפה כל בוקר"
+   ],
+   "hint": "(male or female speaker)"
+  },
+  {
+   "id": "cp13",
+   "he": "מָה אַתָּה כּוֹתֵב? — אֲנִי כּוֹתֵב מֵייל.",
+   "en": "What are you writing? — I'm writing an email.",
+   "req": [
+    "paal/katav-present-ms",
+    "connectors/ma"
+   ],
+   "reg": "casual",
+   "alt": [
+    "מה את כותבת אני כותבת מייל",
+    "מה אתה כותב אני כותב מייל"
+   ],
+   "hint": "(to a man)"
+  },
+  {
+   "id": "cp14",
+   "he": "גָּמַרְתִּי! אֶפְשָׁר אֶת הַחֶשְׁבּוֹן?",
+   "en": "I'm done! Can I have the bill?",
+   "req": [
+    "paal/gamar-past-1s",
+    "cafe/cheshbon"
+   ],
+   "reg": "casual"
+  },
+  {
+   "id": "cp15",
+   "he": "אֶתְמוֹל קָנִיתִי נַעֲלַיִים, אֲבָל הֵן קְטַנּוֹת.",
+   "en": "Yesterday I bought shoes, but they're small.",
+   "req": [
+    "paal/kana-past-1s",
+    "time/etmol",
+    "connectors/aval"
+   ],
+   "reg": "casual",
+   "alt": [
+    "קניתי נעליים אתמול אבל הן קטנות"
+   ]
+  },
+  {
+   "id": "cp16",
+   "he": "מָחָר אֲנִי אֶכְתּוֹב לְךָ.",
+   "en": "I'll write to you tomorrow.",
+   "req": [
+    "paal/katav-future-1s",
+    "time/machar"
+   ],
+   "reg": "casual",
+   "alt": [
+    "אני אכתוב לך מחר",
+    "מחר אכתוב לך"
+   ]
+  },
+  {
+   "id": "cp17",
+   "he": "הֵם גָּרִים בְּדִירָה קְטַנָּה עִם מִרְפֶּסֶת.",
+   "en": "They live in a small apartment with a balcony.",
+   "req": [
+    "paal/gar-present-mp",
+    "around/dira",
+    "adjectives/katan",
+    "home/mirpeset"
+   ],
+   "reg": "casual"
+  },
+  {
+   "id": "cp18",
+   "he": "אֲנִי מְדַבֵּר עִבְרִית, אֲבָל לְאַט.",
+   "en": "I speak Hebrew, but slowly.",
+   "req": [
+    "piel/diber-present-ms",
+    "connectors/aval"
+   ],
+   "reg": "casual",
+   "alt": [
+    "אני מדברת עברית אבל לאט"
+   ],
+   "hint": "(male or female speaker)"
+  },
+  {
+   "id": "cp19",
+   "he": "דִּיבַּרְנוּ עִם הַהוֹרִים שֶׁלִּי אֶתְמוֹל.",
+   "en": "We talked with my parents yesterday.",
+   "req": [
+    "piel/diber-past-1p",
+    "family/horim",
+    "basics/sheli"
+   ],
+   "reg": "casual",
+   "alt": [
+    "אתמול דיברנו עם ההורים שלי"
+   ]
+  },
+  {
+   "id": "cp20",
+   "he": "אֲנִי אֲדַבֵּר עִם דָּנִי מָחָר.",
+   "en": "I'll talk to Dani tomorrow.",
+   "req": [
+    "piel/diber-future-1s",
+    "time/machar"
+   ],
+   "reg": "casual",
+   "alt": [
+    "מחר אני אדבר עם דני",
+    "מחר אדבר עם דני"
+   ]
+  },
+  {
+   "id": "cp21",
+   "he": "הֵם מַזְמִינִים מִשְׁלוֹחַ כָּל עֶרֶב.",
+   "en": "They order delivery every evening.",
+   "req": [
+    "hifil/hizmin-present-mp",
+    "shopping/mishloach"
+   ],
+   "reg": "casual"
+  },
+  {
+   "id": "cp22",
+   "he": "הִזְמַנְתִּי לָנוּ שׁוּלְחָן לִשְׁמוֹנֶה.",
+   "en": "I booked us a table for eight.",
+   "req": [
+    "hifil/hizmin-past-1s",
+    "home/shulchan",
+    "numbers/8"
+   ],
+   "reg": "casual"
+  },
+  {
+   "id": "cp23",
+   "he": "מִי מִתְקַשֵּׁר עַכְשָׁיו?",
+   "en": "Who's calling now?",
+   "req": [
+    "hitpael/hitkasher-present-ms",
+    "connectors/mi",
+    "time/achshav"
+   ],
+   "reg": "casual"
+  },
+  {
+   "id": "cp24",
+   "he": "מָתַי הַסֶּרֶט יַתְחִיל?",
+   "en": "When will the movie start?",
+   "req": [
+    "hifil/hitchil-future-3ms",
+    "time/matai",
+    "freetime/seret"
+   ],
+   "reg": "casual",
+   "alt": [
+    "מתי יתחיל הסרט"
+   ]
+  },
+  {
+   "id": "cp25",
+   "he": "נִכְנַסְנוּ לְבָר קָטָן לְיַד הַיָּם.",
+   "en": "We went into a small bar near the beach.",
+   "req": [
+    "nifal/nichnas-past-1p",
+    "freetime/bar",
+    "adjectives/katan",
+    "around/leyad"
+   ],
+   "reg": "casual"
+  },
+  {
+   "id": "cp26",
+   "he": "אֲנִי אֶכָּנֵס רַק לְדַקָּה.",
+   "en": "I'll just pop in for a minute.",
+   "req": [
+    "nifal/nichnas-future-1s",
+    "connectors/rak",
+    "time/daka"
+   ],
+   "reg": "casual",
+   "alt": [
+    "אני איכנס רק לדקה",
+    "אכנס רק לדקה"
+   ]
+  }
+ ]
+}

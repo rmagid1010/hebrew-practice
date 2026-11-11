@@ -1,0 +1,213 @@
+{
+ "items": [
+  {
+   "id": "shalom",
+   "he": "שָׁלוֹם",
+   "en": "hello / goodbye / peace",
+   "reg": "neutral",
+   "note": "The all-purpose greeting. Also 'שלום שלום' when leaving a shop."
+  },
+  {
+   "id": "ken",
+   "he": "כֵּן",
+   "en": "yes",
+   "reg": "neutral"
+  },
+  {
+   "id": "lo",
+   "he": "לֹא",
+   "en": "no / not",
+   "reg": "neutral",
+   "note": "Goes before the verb: אני לא יודע = I don't know."
+  },
+  {
+   "id": "ani",
+   "he": "אֲנִי",
+   "en": "I",
+   "reg": "neutral"
+  },
+  {
+   "id": "ata",
+   "he": "אַתָּה",
+   "en": "you (to a man)",
+   "reg": "neutral"
+  },
+  {
+   "id": "at",
+   "he": "אַתְּ",
+   "en": "you (to a woman)",
+   "reg": "neutral",
+   "note": "Spelled like the object marker את, but pronounced 'at'."
+  },
+  {
+   "id": "hu",
+   "he": "הוּא",
+   "en": "he / it (m)",
+   "reg": "neutral"
+  },
+  {
+   "id": "hi",
+   "he": "הִיא",
+   "en": "she / it (f)",
+   "reg": "neutral"
+  },
+  {
+   "id": "anachnu",
+   "he": "אֲנַחְנוּ",
+   "en": "we",
+   "reg": "neutral"
+  },
+  {
+   "id": "atem",
+   "he": "אַתֶּם",
+   "en": "you (plural)",
+   "reg": "neutral",
+   "note": "For a group of women it's אַתֶּן, but in speech אתם is used for everyone."
+  },
+  {
+   "id": "hem",
+   "he": "הֵם",
+   "en": "they (m / mixed)",
+   "reg": "neutral"
+  },
+  {
+   "id": "hen",
+   "he": "הֵן",
+   "en": "they (f)",
+   "reg": "neutral"
+  },
+  {
+   "id": "ze",
+   "he": "זֶה",
+   "en": "this / that / it",
+   "reg": "neutral",
+   "note": "Used for almost anything in speech: מה זה? = what's this?"
+  },
+  {
+   "id": "zot",
+   "he": "זֹאת",
+   "en": "this (f)",
+   "reg": "neutral",
+   "alt": [
+    "זו"
+   ],
+   "note": "Often זו in writing."
+  },
+  {
+   "id": "yesh",
+   "he": "יֵשׁ",
+   "en": "there is / there are",
+   "reg": "neutral",
+   "note": "No verb 'to have' in Hebrew — you say 'there is to me': יש לי."
+  },
+  {
+   "id": "ein",
+   "he": "אֵין",
+   "en": "there isn't / there aren't",
+   "reg": "neutral"
+  },
+  {
+   "id": "yesh-li",
+   "he": "יֵשׁ לִי",
+   "en": "I have",
+   "reg": "neutral",
+   "note": "Lit. 'there is to me'. יש לך? = do you have?"
+  },
+  {
+   "id": "ein-li",
+   "he": "אֵין לִי",
+   "en": "I don't have",
+   "reg": "neutral"
+  },
+  {
+   "id": "shel",
+   "he": "שֶׁל",
+   "en": "of / belonging to",
+   "reg": "neutral",
+   "note": "הבית של דני = Dani's house."
+  },
+  {
+   "id": "sheli",
+   "he": "שֶׁלִּי",
+   "en": "my / mine",
+   "reg": "neutral",
+   "note": "Comes after the noun: החבר שלי = my friend."
+  },
+  {
+   "id": "kafe",
+   "he": "קָפֶה",
+   "en": "coffee",
+   "reg": "neutral"
+  },
+  {
+   "id": "te",
+   "he": "תֵּה",
+   "en": "tea",
+   "reg": "neutral"
+  },
+  {
+   "id": "boker-tov",
+   "he": "בּוֹקֶר טוֹב",
+   "en": "good morning",
+   "reg": "neutral",
+   "note": "Reply: בוקר אור (lit. morning of light)."
+  },
+  {
+   "id": "erev-tov",
+   "he": "עֶרֶב טוֹב",
+   "en": "good evening",
+   "reg": "neutral"
+  },
+  {
+   "id": "laila-tov",
+   "he": "לַיְלָה טוֹב",
+   "en": "good night",
+   "reg": "neutral"
+  },
+  {
+   "id": "lehitraot",
+   "he": "לְהִתְרָאוֹת",
+   "en": "goodbye / see you",
+   "reg": "neutral",
+   "note": "More casual: ביי, יאללה ביי, נתראה."
+  },
+  {
+   "id": "bye",
+   "he": "בַּיי",
+   "en": "bye",
+   "reg": "casual",
+   "alt": [
+    "ביי"
+   ]
+  },
+  {
+   "id": "okay",
+   "he": "אוֹקֵיי",
+   "en": "OK",
+   "reg": "casual",
+   "alt": [
+    "אוקי",
+    "אוקיי"
+   ]
+  },
+  {
+   "id": "meod",
+   "he": "מְאוֹד",
+   "en": "very",
+   "reg": "neutral",
+   "note": "Comes after the adjective: טוב מאוד = very good. In speech, ממש often comes before: ממש טוב."
+  },
+  {
+   "id": "od-paam",
+   "he": "עוֹד פַּעַם",
+   "en": "again / one more time",
+   "reg": "neutral"
+  },
+  {
+   "id": "hine",
+   "he": "הִנֵּה",
+   "en": "here it is / here you go",
+   "reg": "neutral"
+  }
+ ]
+}

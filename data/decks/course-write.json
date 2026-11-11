@@ -1,0 +1,1714 @@
+{
+ "items": [
+  {
+   "id": "w01",
+   "en": "Greet someone, tell them your name, and ask how they are.",
+   "he": "שָׁלוֹם, קוֹרְאִים לִי דָּנִי. מָה נִשְׁמָע?",
+   "models": [
+    "שָׁלוֹם, קוֹרְאִים לִי דָּנִי. מָה נִשְׁמָע?",
+    "הַיי, אֲנִי מִיכַל. מָה שְׁלוֹמְךָ?"
+   ],
+   "elements": [
+    {
+     "label": "a greeting",
+     "any": [
+      "שלום",
+      "היי",
+      "הי"
+     ]
+    },
+    {
+     "label": "your name",
+     "any": [
+      "קוראים לי",
+      "אני"
+     ]
+    },
+    {
+     "label": "how are you?",
+     "any": [
+      "מה נשמע",
+      "מה שלומך",
+      "מה קורה",
+      "מה העניינים"
+     ]
+    }
+   ],
+   "req": [
+    "basics/shalom",
+    "smalltalk/korim-li",
+    "street/ma-nishma"
+   ]
+  },
+  {
+   "id": "w02",
+   "en": "Someone thanks you for your help. Answer politely, and say it was nice to meet them.",
+   "he": "בְּבַקָּשָׁה! נָעִים מְאוֹד.",
+   "models": [
+    "בְּבַקָּשָׁה! נָעִים מְאוֹד."
+   ],
+   "elements": [
+    {
+     "label": "you're welcome",
+     "any": [
+      "בבקשה",
+      "בכיף",
+      "אין בעד מה",
+      "בקטנה"
+     ]
+    },
+    {
+     "label": "nice to meet you",
+     "any": [
+      "נעים מאוד"
+     ]
+    }
+   ],
+   "req": [
+    "smalltalk/bevakasha",
+    "smalltalk/naim-meod"
+   ]
+  },
+  {
+   "id": "w03",
+   "en": "Introduce a friend: say who he is (a friend of yours) and his name.",
+   "he": "זֶה דָּנִי, הוּא חָבֵר שֶׁלִּי.",
+   "models": [
+    "זֶה דָּנִי, הוּא חָבֵר שֶׁלִּי."
+   ],
+   "elements": [
+    {
+     "label": "this / he",
+     "any": [
+      "זה",
+      "הוא"
+     ]
+    },
+    {
+     "label": "a friend of mine",
+     "any": [
+      "חבר שלי",
+      "החבר שלי"
+     ]
+    }
+   ],
+   "req": [
+    "basics/ze",
+    "smalltalk/chaver",
+    "basics/sheli"
+   ]
+  },
+  {
+   "id": "w04",
+   "en": "Ask what something is. Then answer: it's coffee.",
+   "he": "מָה זֶה? — זֶה קָפֶה.",
+   "models": [
+    "מָה זֶה? — זֶה קָפֶה."
+   ],
+   "elements": [
+    {
+     "label": "what is this?",
+     "any": [
+      "מה זה"
+     ]
+    },
+    {
+     "label": "coffee",
+     "any": [
+      "קפה"
+     ]
+    }
+   ],
+   "req": [
+    "connectors/ma",
+    "basics/kafe"
+   ]
+  },
+  {
+   "id": "w05",
+   "en": "A friend asks if you can help them move tomorrow. Say of course, no problem.",
+   "he": "בָּרוּר, אֵין בְּעָיָה!",
+   "models": [
+    "בָּרוּר, אֵין בְּעָיָה!",
+    "סַבָּבָה, בְּכֵיף."
+   ],
+   "elements": [
+    {
+     "label": "of course / sure",
+     "any": [
+      "ברור",
+      "בטח",
+      "סבבה",
+      "כן"
+     ]
+    },
+    {
+     "label": "no problem / happily",
+     "any": [
+      "אין בעיה",
+      "בכיף"
+     ]
+    }
+   ],
+   "req": [
+    "street/barur",
+    "street/ein-baaya"
+   ]
+  },
+  {
+   "id": "w06",
+   "en": "Someone tells you surprising news. React: wait — really? You had no idea.",
+   "he": "רֶגַע, בֶּאֱמֶת? אֵין לִי מוּשָּׂג!",
+   "models": [
+    "רֶגַע, בֶּאֱמֶת? אֵין לִי מוּשָּׂג!"
+   ],
+   "elements": [
+    {
+     "label": "wait",
+     "any": [
+      "רגע"
+     ]
+    },
+    {
+     "label": "really?",
+     "any": [
+      "באמת",
+      "ואללה"
+     ]
+    },
+    {
+     "label": "I have no idea",
+     "any": [
+      "אין לי מושג"
+     ]
+    }
+   ],
+   "req": [
+    "street/rega",
+    "street/beemet",
+    "street/ein-li-musag"
+   ]
+  },
+  {
+   "id": "w07",
+   "en": "Say what you feel like drinking right now — coffee, tea, beer or water.",
+   "he": "בָּא לִי בִּירָה.",
+   "models": [
+    "בָּא לִי בִּירָה.",
+    "אֲנִי רוֹצֶה תֵּה."
+   ],
+   "elements": [
+    {
+     "label": "I feel like / I want",
+     "any": [
+      "בא לי",
+      "אני רוצה",
+      "רוצה"
+     ]
+    },
+    {
+     "label": "a drink",
+     "any": [
+      "קפה",
+      "תה",
+      "בירה",
+      "מים"
+     ]
+    }
+   ],
+   "req": [
+    "time/ba-li",
+    "verbs/lirtzot",
+    "cafe/bira"
+   ]
+  },
+  {
+   "id": "w08",
+   "en": "Say one thing you like and one thing you don't like.",
+   "he": "אֲנִי אוֹהֵב קָפֶה, אֲבָל אֲנִי לֹא אוֹהֵב תֵּה.",
+   "models": [
+    "אֲנִי אוֹהֵב קָפֶה, אֲבָל אֲנִי לֹא אוֹהֵב תֵּה."
+   ],
+   "elements": [
+    {
+     "label": "I like",
+     "any": [
+      "אוהב",
+      "אוהבת"
+     ]
+    },
+    {
+     "label": "I don't like",
+     "any": [
+      "לא אוהב",
+      "לא אוהבת"
+     ]
+    }
+   ],
+   "req": [
+    "verbs/leehov",
+    "basics/lo"
+   ]
+  },
+  {
+   "id": "w09",
+   "en": "Tell someone where you live and that you're learning Hebrew.",
+   "he": "אֲנִי גָּר בְּתֵל אָבִיב וַאֲנִי לוֹמֵד עִבְרִית.",
+   "models": [
+    "אֲנִי גָּר בְּתֵל אָבִיב וַאֲנִי לוֹמֵד עִבְרִית."
+   ],
+   "elements": [
+    {
+     "label": "I live",
+     "any": [
+      "גר",
+      "גרה"
+     ]
+    },
+    {
+     "label": "I'm learning Hebrew",
+     "any": [
+      "לומד עברית",
+      "לומדת עברית"
+     ]
+    }
+   ],
+   "req": [
+    "smalltalk/gar-tlv",
+    "smalltalk/lomed-ivrit"
+   ]
+  },
+  {
+   "id": "w10",
+   "en": "You didn't understand. Say so, and ask the person to speak slowly or repeat.",
+   "he": "סְלִיחָה, אֲנִי לֹא מֵבִין. אֶפְשָׁר לְאַט?",
+   "models": [
+    "סְלִיחָה, אֲנִי לֹא מֵבִין. אֶפְשָׁר לְאַט?",
+    "לֹא הֵבַנְתִּי, אֶפְשָׁר עוֹד פַּעַם?"
+   ],
+   "elements": [
+    {
+     "label": "I didn't understand",
+     "any": [
+      "לא הבנתי",
+      "לא מבין",
+      "לא מבינה"
+     ]
+    },
+    {
+     "label": "slowly / repeat",
+     "any": [
+      "לאט",
+      "לחזור",
+      "עוד פעם"
+     ]
+    }
+   ],
+   "req": [
+    "smalltalk/lo-mevin",
+    "smalltalk/lachzor"
+   ]
+  },
+  {
+   "id": "w11",
+   "en": "Order a latte without sugar, and ask if you can sit outside.",
+   "he": "אֶפְשָׁר הָפוּךְ בְּלִי סוּכָּר? וְאֶפְשָׁר לָשֶׁבֶת בַּחוּץ?",
+   "models": [
+    "אֶפְשָׁר הָפוּךְ בְּלִי סוּכָּר? וְאֶפְשָׁר לָשֶׁבֶת בַּחוּץ?"
+   ],
+   "elements": [
+    {
+     "label": "can I…?",
+     "any": [
+      "אפשר"
+     ]
+    },
+    {
+     "label": "a latte",
+     "any": [
+      "הפוך"
+     ]
+    },
+    {
+     "label": "without sugar",
+     "any": [
+      "בלי סוכר"
+     ]
+    },
+    {
+     "label": "outside",
+     "any": [
+      "בחוץ"
+     ]
+    }
+   ],
+   "req": [
+    "cafe/efshar-lekabel",
+    "cafe/hafuch",
+    "cafe/bli",
+    "food/sukar",
+    "cafe/bachutz"
+   ]
+  },
+  {
+   "id": "w12",
+   "en": "You've finished eating. Say it was really tasty, and ask for the bill.",
+   "he": "הָיָה מַמָּשׁ טָעִים! אֶפְשָׁר אֶת הַחֶשְׁבּוֹן?",
+   "models": [
+    "הָיָה מַמָּשׁ טָעִים! אֶפְשָׁר אֶת הַחֶשְׁבּוֹן?"
+   ],
+   "elements": [
+    {
+     "label": "tasty",
+     "any": [
+      "טעים"
+     ]
+    },
+    {
+     "label": "the bill",
+     "any": [
+      "חשבון"
+     ]
+    }
+   ],
+   "req": [
+    "cafe/taim",
+    "cafe/cheshbon"
+   ]
+  },
+  {
+   "id": "w13",
+   "en": "Ask how to get to the beach and whether it's far from here.",
+   "he": "סְלִיחָה, אֵיךְ מַגִּיעִים לַיָּם? זֶה רָחוֹק?",
+   "models": [
+    "סְלִיחָה, אֵיךְ מַגִּיעִים לַיָּם? זֶה רָחוֹק?"
+   ],
+   "elements": [
+    {
+     "label": "how do I get to",
+     "any": [
+      "איך מגיעים"
+     ]
+    },
+    {
+     "label": "the beach / sea",
+     "any": [
+      "לים",
+      "לחוף"
+     ]
+    },
+    {
+     "label": "far",
+     "any": [
+      "רחוק"
+     ]
+    }
+   ],
+   "req": [
+    "around/eich-magiim",
+    "around/yam",
+    "around/rachok"
+   ]
+  },
+  {
+   "id": "w14",
+   "en": "Give directions: straight, then right — it's next to the market.",
+   "he": "יָשָׁר וְאָז יָמִינָה, זֶה לְיַד הַשּׁוּק.",
+   "models": [
+    "יָשָׁר וְאָז יָמִינָה, זֶה לְיַד הַשּׁוּק."
+   ],
+   "elements": [
+    {
+     "label": "straight",
+     "any": [
+      "ישר"
+     ]
+    },
+    {
+     "label": "right",
+     "any": [
+      "ימינה"
+     ]
+    },
+    {
+     "label": "next to (the market)",
+     "any": [
+      "ליד"
+     ]
+    }
+   ],
+   "req": [
+    "around/yashar",
+    "around/yamina",
+    "around/leyad",
+    "around/shuk"
+   ]
+  },
+  {
+   "id": "w15",
+   "en": "Ask how much something costs, and say it's too expensive.",
+   "he": "כַּמָּה זֶה עוֹלֶה? זֶה יָקָר מִדַּי!",
+   "models": [
+    "כַּמָּה זֶה עוֹלֶה? זֶה יָקָר מִדַּי!"
+   ],
+   "elements": [
+    {
+     "label": "how much does it cost?",
+     "any": [
+      "כמה זה עולה",
+      "כמה עולה",
+      "כמה זה"
+     ]
+    },
+    {
+     "label": "(too) expensive",
+     "any": [
+      "יקר"
+     ]
+    }
+   ],
+   "req": [
+    "around/kama-ole",
+    "around/yakar"
+   ]
+  },
+  {
+   "id": "w16",
+   "en": "Say the beer costs 20 shekels and the coffee costs 10.",
+   "he": "הַבִּירָה עוֹלָה עֶשְׂרִים שֶׁקֶל, וְהַקָּפֶה עֶשֶׂר.",
+   "models": [
+    "הַבִּירָה עוֹלָה עֶשְׂרִים שֶׁקֶל, וְהַקָּפֶה עֶשֶׂר."
+   ],
+   "elements": [
+    {
+     "label": "twenty",
+     "any": [
+      "עשרים"
+     ]
+    },
+    {
+     "label": "ten",
+     "any": [
+      "עשר",
+      "עשרה"
+     ]
+    },
+    {
+     "label": "shekels",
+     "any": [
+      "שקל",
+      "שקלים"
+     ]
+    }
+   ],
+   "req": [
+    "numbers/20",
+    "numbers/10",
+    "shopping/shekel",
+    "cafe/bira"
+   ]
+  },
+  {
+   "id": "w17",
+   "en": "Suggest meeting tomorrow evening, and ask if they have time.",
+   "he": "יֵשׁ לְךָ זְמַן מָחָר בָּעֶרֶב? בּוֹא נִיפָּגֵשׁ.",
+   "models": [
+    "יֵשׁ לְךָ זְמַן מָחָר בָּעֶרֶב? בּוֹא נִיפָּגֵשׁ."
+   ],
+   "elements": [
+    {
+     "label": "tomorrow",
+     "any": [
+      "מחר"
+     ]
+    },
+    {
+     "label": "in the evening",
+     "any": [
+      "בערב"
+     ]
+    },
+    {
+     "label": "do you have time?",
+     "any": [
+      "יש לך זמן"
+     ]
+    },
+    {
+     "label": "let's meet",
+     "any": [
+      "ניפגש",
+      "נפגש",
+      "נתראה",
+      "נקבע"
+     ]
+    }
+   ],
+   "req": [
+    "time/machar",
+    "time/baerev",
+    "time/yesh-lecha-zman"
+   ]
+  },
+  {
+   "id": "w18",
+   "en": "Say you can't be bothered to go out today — maybe tomorrow.",
+   "he": "אֵין לִי כּוֹחַ לָצֵאת הַיּוֹם, אוּלַי מָחָר.",
+   "models": [
+    "אֵין לִי כּוֹחַ לָצֵאת הַיּוֹם, אוּלַי מָחָר."
+   ],
+   "elements": [
+    {
+     "label": "I can't be bothered",
+     "any": [
+      "אין לי כוח",
+      "אין לי כח"
+     ]
+    },
+    {
+     "label": "to go out",
+     "any": [
+      "לצאת"
+     ]
+    },
+    {
+     "label": "today",
+     "any": [
+      "היום"
+     ]
+    },
+    {
+     "label": "tomorrow",
+     "any": [
+      "מחר"
+     ]
+    }
+   ],
+   "req": [
+    "time/ein-li-koach",
+    "verbs/latzet",
+    "time/hayom",
+    "time/machar"
+   ]
+  },
+  {
+   "id": "w19",
+   "en": "Tell someone you work in Tel Aviv and you really like it.",
+   "he": "אֲנִי עוֹבֵד בְּתֵל אָבִיב וַאֲנִי מַמָּשׁ אוֹהֵב אֶת זֶה.",
+   "models": [
+    "אֲנִי עוֹבֵד בְּתֵל אָבִיב וַאֲנִי מַמָּשׁ אוֹהֵב אֶת זֶה."
+   ],
+   "elements": [
+    {
+     "label": "I work",
+     "any": [
+      "עובד",
+      "עובדת"
+     ]
+    },
+    {
+     "label": "in Tel Aviv",
+     "any": [
+      "בתל אביב"
+     ]
+    },
+    {
+     "label": "really",
+     "any": [
+      "ממש",
+      "מאוד"
+     ]
+    },
+    {
+     "label": "like / love",
+     "any": [
+      "אוהב",
+      "אוהבת"
+     ]
+    }
+   ],
+   "req": [
+    "verbs/laavod",
+    "street/mamash",
+    "verbs/leehov"
+   ]
+  },
+  {
+   "id": "w20",
+   "en": "End a chat: say we'll talk later, bye.",
+   "he": "נְדַבֵּר אַחַר כָּךְ, יַאלְלָה בַּיי!",
+   "models": [
+    "נְדַבֵּר אַחַר כָּךְ, יַאלְלָה בַּיי!"
+   ],
+   "elements": [
+    {
+     "label": "we'll talk",
+     "any": [
+      "נדבר"
+     ]
+    },
+    {
+     "label": "later",
+     "any": [
+      "אחר כך"
+     ]
+    },
+    {
+     "label": "bye",
+     "any": [
+      "ביי",
+      "להתראות",
+      "נתראה"
+     ]
+    }
+   ],
+   "req": [
+    "smalltalk/nedaber",
+    "time/achar-kach",
+    "basics/bye"
+   ]
+  },
+  {
+   "id": "w21",
+   "en": "Write two sentences about what you did yesterday.",
+   "he": "אֶתְמוֹל הָיִיתִי בַּיָּם. אַחַר כָּךְ אָכַלְתִּי שַׁקְשׁוּקָה עִם חֲבֵרִים.",
+   "models": [
+    "אֶתְמוֹל הָיִיתִי בַּיָּם. אַחַר כָּךְ אָכַלְתִּי שַׁקְשׁוּקָה עִם חֲבֵרִים."
+   ],
+   "elements": [
+    {
+     "label": "yesterday",
+     "any": [
+      "אתמול"
+     ]
+    },
+    {
+     "label": "a past-tense verb",
+     "any": [
+      "הייתי",
+      "עשיתי",
+      "אכלתי",
+      "ראיתי",
+      "קניתי",
+      "הלכתי",
+      "נסעתי",
+      "שתיתי",
+      "כתבתי",
+      "גמרתי",
+      "פגשתי",
+      "עבדתי",
+      "יצאתי"
+     ]
+    }
+   ],
+   "req": [
+    "time/etmol",
+    "verbs/laasot",
+    "paal/kana-past-1s"
+   ]
+  },
+  {
+   "id": "w22",
+   "en": "Say you didn't come because you were tired.",
+   "he": "לֹא בָּאתִי כִּי הָיִיתִי עָיֵיף.",
+   "models": [
+    "לֹא בָּאתִי כִּי הָיִיתִי עָיֵיף."
+   ],
+   "elements": [
+    {
+     "label": "I didn't come",
+     "any": [
+      "לא באתי",
+      "לא הגעתי"
+     ]
+    },
+    {
+     "label": "because",
+     "any": [
+      "כי"
+     ]
+    },
+    {
+     "label": "tired",
+     "any": [
+      "עייף",
+      "עייפה"
+     ]
+    }
+   ],
+   "req": [
+    "verbs/lavo",
+    "connectors/ki",
+    "health/ayef"
+   ]
+  },
+  {
+   "id": "w23",
+   "en": "Tell a friend about last night: it was amazing — or terrible!",
+   "he": "אֶתְמוֹל בָּעֶרֶב הָיָה חֲבָל עַל הַזְּמַן!",
+   "models": [
+    "אֶתְמוֹל בָּעֶרֶב הָיָה חֲבָל עַל הַזְּמַן!"
+   ],
+   "elements": [
+    {
+     "label": "last night / yesterday",
+     "any": [
+      "אתמול",
+      "בערב",
+      "בלילה"
+     ]
+    },
+    {
+     "label": "it was",
+     "any": [
+      "היה"
+     ]
+    },
+    {
+     "label": "amazing / terrible",
+     "any": [
+      "חבל על הזמן",
+      "על הפנים",
+      "אש",
+      "מדהים",
+      "אחלה"
+     ]
+    }
+   ],
+   "req": [
+    "street/haval-al-hazman",
+    "street/al-hapanim",
+    "verbs/lihyot"
+   ]
+  },
+  {
+   "id": "w24",
+   "en": "React to bad news with 'what a bummer', and to good news with 'no way, really?'",
+   "he": "אֵיזוֹ בַּאסָה! … אֵין מַצָּב, בֶּאֱמֶת?",
+   "models": [
+    "אֵיזוֹ בַּאסָה! … אֵין מַצָּב, בֶּאֱמֶת?"
+   ],
+   "elements": [
+    {
+     "label": "bummer",
+     "any": [
+      "באסה"
+     ]
+    },
+    {
+     "label": "no way",
+     "any": [
+      "אין מצב"
+     ]
+    },
+    {
+     "label": "really?",
+     "any": [
+      "באמת",
+      "ואללה"
+     ]
+    }
+   ],
+   "req": [
+    "street/basa",
+    "street/ein-matzav",
+    "street/beemet"
+   ]
+  },
+  {
+   "id": "w25",
+   "en": "Describe your apartment: how many rooms, and one thing you like about it.",
+   "he": "יֵשׁ לִי דִּירָה קְטַנָּה עִם שְׁנֵי חֲדָרִים. אֲנִי אוֹהֵב אֶת הַמִּרְפֶּסֶת.",
+   "models": [
+    "יֵשׁ לִי דִּירָה קְטַנָּה עִם שְׁנֵי חֲדָרִים. אֲנִי אוֹהֵב אֶת הַמִּרְפֶּסֶת."
+   ],
+   "elements": [
+    {
+     "label": "apartment",
+     "any": [
+      "דירה",
+      "הדירה"
+     ]
+    },
+    {
+     "label": "rooms",
+     "any": [
+      "חדרים",
+      "חדר"
+     ]
+    },
+    {
+     "label": "there is / it has",
+     "any": [
+      "יש"
+     ]
+    }
+   ],
+   "req": [
+    "home/cheder",
+    "around/dira",
+    "basics/yesh"
+   ]
+  },
+  {
+   "id": "w26",
+   "en": "Complain about your neighbors: they're really noisy at night.",
+   "he": "הַשְּׁכֵנִים שֶׁלִּי מַמָּשׁ רוֹעֲשִׁים בַּלַּיְלָה.",
+   "models": [
+    "הַשְּׁכֵנִים שֶׁלִּי מַמָּשׁ רוֹעֲשִׁים בַּלַּיְלָה."
+   ],
+   "elements": [
+    {
+     "label": "the neighbors",
+     "any": [
+      "שכנים",
+      "השכנים"
+     ]
+    },
+    {
+     "label": "noisy",
+     "any": [
+      "רועשים",
+      "רועש"
+     ]
+    },
+    {
+     "label": "at night",
+     "any": [
+      "בלילה"
+     ]
+    }
+   ],
+   "req": [
+    "home/shchenim",
+    "adjectives/roesh",
+    "time/balayla"
+   ]
+  },
+  {
+   "id": "w27",
+   "en": "In a shop: say you want to return a shirt because it's too small.",
+   "he": "אֲנִי רוֹצֶה לְהַחְזִיר אֶת הַחוּלְצָה, כִּי הִיא קְטַנָּה מִדַּי.",
+   "models": [
+    "אֲנִי רוֹצֶה לְהַחְזִיר אֶת הַחוּלְצָה, כִּי הִיא קְטַנָּה מִדַּי."
+   ],
+   "elements": [
+    {
+     "label": "to return",
+     "any": [
+      "להחזיר"
+     ]
+    },
+    {
+     "label": "the shirt",
+     "any": [
+      "חולצה",
+      "החולצה"
+     ]
+    },
+    {
+     "label": "because",
+     "any": [
+      "כי"
+     ]
+    },
+    {
+     "label": "small",
+     "any": [
+      "קטנה",
+      "קטן"
+     ]
+    }
+   ],
+   "req": [
+    "shopping/lehachzir",
+    "clothes/chultza",
+    "adjectives/katan",
+    "connectors/ki"
+   ]
+  },
+  {
+   "id": "w28",
+   "en": "Ask if you can pay by card, or only in cash.",
+   "he": "אֶפְשָׁר לְשַׁלֵּם בְּאַשְׁרַאי, אוֹ רַק בִּמְזוּמָּן?",
+   "models": [
+    "אֶפְשָׁר לְשַׁלֵּם בְּאַשְׁרַאי, אוֹ רַק בִּמְזוּמָּן?"
+   ],
+   "elements": [
+    {
+     "label": "to pay",
+     "any": [
+      "לשלם"
+     ]
+    },
+    {
+     "label": "card",
+     "any": [
+      "אשראי",
+      "כרטיס"
+     ]
+    },
+    {
+     "label": "cash",
+     "any": [
+      "מזומן"
+     ]
+    }
+   ],
+   "req": [
+    "verbs/leshalem",
+    "shopping/ashrai",
+    "shopping/mezuman"
+   ]
+  },
+  {
+   "id": "w29",
+   "en": "Message your roommate: we need milk, bread and eggs.",
+   "he": "צָרִיךְ לִקְנוֹת חָלָב, לֶחֶם וּבֵיצִים.",
+   "models": [
+    "צָרִיךְ לִקְנוֹת חָלָב, לֶחֶם וּבֵיצִים."
+   ],
+   "elements": [
+    {
+     "label": "we need",
+     "any": [
+      "צריך",
+      "צריכים",
+      "חסר",
+      "אין"
+     ]
+    },
+    {
+     "label": "milk",
+     "any": [
+      "חלב"
+     ]
+    },
+    {
+     "label": "bread",
+     "any": [
+      "לחם"
+     ]
+    },
+    {
+     "label": "eggs",
+     "any": [
+      "ביצים"
+     ]
+    }
+   ],
+   "req": [
+    "food/chalav",
+    "food/lechem",
+    "food/beitzim"
+   ]
+  },
+  {
+   "id": "w30",
+   "en": "Say you're hungry and suggest ordering delivery.",
+   "he": "אֲנִי רָעֵב, בּוֹא נַזְמִין מִשְׁלוֹחַ.",
+   "models": [
+    "אֲנִי רָעֵב, בּוֹא נַזְמִין מִשְׁלוֹחַ."
+   ],
+   "elements": [
+    {
+     "label": "hungry",
+     "any": [
+      "רעב",
+      "רעבה"
+     ]
+    },
+    {
+     "label": "order",
+     "any": [
+      "להזמין",
+      "נזמין"
+     ]
+    },
+    {
+     "label": "delivery",
+     "any": [
+      "משלוח"
+     ]
+    }
+   ],
+   "req": [
+    "cafe/raev",
+    "cafe/lehazmin",
+    "shopping/mishloach"
+   ]
+  },
+  {
+   "id": "w31",
+   "en": "Describe your family: brothers or sisters, parents, where they live.",
+   "he": "יֵשׁ לִי אָח וְאָחוֹת. הַהוֹרִים שֶׁלִּי גָּרִים בְּחֵיפָה.",
+   "models": [
+    "יֵשׁ לִי אָח וְאָחוֹת. הַהוֹרִים שֶׁלִּי גָּרִים בְּחֵיפָה."
+   ],
+   "elements": [
+    {
+     "label": "brother / sister",
+     "any": [
+      "אח",
+      "אחות",
+      "אחים",
+      "אחיות"
+     ]
+    },
+    {
+     "label": "parents / mom / dad",
+     "any": [
+      "הורים",
+      "ההורים",
+      "אמא",
+      "אבא"
+     ]
+    },
+    {
+     "label": "live",
+     "any": [
+      "גר",
+      "גרה",
+      "גרים"
+     ]
+    }
+   ],
+   "req": [
+    "family/ach",
+    "family/horim",
+    "smalltalk/gar-tlv"
+   ]
+  },
+  {
+   "id": "w32",
+   "en": "Tell someone you're eating at your parents' on Friday.",
+   "he": "בְּשִׁישִּׁי אֲנִי אוֹכֵל אֵצֶל הַהוֹרִים.",
+   "models": [
+    "בְּשִׁישִּׁי אֲנִי אוֹכֵל אֵצֶל הַהוֹרִים."
+   ],
+   "elements": [
+    {
+     "label": "at (someone's place)",
+     "any": [
+      "אצל"
+     ]
+    },
+    {
+     "label": "parents",
+     "any": [
+      "הורים",
+      "ההורים"
+     ]
+    },
+    {
+     "label": "Friday",
+     "any": [
+      "שישי"
+     ]
+    }
+   ],
+   "req": [
+    "family/horim",
+    "time/shishi"
+   ]
+  },
+  {
+   "id": "w33",
+   "en": "Tell a friend how you feel today, and why (use כי).",
+   "he": "הַיּוֹם אֲנִי מַמָּשׁ שָׂמֵחַ, כִּי מָחָר יֵשׁ לִי חוֹפֶשׁ.",
+   "models": [
+    "הַיּוֹם אֲנִי מַמָּשׁ שָׂמֵחַ, כִּי מָחָר יֵשׁ לִי חוֹפֶשׁ."
+   ],
+   "elements": [
+    {
+     "label": "a feeling",
+     "any": [
+      "שמח",
+      "שמחה",
+      "עצוב",
+      "עצובה",
+      "עייף",
+      "עייפה",
+      "מבואס",
+      "מבואסת",
+      "כועס",
+      "כועסת",
+      "לחוץ",
+      "לחוצה",
+      "מתרגש",
+      "מתרגשת",
+      "נמאס לי",
+      "קשה לי"
+     ]
+    },
+    {
+     "label": "because",
+     "any": [
+      "כי"
+     ]
+    }
+   ],
+   "req": [
+    "feelings/sameach",
+    "connectors/ki"
+   ]
+  },
+  {
+   "id": "w34",
+   "en": "Comfort a friend: don't worry, it'll be fine, it'll work out.",
+   "he": "אַל תִּדְאַג, יִהְיֶה בְּסֵדֶר. זֶה יִסְתַּדֵּר.",
+   "models": [
+    "אַל תִּדְאַג, יִהְיֶה בְּסֵדֶר. זֶה יִסְתַּדֵּר."
+   ],
+   "elements": [
+    {
+     "label": "don't worry",
+     "any": [
+      "אל תדאג",
+      "אל תדאגי"
+     ]
+    },
+    {
+     "label": "it'll be fine / work out",
+     "any": [
+      "יהיה בסדר",
+      "יסתדר"
+     ]
+    }
+   ],
+   "req": [
+    "feelings/doeg",
+    "verbs/lehistader"
+   ]
+  },
+  {
+   "id": "w35",
+   "en": "Message your boss: you're sick, you have a fever, and you're not coming in today.",
+   "he": "אֲנִי חוֹלֶה, יֵשׁ לִי חוֹם. אֲנִי לֹא בָּא הַיּוֹם.",
+   "models": [
+    "אֲנִי חוֹלֶה, יֵשׁ לִי חוֹם. אֲנִי לֹא בָּא הַיּוֹם."
+   ],
+   "elements": [
+    {
+     "label": "sick",
+     "any": [
+      "חולה"
+     ]
+    },
+    {
+     "label": "fever",
+     "any": [
+      "חום"
+     ]
+    },
+    {
+     "label": "not coming",
+     "any": [
+      "לא בא",
+      "לא באה",
+      "לא אגיע",
+      "לא אבוא",
+      "לא מגיע",
+      "לא מגיעה"
+     ]
+    },
+    {
+     "label": "today",
+     "any": [
+      "היום"
+     ]
+    }
+   ],
+   "req": [
+    "health/chole",
+    "health/chom",
+    "time/hayom"
+   ]
+  },
+  {
+   "id": "w36",
+   "en": "Tell the doctor what hurts.",
+   "he": "כּוֹאֵב לִי הָרֹאשׁ וְכוֹאֶבֶת לִי הַבֶּטֶן.",
+   "models": [
+    "כּוֹאֵב לִי הָרֹאשׁ וְכוֹאֶבֶת לִי הַבֶּטֶן."
+   ],
+   "elements": [
+    {
+     "label": "it hurts",
+     "any": [
+      "כואב לי",
+      "כואבת לי",
+      "כואבים לי",
+      "כואבות לי"
+     ]
+    },
+    {
+     "label": "a body part",
+     "any": [
+      "ראש",
+      "הראש",
+      "בטן",
+      "הבטן",
+      "גב",
+      "הגב",
+      "גרון",
+      "הגרון"
+     ]
+    }
+   ],
+   "req": [
+    "health/koev-li",
+    "health/rosh",
+    "health/beten"
+   ]
+  },
+  {
+   "id": "w37",
+   "en": "Make a weekend plan: if it's hot we'll go to the beach; if it rains we'll stay home.",
+   "he": "אִם יִהְיֶה חַם, נֵלֵךְ לַיָּם. אִם יֵרֵד גֶּשֶׁם, נִישָּׁאֵר בַּבַּיִת.",
+   "models": [
+    "אִם יִהְיֶה חַם, נֵלֵךְ לַיָּם. אִם יֵרֵד גֶּשֶׁם, נִישָּׁאֵר בַּבַּיִת."
+   ],
+   "elements": [
+    {
+     "label": "if",
+     "any": [
+      "אם"
+     ]
+    },
+    {
+     "label": "hot",
+     "any": [
+      "חם"
+     ]
+    },
+    {
+     "label": "the beach",
+     "any": [
+      "לים",
+      "לחוף"
+     ]
+    },
+    {
+     "label": "rain",
+     "any": [
+      "גשם"
+     ]
+    },
+    {
+     "label": "at home",
+     "any": [
+      "בבית"
+     ]
+    }
+   ],
+   "req": [
+    "connectors/im",
+    "weather/cham",
+    "around/yam",
+    "weather/geshem"
+   ]
+  },
+  {
+   "id": "w38",
+   "en": "Complain about today's weather.",
+   "he": "אֵיזֶה חוֹם הַיּוֹם! וְגַם מַמָּשׁ לַח.",
+   "models": [
+    "אֵיזֶה חוֹם הַיּוֹם! וְגַם מַמָּשׁ לַח."
+   ],
+   "elements": [
+    {
+     "label": "weather word",
+     "any": [
+      "חם",
+      "קר",
+      "לח",
+      "גשם",
+      "חמסין"
+     ]
+    },
+    {
+     "label": "today",
+     "any": [
+      "היום"
+     ]
+    }
+   ],
+   "req": [
+    "weather/cham",
+    "weather/lach",
+    "time/hayom"
+   ]
+  },
+  {
+   "id": "w39",
+   "en": "Message a colleague: you're late to the meeting because of traffic.",
+   "he": "אֲנִי מְאַחֵר לַפְּגִישָׁה בִּגְלַל הַפְּקָק.",
+   "models": [
+    "אֲנִי מְאַחֵר לַפְּגִישָׁה בִּגְלַל הַפְּקָק."
+   ],
+   "elements": [
+    {
+     "label": "late",
+     "any": [
+      "מאחר",
+      "מאחרת",
+      "מאוחר",
+      "איחרתי",
+      "אאחר"
+     ]
+    },
+    {
+     "label": "meeting",
+     "any": [
+      "פגישה",
+      "לפגישה"
+     ]
+    },
+    {
+     "label": "because of",
+     "any": [
+      "בגלל"
+     ]
+    },
+    {
+     "label": "traffic",
+     "any": [
+      "פקק",
+      "הפקק",
+      "פקקים",
+      "הפקקים"
+     ]
+    }
+   ],
+   "req": [
+    "time/meacher",
+    "work/pgisha",
+    "connectors/biglal",
+    "around/pkak"
+   ]
+  },
+  {
+   "id": "w40",
+   "en": "Say you're swamped this week and have a deadline tomorrow.",
+   "he": "אֲנִי עָמוּס הַשָּׁבוּעַ, יֵשׁ לִי דֶּדְלַיין מָחָר.",
+   "models": [
+    "אֲנִי עָמוּס הַשָּׁבוּעַ, יֵשׁ לִי דֶּדְלַיין מָחָר."
+   ],
+   "elements": [
+    {
+     "label": "swamped",
+     "any": [
+      "עמוס",
+      "עמוסה"
+     ]
+    },
+    {
+     "label": "deadline",
+     "any": [
+      "דדליין"
+     ]
+    },
+    {
+     "label": "tomorrow",
+     "any": [
+      "מחר"
+     ]
+    }
+   ],
+   "req": [
+    "work/amus",
+    "work/deadline",
+    "time/machar"
+   ]
+  },
+  {
+   "id": "w41",
+   "en": "Text a friend: send me your location, and call me when you arrive.",
+   "he": "תִּשְׁלַח לִי מִיקוּם, וְתִתְקַשֵּׁר אֵלַיי כְּשֶׁאַתָּה מַגִּיעַ.",
+   "models": [
+    "תִּשְׁלַח לִי מִיקוּם, וְתִתְקַשֵּׁר אֵלַיי כְּשֶׁאַתָּה מַגִּיעַ."
+   ],
+   "elements": [
+    {
+     "label": "location",
+     "any": [
+      "מיקום"
+     ]
+    },
+    {
+     "label": "call me",
+     "any": [
+      "תתקשר",
+      "תתקשרי"
+     ]
+    },
+    {
+     "label": "when",
+     "any": [
+      "כש"
+     ]
+    }
+   ],
+   "req": [
+    "tech/lishloach-mikum",
+    "verbs/lehitkasher",
+    "connectors/kshe"
+   ]
+  },
+  {
+   "id": "w42",
+   "en": "Your phone is dying. Ask if anyone has a charger.",
+   "he": "אֵין לִי סוֹלְלָה. יֵשׁ לְמִישֶׁהוּ מִטְעָן?",
+   "models": [
+    "אֵין לִי סוֹלְלָה. יֵשׁ לְמִישֶׁהוּ מִטְעָן?"
+   ],
+   "elements": [
+    {
+     "label": "charger",
+     "any": [
+      "מטען"
+     ]
+    },
+    {
+     "label": "does anyone / do you have",
+     "any": [
+      "יש למישהו",
+      "יש לך",
+      "יש לכם"
+     ]
+    }
+   ],
+   "req": [
+    "tech/mitan",
+    "tech/solela"
+   ]
+  },
+  {
+   "id": "w43",
+   "en": "Invite a friend to a concert on Saturday — you already bought tickets.",
+   "he": "קָנִיתִי כַּרְטִיסִים לְהוֹפָעָה בְּשַׁבָּת. רוֹצֶה לָבוֹא?",
+   "models": [
+    "קָנִיתִי כַּרְטִיסִים לְהוֹפָעָה בְּשַׁבָּת. רוֹצֶה לָבוֹא?"
+   ],
+   "elements": [
+    {
+     "label": "concert",
+     "any": [
+      "הופעה",
+      "להופעה"
+     ]
+    },
+    {
+     "label": "Saturday",
+     "any": [
+      "שבת",
+      "בשבת"
+     ]
+    },
+    {
+     "label": "I bought",
+     "any": [
+      "קניתי"
+     ]
+    },
+    {
+     "label": "tickets",
+     "any": [
+      "כרטיסים"
+     ]
+    }
+   ],
+   "req": [
+    "freetime/hofaa",
+    "time/shabat",
+    "freetime/lehazmin-kartisim"
+   ]
+  },
+  {
+   "id": "w44",
+   "en": "Recommend a TV series and say why you like it.",
+   "he": "אַתָּה חַיָּיב לִרְאוֹת אֶת הַסִּדְרָה הַזֹּאת, כִּי הִיא מַמָּשׁ מְעַנְיֶינֶת.",
+   "models": [
+    "אַתָּה חַיָּיב לִרְאוֹת אֶת הַסִּדְרָה הַזֹּאת, כִּי הִיא מַמָּשׁ מְעַנְיֶינֶת."
+   ],
+   "elements": [
+    {
+     "label": "series",
+     "any": [
+      "סדרה",
+      "הסדרה"
+     ]
+    },
+    {
+     "label": "because",
+     "any": [
+      "כי"
+     ]
+    },
+    {
+     "label": "a reason",
+     "any": [
+      "אוהב",
+      "אוהבת",
+      "מעניינת",
+      "מצחיקה",
+      "מדהימה",
+      "טובה"
+     ]
+    }
+   ],
+   "req": [
+    "freetime/sidra",
+    "connectors/ki",
+    "adjectives/meanyen"
+   ]
+  },
+  {
+   "id": "w45",
+   "en": "Tell a short story about yesterday using כש, אחרי and בגלל.",
+   "he": "אֶתְמוֹל, כְּשֶׁיָּצָאתִי מֵהָעֲבוֹדָה, הָיָה פְּקָק. בִּגְלַל הַפְּקָק הִגַּעְתִּי מְאוּחָר, וְאַחֲרֵי זֶה הָלַכְנוּ לַיָּם.",
+   "models": [
+    "אֶתְמוֹל, כְּשֶׁיָּצָאתִי מֵהָעֲבוֹדָה, הָיָה פְּקָק. בִּגְלַל הַפְּקָק הִגַּעְתִּי מְאוּחָר, וְאַחֲרֵי זֶה הָלַכְנוּ לַיָּם."
+   ],
+   "elements": [
+    {
+     "label": "when",
+     "any": [
+      "כש"
+     ]
+    },
+    {
+     "label": "after",
+     "any": [
+      "אחרי"
+     ]
+    },
+    {
+     "label": "because of",
+     "any": [
+      "בגלל"
+     ]
+    }
+   ],
+   "req": [
+    "connectors/kshe",
+    "connectors/acharei",
+    "connectors/biglal"
+   ]
+  },
+  {
+   "id": "w46",
+   "en": "Compare two places in the city — use יותר and הכי.",
+   "he": "פְלוֹרֶנְטִין יוֹתֵר רוֹעֶשֶׁת מִיָּפוֹ, אֲבָל הַבָּרִים שָׁם הֲכִי טוֹבִים.",
+   "models": [
+    "פְלוֹרֶנְטִין יוֹתֵר רוֹעֶשֶׁת מִיָּפוֹ, אֲבָל הַבָּרִים שָׁם הֲכִי טוֹבִים."
+   ],
+   "elements": [
+    {
+     "label": "more",
+     "any": [
+      "יותר"
+     ]
+    },
+    {
+     "label": "the most",
+     "any": [
+      "הכי"
+     ]
+    }
+   ],
+   "req": [
+    "connectors/yoter",
+    "connectors/hachi"
+   ]
+  },
+  {
+   "id": "w47",
+   "en": "WhatsApp your roommate: the rent is due — send it to me on Bit.",
+   "he": "הַיי, צָרִיךְ לְשַׁלֵּם שְׂכַר דִּירָה. תַּעֲבִיר לִי בְּבִּיט?",
+   "models": [
+    "הַיי, צָרִיךְ לְשַׁלֵּם שְׂכַר דִּירָה. תַּעֲבִיר לִי בְּבִּיט?"
+   ],
+   "elements": [
+    {
+     "label": "rent",
+     "any": [
+      "שכר דירה",
+      "שכר הדירה"
+     ]
+    },
+    {
+     "label": "Bit",
+     "any": [
+      "ביט",
+      "בביט"
+     ]
+    },
+    {
+     "label": "send / pay",
+     "any": [
+      "תעביר",
+      "תעבירי",
+      "תשלם",
+      "תשלמי",
+      "תשלח",
+      "תשלחי"
+     ]
+    }
+   ],
+   "req": [
+    "home/schar-dira",
+    "shopping/bit"
+   ]
+  },
+  {
+   "id": "w48",
+   "en": "Write 3–4 sentences about your life in Tel Aviv: where you live, what you do, what you love and what annoys you.",
+   "he": "אֲנִי גָּר בִּפְלוֹרֶנְטִין וְעוֹבֵד בְּהַיְיטֶק. אֲנִי אוֹהֵב אֶת הַיָּם וְאֶת הָאוֹכֶל. מָה שֶׁמְּעַצְבֵּן זֶה שְׂכַר הַדִּירָה.",
+   "models": [
+    "אֲנִי גָּר בִּפְלוֹרֶנְטִין וְעוֹבֵד בְּהַיְיטֶק. אֲנִי אוֹהֵב אֶת הַיָּם וְאֶת הָאוֹכֶל. מָה שֶׁמְּעַצְבֵּן זֶה שְׂכַר הַדִּירָה."
+   ],
+   "elements": [
+    {
+     "label": "where you live",
+     "any": [
+      "גר",
+      "גרה"
+     ]
+    },
+    {
+     "label": "what you do",
+     "any": [
+      "עובד",
+      "עובדת",
+      "לומד",
+      "לומדת"
+     ]
+    },
+    {
+     "label": "what you love",
+     "any": [
+      "אוהב",
+      "אוהבת"
+     ]
+    },
+    {
+     "label": "what annoys you",
+     "any": [
+      "מעצבן",
+      "מעצבנים",
+      "נמאס לי",
+      "על הפנים"
+     ]
+    }
+   ],
+   "req": [
+    "smalltalk/gar-tlv",
+    "verbs/leehov",
+    "feelings/meatzben",
+    "feelings/nimas-li"
+   ]
+  }
+ ]
+}

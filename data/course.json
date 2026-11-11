@@ -1,0 +1,931 @@
+{
+ "lessons": [
+  {
+   "id": "a1-01",
+   "level": "A1",
+   "title": "Hello!",
+   "he": "שָׁלוֹם",
+   "intro": "<p>Your first words. <b>שָׁלוֹם</b> means hello, goodbye and peace. Israelis are informal: a quick <b>מָה נִשְׁמָע?</b> (what's up?) is the normal greeting, and <b>בְּסֵדֶר</b> or <b>הַכּוֹל טוֹב</b> is the normal answer.</p><p>Hebrew has no word for \"is\" or \"am\" in the present: <b>אֲנִי דָּנָה</b> = I (am) Dana.</p>",
+   "items": [
+    "basics/shalom",
+    "basics/ken",
+    "basics/lo",
+    "basics/ani",
+    "smalltalk/toda-raba",
+    "smalltalk/bevakasha",
+    "smalltalk/slicha",
+    "smalltalk/korim-li",
+    "smalltalk/naim-meod",
+    "street/ma-nishma",
+    "street/hakol-tov",
+    "street/beseder"
+   ],
+   "verbs": [],
+   "phrases": [
+    "course-phrases/cp01",
+    "course-phrases/cp02",
+    "course-phrases/cp03"
+   ],
+   "write": [
+    "course-write/w01",
+    "course-write/w02"
+   ],
+   "links": []
+  },
+  {
+   "id": "a1-02",
+   "level": "A1",
+   "title": "Me, you, them",
+   "he": "אֲנִי, אַתָּה, הִיא",
+   "intro": "<p>Hebrew pronouns have gender: <b>אַתָּה</b> to a man, <b>אַתְּ</b> to a woman. <b>זֶה</b> (this/that/it) is the most useful word you'll learn this week.</p><p>\"My\" comes <i>after</i> the noun: <b>חָבֵר שֶׁלִּי</b> = a friend of mine. More in <a href=\"#/grammar/spoken\">How people actually talk</a>.</p>",
+   "items": [
+    "basics/hu",
+    "basics/hi",
+    "basics/anachnu",
+    "basics/atem",
+    "basics/hem",
+    "basics/hen",
+    "basics/ze",
+    "basics/zot",
+    "basics/sheli",
+    "basics/kafe",
+    "basics/boker-tov",
+    "basics/erev-tov",
+    "basics/laila-tov",
+    "connectors/mi",
+    "connectors/ma",
+    "smalltalk/chaver",
+    "smalltalk/gam-ani"
+   ],
+   "verbs": [],
+   "phrases": [
+    "course-phrases/cp04",
+    "course-phrases/cp05",
+    "course-phrases/cp06"
+   ],
+   "write": [
+    "course-write/w03",
+    "course-write/w04"
+   ],
+   "links": []
+  },
+  {
+   "id": "a1-03",
+   "level": "A1",
+   "title": "Street talk",
+   "he": "סַבָּבָה, יַאלְלָה",
+   "intro": "<p>The words that make you sound like you live here. <b>סַבָּבָה</b> (cool), <b>יַאלְלָה</b> (come on / let's go) and <b>וַאלְלָה</b> (really? / honestly) are in every conversation.</p><p>Each word on this site is tagged <i>slang, casual, neutral</i> or <i>formal</i> so you know where it fits.</p>",
+   "items": [
+    "street/sababa",
+    "street/yalla",
+    "street/achla",
+    "street/walla",
+    "street/ein-baaya",
+    "street/bekef",
+    "street/barur",
+    "street/rega",
+    "street/beemet",
+    "street/ein-li-musag",
+    "basics/bye",
+    "basics/lehitraot",
+    "basics/okay"
+   ],
+   "verbs": [],
+   "phrases": [
+    "course-phrases/cp07",
+    "course-phrases/cp08",
+    "course-phrases/cp09"
+   ],
+   "write": [
+    "course-write/w05",
+    "course-write/w06"
+   ],
+   "links": []
+  },
+  {
+   "id": "a1-04",
+   "level": "A1",
+   "title": "I want, I like, I have",
+   "he": "רוֹצֶה, אוֹהֵב, יֵשׁ לִי",
+   "intro": "<p>Your first verbs. In the present tense a verb has <b>four forms</b> — like an adjective: <b>רוֹצֶה / רוֹצָה / רוֹצִים / רוֹצוֹת</b>. Pick by who's speaking or being talked about.</p><p>\"I have\" is <b>יֵשׁ לִי</b> (lit. there is to me), and the casual \"I feel like…\" is <b>בָּא לִי</b>.</p><p>You also meet the first two verbs of the <a href=\"#/verbs\">verb course</a>: <b>לִקְנוֹת</b> (to buy) and <b>לָגוּר</b> (to live).</p>",
+   "items": [
+    "verbs/lirtzot",
+    "verbs/leehov",
+    "basics/yesh",
+    "basics/ein",
+    "basics/yesh-li",
+    "basics/ein-li",
+    "basics/te",
+    "basics/meod",
+    "time/ba-li",
+    "cafe/bira",
+    "adjectives/tov",
+    "connectors/aval"
+   ],
+   "verbs": [
+    "paal/kana@inf",
+    "paal/gar@inf"
+   ],
+   "phrases": [
+    "phrases/p07",
+    "course-phrases/cp10",
+    "course-phrases/cp11"
+   ],
+   "write": [
+    "course-write/w07",
+    "course-write/w08"
+   ],
+   "links": []
+  },
+  {
+   "id": "a1-05",
+   "level": "A1",
+   "title": "Where are you from?",
+   "he": "מֵאֵיפֹה אַתָּה?",
+   "intro": "<p>Small talk survival kit: where you live, that you're learning Hebrew, and how to ask people to slow down or repeat.</p><p>Verb course: meet <b>roots and binyanim</b>. Almost every verb is three root letters poured into a pattern — <b>לָגוּר</b> and <b>לִקְנוֹת</b> are both in <i>pa'al</i>. Read <a href=\"#/verbs/learn/binyanim\">Roots &amp; binyanim</a> (10 minutes).</p>",
+   "items": [
+    "smalltalk/meeifo",
+    "smalltalk/eifo-gar",
+    "smalltalk/gar-tlv",
+    "smalltalk/lomed-ivrit",
+    "smalltalk/lo-mevin",
+    "smalltalk/lo-yodea",
+    "smalltalk/eich-omrim",
+    "smalltalk/ma-ze-omer",
+    "smalltalk/leat-bevakasha",
+    "smalltalk/lachzor",
+    "basics/od-paam"
+   ],
+   "verbs": [
+    "paal/gar@binyan",
+    "paal/kana@binyan",
+    "paal/katav@inf"
+   ],
+   "phrases": [
+    "phrases/p02",
+    "phrases/p03",
+    "phrases/p28"
+   ],
+   "write": [
+    "course-write/w09",
+    "course-write/w10"
+   ],
+   "links": []
+  },
+  {
+   "id": "a1-06",
+   "level": "A1",
+   "title": "At the café",
+   "he": "בְּבֵית קָפֶה",
+   "intro": "<p><b>אֶפְשָׁר…?</b> (is it possible…?) is the magic word for ordering: <b>אֶפְשָׁר הָפוּךְ?</b> Add <b>בְּלִי</b> (without) and <b>עִם</b> (with) and you can order anything.</p><p>Verb course: the <b>present tense</b> of לָגוּר and לִקְנוֹת — four forms each.</p>",
+   "items": [
+    "cafe/efshar-lekabel",
+    "cafe/hafuch",
+    "cafe/mayim",
+    "cafe/tafrit",
+    "cafe/cheshbon",
+    "cafe/taim",
+    "cafe/bli",
+    "cafe/im",
+    "cafe/shakshuka",
+    "cafe/lashevet-o-lakachat",
+    "cafe/bachutz",
+    "food/sukar"
+   ],
+   "verbs": [
+    "paal/gar@present",
+    "paal/kana@present"
+   ],
+   "phrases": [
+    "phrases/p04",
+    "phrases/p05",
+    "phrases/p39",
+    "phrases/p44",
+    "course-phrases/cp12"
+   ],
+   "write": [
+    "course-write/w11",
+    "course-write/w12"
+   ],
+   "links": []
+  },
+  {
+   "id": "a1-07",
+   "level": "A1",
+   "title": "Getting around",
+   "he": "בָּעִיר",
+   "intro": "<p>Two verbs of movement: <b>לָלֶכֶת</b> (to go on foot / to go) and <b>לִנְסוֹעַ</b> (to go by bus, car or train). Directions are easy: <b>יָמִינָה, שְׂמֹאלָה, יָשָׁר</b>.</p><p>Verb course: <b>לִכְתּוֹב</b> — your model regular pa'al verb. Find its root and binyan.</p>",
+   "items": [
+    "around/otobus",
+    "around/tachana",
+    "around/kav",
+    "around/yamina",
+    "around/smola",
+    "around/yashar",
+    "around/karov",
+    "around/rachok",
+    "around/leyad",
+    "around/po",
+    "around/sham",
+    "around/eich-magiim",
+    "around/yam",
+    "around/shuk",
+    "verbs/lalechet",
+    "verbs/lavo",
+    "verbs/linsoa"
+   ],
+   "verbs": [
+    "paal/katav@binyan",
+    "paal/gamar@inf"
+   ],
+   "phrases": [
+    "phrases/p10",
+    "phrases/p11",
+    "phrases/p12",
+    "challenge/c06"
+   ],
+   "write": [
+    "course-write/w13",
+    "course-write/w14"
+   ],
+   "links": []
+  },
+  {
+   "id": "a1-08",
+   "level": "A1",
+   "title": "Numbers & prices",
+   "he": "כַּמָּה זֶה עוֹלֶה?",
+   "intro": "<p>For counting, prices and the time, people use the <b>feminine</b> numbers: אַחַת, שְׁתַּיִים, שָׁלוֹשׁ… And money stays singular: <b>עֶשְׂרִים שֶׁקֶל</b>. Details in <a href=\"#/grammar/numbers\">Numbers &amp; time</a>.</p><p>Verb course: present tense of <b>לִכְתּוֹב</b> — see the pa'al present shape <b>1o·2e3</b> (כּוֹתֵב).</p>",
+   "items": [
+    "numbers/1",
+    "numbers/2",
+    "numbers/3",
+    "numbers/4",
+    "numbers/5",
+    "numbers/6",
+    "numbers/7",
+    "numbers/8",
+    "numbers/9",
+    "numbers/10",
+    "numbers/20",
+    "numbers/100",
+    "shopping/shekel",
+    "around/kama-ole",
+    "around/yakar",
+    "around/zol"
+   ],
+   "verbs": [
+    "paal/katav@present",
+    "paal/gamar@binyan"
+   ],
+   "phrases": [
+    "phrases/p13",
+    "phrases/p14",
+    "course-phrases/cp13"
+   ],
+   "write": [
+    "course-write/w15",
+    "course-write/w16"
+   ],
+   "links": []
+  },
+  {
+   "id": "a1-09",
+   "level": "A1",
+   "title": "Time & plans",
+   "he": "מָתַי נִיפָּגֵשׁ?",
+   "intro": "<p>Time words go anywhere in the sentence: <b>מָחָר בָּעֶרֶב</b> (tomorrow evening). To suggest something, use <b>בּוֹא / בּוֹאִי</b> + the \"we\" future: <b>בּוֹא נִיפָּגֵשׁ</b> (let's meet).</p><p>Verb course: <b>לִגְמוֹר</b> in the present, and two pi'el infinitives: <b>לְדַבֵּר</b> (to speak) and <b>לְשַׁלֵּם</b> (to pay).</p>",
+   "items": [
+    "time/hayom",
+    "time/machar",
+    "time/etmol",
+    "time/achshav",
+    "time/achar-kach",
+    "time/baboker",
+    "time/baerev",
+    "time/matai",
+    "time/kvar",
+    "time/od-lo",
+    "time/ein-li-koach",
+    "time/kavanu",
+    "time/yesh-lecha-zman",
+    "verbs/latzet"
+   ],
+   "verbs": [
+    "paal/gamar@present",
+    "piel/diber@inf",
+    "piel/shilem@inf"
+   ],
+   "phrases": [
+    "phrases/p08",
+    "phrases/p09",
+    "phrases/p15",
+    "phrases/p16",
+    "challenge/c02"
+   ],
+   "write": [
+    "course-write/w17",
+    "course-write/w18"
+   ],
+   "links": []
+  },
+  {
+   "id": "a1-10",
+   "level": "A1",
+   "title": "Small talk",
+   "he": "מָה אַתָּה עוֹשֶׂה בַּחַיִּים?",
+   "intro": "<p>The questions every new friend asks — and the fillers (<b>תַּכְלֶס, סְתָם, מַמָּשׁ</b>) that make your answers sound natural.</p><p>Verb course: the <b>past tense</b>. It's built with endings, so you don't need the pronoun: <b>כָּתַבְתִּי</b> = I wrote. Pa'al past shape: <b>1a·2a3</b>.</p>",
+   "items": [
+    "smalltalk/ma-ata-ose",
+    "smalltalk/avoda",
+    "smalltalk/tagid",
+    "smalltalk/tishma",
+    "smalltalk/nitraeh",
+    "smalltalk/nedaber",
+    "smalltalk/chevre",
+    "street/tachles",
+    "street/stam",
+    "street/mamash",
+    "street/legamrei",
+    "street/lo-meshane",
+    "verbs/laavod"
+   ],
+   "verbs": [
+    "paal/katav@past",
+    "paal/gamar@past"
+   ],
+   "phrases": [
+    "phrases/p24",
+    "phrases/p25",
+    "phrases/p32",
+    "phrases/p33",
+    "phrases/p35",
+    "course-phrases/cp14"
+   ],
+   "write": [
+    "course-write/w19",
+    "course-write/w20"
+   ],
+   "links": []
+  },
+  {
+   "id": "a1-11",
+   "level": "A1",
+   "title": "What did you do?",
+   "he": "מָה עָשִׂיתָ?",
+   "intro": "<p>Talking about yesterday. Common past forms to recognize: <b>הָיִיתִי</b> (I was), <b>עָשִׂיתִי</b> (I did), <b>אָכַלְתִּי</b> (I ate), <b>רָאִיתִי</b> (I saw), <b>הָלַכְתִּי</b> (I went). Join sentences with <b>כִּי</b> (because) and <b>אָז</b> (so).</p><p>Verb course: past tense of the weak verbs לִקְנוֹת (<b>קָנִיתִי</b>) and לָגוּר (<b>גַּרְתִּי</b>).</p>",
+   "items": [
+    "verbs/laasot",
+    "verbs/leechol",
+    "verbs/lishtot",
+    "verbs/lirot",
+    "verbs/lishmoa",
+    "verbs/lihyot",
+    "connectors/ki",
+    "connectors/az",
+    "health/ayef"
+   ],
+   "verbs": [
+    "paal/kana@past",
+    "paal/gar@past",
+    "paal/pagash@inf",
+    "paal/sagar@inf"
+   ],
+   "phrases": [
+    "phrases2/q01",
+    "phrases2/q02",
+    "phrases2/q03",
+    "phrases/p37",
+    "phrases/p38",
+    "course-phrases/cp15"
+   ],
+   "write": [
+    "course-write/w21",
+    "course-write/w22"
+   ],
+   "links": []
+  },
+  {
+   "id": "a1-12",
+   "level": "A1",
+   "title": "Street talk 2 · A1 review",
+   "he": "אֵין מַצָּב!",
+   "intro": "<p>Reactions for good news and bad, plus a review of the whole A1 level: the challenge sentences here combine words from all the earlier lessons.</p><p>Verb course: your first <b>future</b> — pa'al future shape <b>yi·12o3</b> (יִכְתּוֹב).</p>",
+   "items": [
+    "street/ein-matzav",
+    "street/haval-al-hazman",
+    "street/al-hapanim",
+    "street/basa",
+    "street/ma-pitom",
+    "street/achi",
+    "street/yofi",
+    "street/balagan",
+    "street/chaval",
+    "street/kapara"
+   ],
+   "verbs": [
+    "paal/katav@future"
+   ],
+   "phrases": [
+    "phrases/p18",
+    "phrases/p19",
+    "phrases/p20",
+    "phrases/p21",
+    "challenge/c01",
+    "challenge/c03",
+    "challenge/c05",
+    "course-phrases/cp16"
+   ],
+   "write": [
+    "course-write/w23",
+    "course-write/w24"
+   ],
+   "links": []
+  },
+  {
+   "id": "a2-13",
+   "level": "A2",
+   "title": "Home",
+   "he": "הַבַּיִת",
+   "intro": "<p>Adjectives come <b>after</b> the noun and agree with it: <b>דִּירָה קְטַנָּה</b>, <b>חֶדֶר גָּדוֹל</b>. See <a href=\"#/grammar/adjectives\">Adjectives</a>.</p><p>Verb course: future of לִגְמוֹר and לִקְנוֹת, and the root and binyan of the pi'el verbs לְדַבֵּר and לְשַׁלֵּם.</p>",
+   "items": [
+    "home/bayit",
+    "home/cheder",
+    "home/salon",
+    "home/mitbach",
+    "home/mita",
+    "home/shulchan",
+    "home/mirpeset",
+    "home/schar-dira",
+    "home/shchenim",
+    "home/mazgan",
+    "home/koma",
+    "around/dira",
+    "adjectives/gadol",
+    "adjectives/katan",
+    "adjectives/roesh",
+    "time/balayla"
+   ],
+   "verbs": [
+    "paal/gamar@future",
+    "paal/kana@future",
+    "piel/diber@binyan",
+    "piel/shilem@binyan"
+   ],
+   "phrases": [
+    "challenge/c16",
+    "challenge/c17",
+    "course-phrases/cp17"
+   ],
+   "write": [
+    "course-write/w25",
+    "course-write/w26"
+   ],
+   "links": []
+  },
+  {
+   "id": "a2-14",
+   "level": "A2",
+   "title": "Shopping",
+   "he": "קְנִיּוֹת",
+   "intro": "<p>Paying, sizes, sales and returns. Remember: <b>אֶפְשָׁר</b> + infinitive = \"can I…?\": <b>אֶפְשָׁר לִמְדּוֹד?</b> (can I try it on?).</p><p>Verb course: pi'el <b>present</b> — shape <b>me·1a·2e3</b>: מְדַבֵּר, מְשַׁלֵּם. And your first <b>commands</b> with לִכְתּוֹב.</p>",
+   "items": [
+    "shopping/kesef",
+    "shopping/mechir",
+    "shopping/ashrai",
+    "shopping/mezuman",
+    "shopping/hanacha",
+    "shopping/mivtza",
+    "shopping/super",
+    "shopping/chanut",
+    "shopping/lehachzir",
+    "shopping/mida",
+    "shopping/limdod",
+    "clothes/chultza",
+    "connectors/rak",
+    "connectors/o",
+    "verbs/leshalem",
+    "verbs/liknot"
+   ],
+   "verbs": [
+    "piel/diber@present",
+    "piel/shilem@present",
+    "paal/katav@imp"
+   ],
+   "phrases": [
+    "challenge/c14",
+    "challenge/c15",
+    "phrases2/q21",
+    "course-phrases/cp18"
+   ],
+   "write": [
+    "course-write/w27",
+    "course-write/w28"
+   ],
+   "links": []
+  },
+  {
+   "id": "a2-15",
+   "level": "A2",
+   "title": "Food & cooking",
+   "he": "אוֹכֶל",
+   "intro": "<p>Groceries and cooking. Lots of verbs this week — and four new infinitives in the verb course from two new binyanim: <b>לְהַזְמִין</b> and <b>לְהַתְחִיל</b> (hif'il), <b>לְסַדֵּר</b> and <b>לְחַפֵּשׂ</b> (pi'el).</p>",
+   "items": [
+    "food/lechem",
+    "food/chalav",
+    "food/beitzim",
+    "food/gvina",
+    "food/yerakot",
+    "food/of",
+    "food/peirot",
+    "food/levashel",
+    "food/aruchat-erev",
+    "food/save",
+    "cafe/raev",
+    "cafe/lehazmin",
+    "shopping/mishloach"
+   ],
+   "verbs": [
+    "piel/sider@inf",
+    "piel/chipes@inf",
+    "hifil/hizmin@inf",
+    "hifil/hitchil@inf"
+   ],
+   "phrases": [
+    "challenge/c20",
+    "phrases2/q27"
+   ],
+   "write": [
+    "course-write/w29",
+    "course-write/w30"
+   ],
+   "links": []
+  },
+  {
+   "id": "a2-16",
+   "level": "A2",
+   "title": "Family",
+   "he": "מִשְׁפָּחָה",
+   "intro": "<p>Family words and Friday dinner. \"My\" is usually <b>שֶׁלִּי</b> after the noun (<b>הַהוֹרִים שֶׁלִּי</b>), except a few words like <b>אִשְׁתִּי, בַּעְלִי</b>.</p><p>Verb course: pi'el <b>past</b> — shape <b>1i·2e3</b>, spelled with an extra י: <b>דִּיבֵּר, שִׁילֵּם</b>. Plus two nif'al infinitives.</p>",
+   "items": [
+    "family/ima",
+    "family/aba",
+    "family/horim",
+    "family/ach",
+    "family/achot",
+    "family/yeladim",
+    "family/chaverim",
+    "family/lehakir",
+    "family/nasui",
+    "family/ben-zug",
+    "family/aruchat-shishi",
+    "time/shishi",
+    "connectors/acharei",
+    "feelings/nechmad"
+   ],
+   "verbs": [
+    "piel/diber@past",
+    "piel/shilem@past",
+    "nifal/nichnas@inf",
+    "nifal/nifgash@inf"
+   ],
+   "phrases": [
+    "challenge/c09",
+    "challenge/c29",
+    "course-phrases/cp19"
+   ],
+   "write": [
+    "course-write/w31",
+    "course-write/w32"
+   ],
+   "links": []
+  },
+  {
+   "id": "a2-17",
+   "level": "A2",
+   "title": "Feelings",
+   "he": "רְגָשׁוֹת",
+   "intro": "<p>Many feelings are \"X to me\": <b>קָשֶׁה לִי, נִמְאַס לִי, אִכְפַּת לִי</b>. Change the ending to change the person: <b>אִכְפַּת לְךָ?</b></p><p>Verb course: pi'el <b>future</b> (<b>אֲדַבֵּר, נְדַבֵּר</b>), and two hitpa'el infinitives: <b>לְהִתְקַשֵּׁר, לְהִתְרַגֵּשׁ</b>.</p>",
+   "items": [
+    "feelings/sameach",
+    "feelings/atzuv",
+    "feelings/koes",
+    "feelings/mitragesh",
+    "feelings/nimas-li",
+    "feelings/ichpat-li",
+    "feelings/lo-ichpat-li",
+    "feelings/kashe-li",
+    "feelings/doeg",
+    "feelings/mevuas",
+    "feelings/meatzben",
+    "connectors/lama",
+    "verbs/lehistader"
+   ],
+   "verbs": [
+    "piel/diber@future",
+    "hitpael/hitragesh@inf",
+    "hitpael/hitkasher@inf"
+   ],
+   "phrases": [
+    "challenge/c30",
+    "challenge/c34",
+    "challenge/c41",
+    "course-phrases/cp20"
+   ],
+   "write": [
+    "course-write/w33",
+    "course-write/w34"
+   ],
+   "links": []
+  },
+  {
+   "id": "a2-18",
+   "level": "A2",
+   "title": "Health",
+   "he": "בְּרִיאוּת",
+   "intro": "<p><b>כּוֹאֵב לִי</b> (it hurts me) agrees with the body part: <b>כּוֹאֵב לִי הָרֹאשׁ</b>, <b>כּוֹאֶבֶת לִי הַבֶּטֶן</b>. Sick days need an <b>אִישּׁוּר מַחֲלָה</b> from the קופת חולים.</p><p>Verb course: root and binyan of the hif'il verbs — shape <b>leha·12i3</b>.</p>",
+   "items": [
+    "health/rosh",
+    "health/beten",
+    "health/koev-li",
+    "health/chole",
+    "health/chom",
+    "health/rofe",
+    "health/kupat-cholim",
+    "health/trufa",
+    "health/ishur-machala",
+    "health/hitztanani",
+    "health/targish-tov",
+    "verbs/lishon"
+   ],
+   "verbs": [
+    "hifil/hizmin@binyan",
+    "hifil/hitchil@binyan",
+    "piel/sider@binyan"
+   ],
+   "phrases": [
+    "challenge/c11",
+    "challenge/c26",
+    "challenge/c27"
+   ],
+   "write": [
+    "course-write/w35",
+    "course-write/w36"
+   ],
+   "links": []
+  },
+  {
+   "id": "a2-19",
+   "level": "A2",
+   "title": "Weather & weekends",
+   "he": "מֶזֶג אֲוִויר",
+   "intro": "<p>Real conditions use <b>אִם</b> + future: <b>אִם יִהְיֶה חַם, נֵלֵךְ לַיָּם</b>. Weather talk is a national hobby (especially <b>לַח</b> — humid).</p><p>Verb course: hif'il <b>present</b> — shape <b>ma·12i3</b>: מַזְמִין, מַתְחִיל. And meet nif'al: root and binyan of <b>לְהִיכָּנֵס</b>.</p>",
+   "items": [
+    "weather/cham",
+    "weather/kar",
+    "weather/lach",
+    "weather/geshem",
+    "weather/yored-geshem",
+    "weather/shemesh",
+    "weather/kayitz",
+    "weather/choref",
+    "weather/mitriya",
+    "weather/tiyul",
+    "weather/maalot",
+    "connectors/im",
+    "time/shabat",
+    "home/lehadlik"
+   ],
+   "verbs": [
+    "hifil/hizmin@present",
+    "hifil/hitchil@present",
+    "nifal/nichnas@binyan",
+    "nifal/nishar@inf"
+   ],
+   "phrases": [
+    "challenge/c21",
+    "challenge/c32",
+    "challenge/c13",
+    "course-phrases/cp21"
+   ],
+   "write": [
+    "course-write/w37",
+    "course-write/w38"
+   ],
+   "links": []
+  },
+  {
+   "id": "a2-20",
+   "level": "A2",
+   "title": "Work & study",
+   "he": "עֲבוֹדָה",
+   "intro": "<p>Office life and the language of being busy: <b>עָמוּס, לָחוּץ, דֶּדְלַיין</b>. Join reasons with <b>בִּגְלַל</b> (because of + noun) and <b>כְּשֶׁ־</b> (when).</p><p>Verb course: hif'il <b>past</b> (<b>הִזְמַנְתִּי, הִתְחַלְנוּ</b>), pi'el commands, and hitpa'el's root and binyan.</p>",
+   "items": [
+    "work/misrad",
+    "work/pgisha",
+    "work/menahel",
+    "work/maskoret",
+    "work/amus",
+    "work/lachutz",
+    "work/deadline",
+    "work/hightech",
+    "work/ulpan",
+    "work/mivchan",
+    "work/chufsha",
+    "connectors/kshe",
+    "connectors/biglal",
+    "around/pkak",
+    "time/meuchar",
+    "time/meacher"
+   ],
+   "verbs": [
+    "hifil/hizmin@past",
+    "hifil/hitchil@past",
+    "hitpael/hitkasher@binyan",
+    "piel/diber@imp"
+   ],
+   "phrases": [
+    "challenge/c18",
+    "challenge/c19",
+    "challenge/c36",
+    "course-phrases/cp22"
+   ],
+   "write": [
+    "course-write/w39",
+    "course-write/w40"
+   ],
+   "links": []
+  },
+  {
+   "id": "a2-21",
+   "level": "A2",
+   "title": "Phone & messages",
+   "he": "וַואטְסְאַפּ",
+   "intro": "<p>Israel runs on WhatsApp. Commands in messages use the future: <b>תִּשְׁלַח לִי מִיקוּם</b>, <b>תְּעַדְכֵּן אוֹתִי</b>, <b>תִּתְקַשֵּׁר אֵלַיי</b>.</p><p>Verb course: hitpa'el <b>present</b> — shape <b>mit·1a·2e3</b> (מִתְקַשֵּׁר) — and nif'al present (נִכְנָס).</p>",
+   "items": [
+    "tech/hodaa",
+    "tech/whatsapp",
+    "tech/solela",
+    "tech/mitan",
+    "tech/tmuna",
+    "tech/letzalem",
+    "tech/lishloach-mikum",
+    "tech/teadken",
+    "tech/kvutza",
+    "tech/haklata",
+    "verbs/lehitkasher",
+    "time/daka",
+    "time/ma-hatochnit",
+    "time/beintayim"
+   ],
+   "verbs": [
+    "hitpael/hitkasher@present",
+    "nifal/nichnas@present"
+   ],
+   "phrases": [
+    "challenge/c12",
+    "challenge/c24",
+    "challenge/c42",
+    "challenge/c47",
+    "phrases2/q12",
+    "course-phrases/cp23"
+   ],
+   "write": [
+    "course-write/w41",
+    "course-write/w42"
+   ],
+   "links": []
+  },
+  {
+   "id": "a2-22",
+   "level": "A2",
+   "title": "Free time",
+   "he": "פְּנַאי",
+   "intro": "<p>Going out, staying in, the beach and the BBQ. <b>לְבַלּוֹת</b> (to have a good time) is the verb you'll hear most: <b>בִּילִּינוּ!</b></p><p>Verb course: hif'il <b>future</b> (<b>אַזְמִין, נַתְחִיל</b>) and hitpa'el <b>past</b> (<b>הִתְקַשַּׁרְתִּי</b>).</p>",
+   "items": [
+    "freetime/seret",
+    "freetime/sidra",
+    "freetime/hofaa",
+    "freetime/levalot",
+    "freetime/al-haesh",
+    "freetime/matkot",
+    "freetime/kaduregel",
+    "freetime/lehitarev",
+    "freetime/lehazmin-kartisim",
+    "freetime/larutz",
+    "freetime/lesachek",
+    "freetime/bar",
+    "connectors/kol",
+    "time/sofash",
+    "adjectives/meanyen",
+    "adjectives/muzar"
+   ],
+   "verbs": [
+    "hifil/hizmin@future",
+    "hifil/hitchil@future",
+    "hitpael/hitkasher@past"
+   ],
+   "phrases": [
+    "challenge/c22",
+    "challenge/c23",
+    "challenge/c28",
+    "challenge/c39",
+    "challenge/c48",
+    "course-phrases/cp24"
+   ],
+   "write": [
+    "course-write/w43",
+    "course-write/w44"
+   ],
+   "links": []
+  },
+  {
+   "id": "a2-23",
+   "level": "A2",
+   "title": "Longer sentences",
+   "he": "מִשְׁפָּטִים אֲרוּכִּים",
+   "intro": "<p>Time to join everything together: <b>כְּשֶׁ־</b> (when), <b>אַחֲרֵי</b> (after), <b>לִפְנֵי</b> (before), <b>בִּגְלַל</b> (because of), and comparisons with <b>יוֹתֵר</b> and <b>הֲכִי</b>. See <a href=\"#/grammar/questions\">Questions &amp; connectors</a>.</p><p>Verb course: nif'al <b>past</b> (נִכְנַסְנוּ) and hitpa'el <b>future</b> (אֶתְקַשֵּׁר).</p>",
+   "items": [
+    "connectors/adayin",
+    "connectors/bichlal",
+    "connectors/afilu",
+    "connectors/lifnei",
+    "connectors/beetzem",
+    "connectors/bekitzur",
+    "connectors/eize",
+    "connectors/harbe",
+    "connectors/ktzat",
+    "connectors/yoter",
+    "connectors/hachi",
+    "adjectives/ragil",
+    "adjectives/mahir",
+    "verbs/lehavin",
+    "verbs/lehagid",
+    "verbs/ledaber",
+    "health/chadar-kosher",
+    "family/panui",
+    "home/laavor-dira"
+   ],
+   "verbs": [
+    "nifal/nichnas@past",
+    "hitpael/hitkasher@future",
+    "nifal/nishar@binyan"
+   ],
+   "phrases": [
+    "phrases2/q06",
+    "phrases2/q10",
+    "phrases2/q30",
+    "challenge/c43",
+    "challenge/c33",
+    "challenge/c45",
+    "challenge/c31",
+    "course-phrases/cp25"
+   ],
+   "write": [
+    "course-write/w45",
+    "course-write/w46"
+   ],
+   "links": []
+  },
+  {
+   "id": "a2-24",
+   "level": "A2",
+   "title": "Life in Tel Aviv · A2 review",
+   "he": "הַחַיִּים בְּתֵל אָבִיב",
+   "intro": "<p>The final lesson pulls everything together: the very Israeli words (<b>פְרַאיֶיר, בִּיט, וַעַד בַּיִת, מַמָּ״ד</b>) and long challenge sentences that use vocabulary from across the whole course.</p><p>Verb course: nif'al <b>future</b>, nif'al present of לְהִישָּׁאֵר, hif'il commands, and hitpa'el's root and binyan of לְהִתְרַגֵּשׁ.</p>",
+   "items": [
+    "shopping/freier",
+    "shopping/bit",
+    "shopping/tashlumim",
+    "feelings/chutzpa",
+    "street/titchadesh",
+    "home/vaad-bayit",
+    "home/mamad",
+    "home/lenakot",
+    "family/lehitchaten",
+    "family/chatuna",
+    "smalltalk/shutaf",
+    "numbers/1000"
+   ],
+   "verbs": [
+    "nifal/nichnas@future",
+    "nifal/nishar@present",
+    "hifil/hizmin@imp",
+    "hitpael/hitragesh@binyan"
+   ],
+   "phrases": [
+    "challenge/c49",
+    "challenge/c40",
+    "challenge/c50",
+    "challenge/c46",
+    "challenge/c44",
+    "course-phrases/cp26"
+   ],
+   "write": [
+    "course-write/w47",
+    "course-write/w48"
+   ],
+   "links": []
+  }
+ ]
+}

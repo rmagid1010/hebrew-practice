@@ -7,6 +7,8 @@ import * as tts from '../tts.js';
 import { esc, he, heb, sayBtn, regChip, toast } from '../ui.js';
 import { updateBadge } from '../app.js';
 import * as VC from './verbcard.js';
+import * as WC from './writecard.js';
+import { getLesson } from '../course.js';
 import { pickFormat } from '../verbs.js';
 
 const RATING_NAMES = { 1: 'Again', 2: 'Hard', 3: 'Good', 4: 'Easy' };
@@ -15,7 +17,8 @@ const VERDICT_RATING = { correct: 3, almost: 2, wrong: 1 };
 
 export function renderReview(app, deckId, opts = {}) {
   const practice = !!opts.practice;
-  const session = new Session({ deck: deckId, extraNew: opts.extraNew || 0, practice });
+  const baseOpts = { deck: deckId, practice, course: !!opts.course, lesson: opts.lesson || null };
+  const session = new Session({ ...baseOpts, extraNew: opts.extraNew || 0 });
   let format = null;      // test format for verb cards
   let typedAnswer = '';
   let current = null;     // card id
@@ -25,7 +28,7 @@ export function renderReview(app, deckId, opts = {}) {
   let waitTimer = null;
   let cursiveView = !!store.settings().cursiveReading; // show reading prompts in cursive
 
-  const deckTitle = deckId ? getDeck(deckId)?.meta.title : null;
+  const deckTitle = opts.lesson ? `Lesson: ${getLesson(opts.lesson)?.title || ''}` : opts.course ? 'Course' : deckId ? getDeck(deckId)?.meta.title : null;
 
   function show() {
     clearTimeout(waitTimer);
@@ -59,7 +62,7 @@ export function renderReview(app, deckId, opts = {}) {
 
   function metaRow(c) {
     const item = c.item;
-    const label = c.type === 'r' ? 'Read it' : c.type === 'c' ? 'Read the cursive' : item.kind === 'conj' ? VC.label(c, format) : 'Write it in Hebrew';
+    const label = c.type === 'p' ? 'Write it yourself' : c.type === 'r' ? 'Read it' : c.type === 'c' ? 'Read the cursive' : item.kind === 'conj' ? VC.label(c, format) : 'Write it in Hebrew';
     const st = store.get().cards[c.id];
     const isNew = !st;
     return `<div class="flash-meta">
@@ -74,6 +77,7 @@ export function renderReview(app, deckId, opts = {}) {
 
   function promptHtml(c) {
     const item = c.item;
+    if (c.type === 'p') return WC.promptHtml(c);
     if (item.kind === 'conj') return VC.promptHtml(c, format);
     if (c.type === 'c') {
       const plain = stripNiqqud(item.he);
@@ -157,9 +161,13 @@ export function renderReview(app, deckId, opts = {}) {
   }
 
   function render(c, _st, inputValue = '') {
-    const write = c.type === 'w' || c.type === 'c';
+    const write = c.type === 'w' || c.type === 'c' || c.type === 'p';
     let body = '';
-    if (phase === 'ask') {
+    if (phase === 'ask' && c.type === 'p') {
+      body = WC.formHtml();
+    } else if (phase === 'answered' && c.type === 'p') {
+      body = WC.answeredHtml(c, verdict, inputValue) + ratingsHtml(c);
+    } else if (phase === 'ask') {
       body = write
         ? `<form data-form="check" autocomplete="off">
             <input class="answer-input" name="answer" lang="he" dir="rtl" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="הקלד כאן…" aria-label="Your answer in Hebrew">
@@ -188,7 +196,9 @@ export function renderReview(app, deckId, opts = {}) {
   function check(input) {
     const c = cards().get(current);
     typedAnswer = input;
-    if (c.item.kind === 'conj') {
+    if (c.type === 'p') {
+      verdict = WC.check(c, input);
+    } else if (c.item.kind === 'conj') {
       verdict = VC.check(c, format, input);
     } else {
       const mode = c.type === 'c' && stripNiqqud(c.item.he).length <= 2 ? 'strict' : 'vocab';
@@ -233,6 +243,7 @@ export function renderReview(app, deckId, opts = {}) {
       ${nextIn ? `<p>${learningLater.length} card${learningLater.length === 1 ? '' : 's'} in learning will be back in about ${nextIn} min.</p>` : ''}
       <div class="row" style="justify-content:center">
         <a class="btn" href="#/">Home</a>
+        ${opts.course ? '<a class="btn" href="#/course">Course map</a>' : ''}
         <button class="btn btn-primary" data-act="more">Learn 5 more new cards</button>
       </div>
       ${newLeft === 0 ? '<p class="small muted" style="margin-top:14px">You hit today\'s new-card limit. Extra new cards mean more reviews tomorrow.</p>' : ''}
@@ -261,7 +272,7 @@ export function renderReview(app, deckId, opts = {}) {
     }
     else if (act === 'undo') { if (session.undo()) { updateBadge(); show(); } }
     else if (act === 'more') {
-      const more = new Session({ deck: deckId, extraNew: (opts.extraNew || 0) + 5 });
+      const more = new Session({ ...baseOpts, extraNew: (opts.extraNew || 0) + 5 });
       Object.assign(session, { queue: more.queue, newCards: more.newCards, opts: more.opts });
       show();
     }
@@ -275,6 +286,10 @@ export function renderReview(app, deckId, opts = {}) {
   }
 
   function onKey(e) {
+    // Enter submits the free-writing box; Shift+Enter makes a new line.
+    if (e.target.matches('textarea.write-input') && e.key === 'Enter' && !e.shiftKey && !e.isComposing) {
+      e.preventDefault(); check(e.target.value); return;
+    }
     if (e.target.matches('input, textarea, select') && !e.target.disabled) return;
     if (e.metaKey || e.ctrlKey || e.altKey) return;
     if (phase === 'ask' && current && cards().get(current).type === 'r' && (e.key === ' ' || e.key === 'Enter')) {

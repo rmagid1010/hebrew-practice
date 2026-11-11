@@ -6,11 +6,14 @@ import { counts } from '../session.js';
 import { stripNiqqud } from '../hebrew.js';
 import * as store from '../store.js';
 import { esc, he, heb, toast } from '../ui.js';
+import { loadIndex } from './grammar.js';
 
 const verbDecks = () => getCatalog().filter((d) => d.kind === 'conjugation');
 const first = (f) => (Array.isArray(f) ? f[0] : f);
 
-export function renderVerbs(app) {
+export async function renderVerbs(app) {
+  const gidx = await loadIndex();
+  const explainers = gidx.sections.filter((s) => s.area === 'verbs').flatMap((s) => s.pages);
   const draw = () => {
     const st = store.get();
     const strict = store.settings().verbUnlock !== 'fast';
@@ -21,6 +24,12 @@ export function renderVerbs(app) {
       <p class="muted">Each verb moves through six stages. A stage unlocks only when every card in the one before is
         ${strict ? '<b>learnt and has survived a later review</b>' : '<b>learnt</b>'} — so you can't skip ahead, and if an earlier form slips,
         the verb waits for you to fix it before adding new forms.</p>
+      <div class="section-title"><h2>Learn: how verbs work</h2><span class="small muted">read these alongside the drills</span></div>
+      <div class="grid grid-2 grammar-list explainers">
+        ${explainers.map((p) => `<a href="#/verbs/learn/${esc(p.id)}"><div class="card"><h3>${esc(p.title)} ${p.he ? he(p.he) : ''}</h3>
+          <p class="muted small" style="margin:0">${esc(p.summary)}</p></div></a>`).join('')}
+      </div>
+      <div class="section-title"><h2>Drills: your verb course</h2></div>
       <div class="stage-legend">${STAGES.map((s) => `<span><b>${s.n}</b> ${esc(s.label)}</span>`).join('')}</div>
       ${verbDecks().map((d) => deckBlock(d, st)).join('')}
       <div class="notice notice-info" style="margin-top:20px">
@@ -49,7 +58,7 @@ export function renderVerbs(app) {
       <div class="row">
         <label class="toggle"><input type="checkbox" data-toggle="${esc(d.id)}" ${on ? 'checked' : ''}> In daily mix</label>
         <span class="spacer"></span>
-        ${d.grammar ? `<a class="btn btn-sm" href="#/grammar/${esc(d.grammar)}">Explainer</a>` : ''}
+        ${d.grammar ? `<a class="btn btn-sm" href="#/verbs/learn/${esc(d.grammar)}">Explainer</a>` : ''}
         <a class="btn btn-sm" href="#/practice/${esc(d.id)}">Workout</a>
         <a class="btn btn-sm btn-primary" href="#/review/${esc(d.id)}">Study</a>
       </div>
