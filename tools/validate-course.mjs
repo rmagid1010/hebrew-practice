@@ -2,6 +2,7 @@
 // words taught in the same or an earlier lesson.   Usage: node tools/validate-course.mjs
 import { readFileSync } from 'node:fs';
 import { lessonKeys } from '../js/coursecore.js';
+import { checkElements } from '../js/hebrew.js';
 
 const read = (p) => JSON.parse(readFileSync(new URL(`../data/${p}`, import.meta.url)));
 const index = read('decks/index.json');
@@ -44,5 +45,31 @@ course.lessons.forEach((lesson, li) => {
     }
   }
 });
+// Writing tasks: models must pass their own checklist; every word / verb stage of a lesson must be written in that
+// lesson's tasks; tasks marked needsPrior must also use something from an earlier lesson.
+let tasks = 0;
+course.lessons.forEach((lesson, li) => {
+  const covered = new Set();
+  for (const k of lesson.write || []) {
+    const t = itemOf(k);
+    if (!t) continue;
+    tasks++;
+    const res = checkElements(t.models[0], t.elements || []);
+    for (const r of res) if (!r.ok) { errors++; console.log(`ERROR ${lesson.id}: ${k} model answer doesn't contain "${r.label}" (${r.any.join(' / ')})`); }
+    for (const c of t.covers || t.req || []) covered.add(c);
+    if (t.needsPrior && li > 0 && !(t.covers || []).some((c) => taught.has(c) && taught.get(c) < li)) {
+      errors++; console.log(`ERROR ${lesson.id}: ${k} doesn't reuse anything from an earlier lesson`);
+    }
+  }
+  for (const k of lesson.items) if (!covered.has(k)) { errors++; console.log(`ERROR ${lesson.id}: word ${k} is not used in any writing task`); }
+  for (const ref of lesson.verbs || []) {
+    const [deckVerb, stage] = ref.split('@');
+    const tense = ['present', 'past', 'future', 'imp'].includes(stage) ? stage : null;
+    const ok = [...covered].some((c) => c.startsWith(deckVerb + '-') && (!tense || c.startsWith(`${deckVerb}-${tense}-`)));
+    if (!ok) { errors++; console.log(`ERROR ${lesson.id}: verb stage ${ref} is not practised in any writing task`); }
+  }
+});
+
+console.log(`\n${tasks} writing tasks checked.`);
 console.log(`\n${course.lessons.length} lessons, ${taught.size} items taught: ${errors} error(s), ${warnings} warning(s).`);
 process.exit(errors ? 1 : 0);

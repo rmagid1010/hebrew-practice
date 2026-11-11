@@ -12,7 +12,8 @@ import { renderAdd } from './views/add.js';
 import { renderVerbs, renderVerbCheck } from './views/verbs.js';
 import { renderCourse, renderLesson } from './views/course.js';
 import { loadCourse } from './course.js';
-import { isVerbPage } from './views/grammar.js';
+import { pageArea, pageHref } from './views/grammar.js';
+import { renderReading } from './views/reading.js';
 
 const app = document.getElementById('app');
 let cleanup = null;
@@ -24,13 +25,16 @@ const routes = [
   [/^#\/course\/([\w-]+)$/, (m) => renderLesson(app, m[1]), 'course'],
   [/^#\/study(?:\/([\w-]+))?$/, (m) => renderReview(app, null, { course: true, lesson: m[1] || null }), 'course'],
   [/^#\/verbs\/learn\/([\w-]+)$/, (m) => renderGrammarPage(app, m[1]), 'verbs'],
+  [/^#\/reading$/, () => renderReading(app), 'reading'],
+  [/^#\/reading\/learn\/([\w-]+)$/, (m) => renderGrammarPage(app, m[1]), 'reading'],
   [/^#\/practice(?:\/([\w-]+))?$/, (m) => renderReview(app, m[1] || null, { practice: true }), 'verbs'],
   [/^#\/verbs$/, () => renderVerbs(app), 'verbs'],
   [/^#\/verbs\/check$/, () => renderVerbCheck(app), 'verbs'],
   [/^#\/decks$/, () => renderDecks(app), 'decks'],
   [/^#\/grammar$/, () => renderGrammarIndex(app), 'grammar'],
   [/^#\/grammar\/([\w-]+)$/, async (m) => {
-    if (await isVerbPage(m[1])) { location.replace(`#/verbs/learn/${m[1]}`); return; }
+    const area = await pageArea(m[1]);
+    if (area !== 'grammar') { location.replace(pageHref(m[1], area)); return; }
     return renderGrammarPage(app, m[1]);
   }, 'grammar'],
   [/^#\/words(?:\/([\w-]+))?$/, (m) => renderWords(app, m[1] || null), 'words'],

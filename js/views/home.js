@@ -70,6 +70,16 @@ export function renderHome(app) {
       <div class="card stat"><b>${itemsKnown}</b><span>words &amp; phrases started</span></div>
     </div>
 
+    <div class="section-title"><h2>Reading Hebrew</h2><a class="small" href="#/reading">Open reading →</a></div>
+    <div class="grid grid-2 reading-home">
+      <a href="#/reading/learn/reading" class="tile-link"><div class="card reading-card"><div class="reading-glyph he" lang="he">אָבָּא</div>
+        <h3>Alphabet, vowels &amp; spelling</h3><p class="muted small" style="margin:0">Letters, final forms, niqqud, the b/v k/ch p/f dot, full spelling — and typing on a Hebrew keyboard.</p></div></a>
+      <a href="#/reading/learn/cursive" class="tile-link"><div class="card reading-card"><div class="reading-glyph cursive" lang="he">אבג</div>
+        <h3>Reading cursive</h3><p class="muted small" style="margin:0">The handwritten alphabet, letters that look nothing like print, and practice notes.</p></div></a>
+      ${['cursive-letters', 'cursive-words'].map((id) => { const cc = counts(id); const d = getCatalog().find((x) => x.id === id); return d ? `<div class="card deck"><div class="deck-head"><div class="deck-title">${esc(d.title)}</div></div>
+        <div class="deck-stats"><span><b>${cc.seen}</b>/${cc.total} started</span><span><b>${cc.due + cc.learning}</b> due</span><span class="spacer"></span><a href="#/review/${esc(id)}">Practise →</a></div></div>` : ''; }).join('')}
+    </div>
+
     <div class="section-title"><h2>Activity</h2><span class="small muted">last 16 weeks</span></div>
     <div class="card"><div class="heatmap" aria-label="Reviews per day">${cells.join('')}</div></div>
 
@@ -81,11 +91,11 @@ export function renderHome(app) {
     <div class="section-title"><h2>Grammar</h2><a class="small" href="#/grammar">All explainers →</a></div>
     <div class="grid grid-2 grammar-list">
       ${[
-        ['reading', 'Reading Hebrew', 'Letters, vowels, final forms and full spelling.'],
-        ['binyanim', 'What are binyanim?', 'The seven verb patterns, and why roots matter.'],
-        ['cursive', 'Reading cursive', 'The handwritten alphabet, with practice notes.'],
-        ['spoken', 'How people actually talk', 'The gap between the textbook and the street.'],
-      ].map(([id, t, s]) => `<a href="#/grammar/${id}"><div class="card"><h3>${esc(t)}</h3><p class="muted small" style="margin:0">${s.replace(/[֐-׿][֐-׿ ]*[֐-׿]/g, (m) => he(m))}</p></div></a>`).join('')}
+        ['#/verbs/learn/binyanim', 'What are binyanim?', 'The seven verb patterns, and why roots matter.'],
+        ['#/grammar/spoken', 'How people actually talk', 'The gap between the textbook and the street.'],
+        ['#/grammar/adjectives', 'Adjectives & comparisons', 'Agreement, word order, this/that, more/most/too.'],
+        ['#/grammar/prepositions', 'Prepositions with endings', 'לי, שלי, איתי, אצלי, אותי — and which verbs take which.'],
+      ].map(([href, t, s]) => `<a href="${href}"><div class="card"><h3>${esc(t)}</h3><p class="muted small" style="margin:0">${s.replace(/[֐-׿][֐-׿ ]*[֐-׿]/g, (m) => he(m))}</p></div></a>`).join('')}
     </div>
   `;
 }

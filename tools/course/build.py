@@ -29,7 +29,51 @@ def cp(id_, he, en, req, alt=None, hint=None, note=None):
 # ---------------- writing tasks ----------------
 WT = {}
 def wt(id_, en, elements, models, req, hint=None):
-    it = {'id': id_, 'en': en, 'he': models[0], 'models': models, 'elements': [{'label': l, 'any': a} for l, a in elements], 'req': req}
+    it = {'id': id_, 'en': en, 'he': models[0], 'models': models, 'elements': [{'label': l, 'any': a} for l, a in elements], 'req': req, 'covers': list(req)}
+    if hint: it['hint'] = hint
+    WT[id_] = it
+    return f'course-write/{id_}'
+
+# ---------------- deck data, for building writing-task checklists from item keys ----------------
+import re
+MARKS = re.compile('[\u0591-\u05BD\u05BF\u05C1\u05C2\u05C4\u05C5\u05C7]')
+plain = lambda s: MARKS.sub('', s)
+_INDEX = json.load(open(D('index.json')))
+_DECKS = {}
+for _d in _INDEX:
+    if _d['id'] in ('course-phrases', 'course-write'): continue
+    _DECKS[_d['id']] = json.load(open(D(_d['id'] + '.json'))) if _d['id'] != 'basics' else basics
+_CONJ = {d['id'] for d in _INDEX if d.get('kind') == 'conjugation'}
+_CONJ_RE = re.compile(r'^(?P<v>.+?)-(?P<t>inf|present|past|future|imp)(?:-(?P<p>\w+))?$')
+
+def _first(f): return f[0] if isinstance(f, list) else f
+def _all(f): return f if isinstance(f, list) else [f]
+
+def element_for(key, override=None):
+    deck, iid = key.split('/', 1)
+    if deck in _CONJ:
+        m = _CONJ_RE.match(iid)
+        v = next(x for x in _DECKS[deck]['verbs'] if x['id'] == m['v'])
+        t = m['t']
+        if t == 'inf':
+            anys, label = [plain(v['inf'])], f"{v['inf']} (to {v['en']})"
+        else:
+            anys = [plain(x) for f in v['forms'][t].values() for x in _all(f)]
+            label = f"{v['inf']} — {'command' if t == 'imp' else t}"
+    else:
+        it = next(x for x in _DECKS[deck]['items'] if x['id'] == iid)
+        anys = [plain(it['he'])] + it.get('alt', [])
+        label = re.split(r' / |\(|—', it['en'])[0].strip() or it['en']
+    if override: anys = override
+    anys = [re.sub(r'[?!.,]', '', a).strip() for a in anys]
+    return (label, list(dict.fromkeys(a for a in anys if a)))
+
+def ut(id_, en, uses, model, forms=None, hint=None, models=None):
+    """A writing task that tests exactly the items in `uses` (and must reuse something from an earlier lesson)."""
+    forms = forms or {}
+    it = {'id': id_, 'en': en, 'he': model, 'models': [model] + (models or []),
+          'elements': [{'label': l, 'any': a} for l, a in (element_for(k, forms.get(k)) for k in uses)],
+          'req': list(uses), 'covers': list(uses), 'needsPrior': True}
     if hint: it['hint'] = hint
     WT[id_] = it
     return f'course-write/{id_}'
@@ -62,7 +106,7 @@ lesson('a1-01', 'A1', 'Hello!', 'שָׁלוֹם',
 
 lesson('a1-02', 'A1', 'Me, you, them', 'אֲנִי, אַתָּה, הִיא',
   "<p>Hebrew pronouns have gender: <b>אַתָּה</b> to a man, <b>אַתְּ</b> to a woman. <b>זֶה</b> (this/that/it) is the most useful word you'll learn this week.</p><p>\"My\" comes <i>after</i> the noun: <b>חָבֵר שֶׁלִּי</b> = a friend of mine. More in <a href=\"#/grammar/spoken\">How people actually talk</a>.</p>",
-  B('hu', 'hi', 'anachnu', 'atem', 'hem', 'hen', 'ze', 'zot', 'sheli', 'kafe', 'boker-tov', 'erev-tov', 'laila-tov') + S('connectors', 'mi', 'ma') + S('smalltalk', 'chaver', 'gam-ani'),
+  B('ata', 'at', 'hu', 'hi', 'anachnu', 'atem', 'hem', 'hen', 'ze', 'zot', 'sheli', 'kafe', 'boker-tov', 'erev-tov', 'laila-tov') + S('connectors', 'mi', 'ma') + S('smalltalk', 'chaver', 'gam-ani'),
   phrases=[
     cp('cp04', 'מִי זֶה? — זֶה חָבֵר שֶׁלִּי.', "Who's that? — That's a friend of mine.", ['connectors/mi', 'basics/ze', 'smalltalk/chaver', 'basics/sheli']),
     cp('cp05', 'אֲנִי דָּנִי, וְהִיא מִיכַל.', "I'm Dani, and she's Michal.", ['basics/ani', 'basics/hi']),
@@ -406,6 +450,11 @@ lesson('a2-24', 'A2', 'Life in Tel Aviv · A2 review', 'הַחַיִּים בְ�
        [('where you live', ['גר', 'גרה']), ('what you do', ['עובד', 'עובדת', 'לומד', 'לומדת']), ('what you love', ['אוהב', 'אוהבת']), ('what annoys you', ['מעצבן', 'מעצבנים', 'נמאס לי', 'על הפנים'])],
        ['אֲנִי גָּר בִּפְלוֹרֶנְטִין וְעוֹבֵד בְּהַיְיטֶק. אֲנִי אוֹהֵב אֶת הַיָּם וְאֶת הָאוֹכֶל. מָה שֶׁמְּעַצְבֵּן זֶה שְׂכַר הַדִּירָה.'], ['smalltalk/gar-tlv', 'verbs/leehov', 'feelings/meatzben', 'feelings/nimas-li']),
   ])
+
+# ---------------- extra writing tasks: every word of every lesson gets written at least once ----------------
+from write_extra import EXTRA
+for _l in LESSONS:
+    _l['write'] += [ut(**t) for t in EXTRA.get(_l['id'], [])]
 
 json.dump(basics, open(D('basics.json'), 'w'), ensure_ascii=False, indent=1)
 json.dump({'items': list(CP.values())}, open(D('course-phrases.json'), 'w'), ensure_ascii=False, indent=1)

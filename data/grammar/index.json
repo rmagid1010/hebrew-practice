@@ -1,11 +1,11 @@
 {
  "sections": [
   {
-   "title": "Start here",
+   "title": "Reading Hebrew",
    "pages": [
     {
      "id": "reading",
-     "title": "Reading Hebrew",
+     "title": "Alphabet, vowels & spelling",
      "he": "קְרִיאָה",
      "summary": "Letters and their final forms, vowel points, the dot that changes b/v k/ch p/f, and modern 'full' spelling. Plus where the keys are."
     },
@@ -17,7 +17,8 @@
      "deck": "cursive-letters",
      "deckTitle": "Cursive Letters"
     }
-   ]
+   ],
+   "area": "reading"
   },
   {
    "title": "Nouns, adjectives & little words",

@@ -28,7 +28,10 @@
    ],
    "write": [
     "course-write/w01",
-    "course-write/w02"
+    "course-write/w02",
+    "course-write/x0101",
+    "course-write/x0102",
+    "course-write/x0103"
    ],
    "links": []
   },
@@ -39,6 +42,8 @@
    "he": "אֲנִי, אַתָּה, הִיא",
    "intro": "<p>Hebrew pronouns have gender: <b>אַתָּה</b> to a man, <b>אַתְּ</b> to a woman. <b>זֶה</b> (this/that/it) is the most useful word you'll learn this week.</p><p>\"My\" comes <i>after</i> the noun: <b>חָבֵר שֶׁלִּי</b> = a friend of mine. More in <a href=\"#/grammar/spoken\">How people actually talk</a>.</p>",
    "items": [
+    "basics/ata",
+    "basics/at",
     "basics/hu",
     "basics/hi",
     "basics/anachnu",
@@ -65,7 +70,13 @@
    ],
    "write": [
     "course-write/w03",
-    "course-write/w04"
+    "course-write/w04",
+    "course-write/x0201",
+    "course-write/x0202",
+    "course-write/x0203",
+    "course-write/x0204",
+    "course-write/x0205",
+    "course-write/x0206"
    ],
    "links": []
   },
@@ -98,7 +109,10 @@
    ],
    "write": [
     "course-write/w05",
-    "course-write/w06"
+    "course-write/w06",
+    "course-write/x0301",
+    "course-write/x0302",
+    "course-write/x0303"
    ],
    "links": []
   },
@@ -133,7 +147,10 @@
    ],
    "write": [
     "course-write/w07",
-    "course-write/w08"
+    "course-write/w08",
+    "course-write/x0401",
+    "course-write/x0402",
+    "course-write/x0403"
    ],
    "links": []
   },
@@ -168,7 +185,11 @@
    ],
    "write": [
     "course-write/w09",
-    "course-write/w10"
+    "course-write/w10",
+    "course-write/x0501",
+    "course-write/x0502",
+    "course-write/x0503",
+    "course-write/x0504"
    ],
    "links": []
   },
@@ -205,7 +226,10 @@
    ],
    "write": [
     "course-write/w11",
-    "course-write/w12"
+    "course-write/w12",
+    "course-write/x0601",
+    "course-write/x0602",
+    "course-write/x0603"
    ],
    "links": []
   },
@@ -246,7 +270,11 @@
    ],
    "write": [
     "course-write/w13",
-    "course-write/w14"
+    "course-write/w14",
+    "course-write/x0701",
+    "course-write/x0702",
+    "course-write/x0703",
+    "course-write/x0704"
    ],
    "links": []
   },
@@ -285,7 +313,11 @@
    ],
    "write": [
     "course-write/w15",
-    "course-write/w16"
+    "course-write/w16",
+    "course-write/x0801",
+    "course-write/x0802",
+    "course-write/x0803",
+    "course-write/x0804"
    ],
    "links": []
   },
@@ -325,7 +357,11 @@
    ],
    "write": [
     "course-write/w17",
-    "course-write/w18"
+    "course-write/w18",
+    "course-write/x0901",
+    "course-write/x0902",
+    "course-write/x0903",
+    "course-write/x0904"
    ],
    "links": []
   },
@@ -364,7 +400,11 @@
    ],
    "write": [
     "course-write/w19",
-    "course-write/w20"
+    "course-write/w20",
+    "course-write/x1001",
+    "course-write/x1002",
+    "course-write/x1003",
+    "course-write/x1004"
    ],
    "links": []
   },
@@ -401,7 +441,12 @@
    ],
    "write": [
     "course-write/w21",
-    "course-write/w22"
+    "course-write/w22",
+    "course-write/x1101",
+    "course-write/x1102",
+    "course-write/x1103",
+    "course-write/x1104",
+    "course-write/x1105"
    ],
    "links": []
   },
@@ -438,7 +483,11 @@
    ],
    "write": [
     "course-write/w23",
-    "course-write/w24"
+    "course-write/w24",
+    "course-write/x1201",
+    "course-write/x1202",
+    "course-write/x1203",
+    "course-write/x1204"
    ],
    "links": []
   },
@@ -479,7 +528,12 @@
    ],
    "write": [
     "course-write/w25",
-    "course-write/w26"
+    "course-write/w26",
+    "course-write/x1301",
+    "course-write/x1302",
+    "course-write/x1303",
+    "course-write/x1304",
+    "course-write/x1305"
    ],
    "links": []
   },
@@ -520,7 +574,12 @@
    ],
    "write": [
     "course-write/w27",
-    "course-write/w28"
+    "course-write/w28",
+    "course-write/x1401",
+    "course-write/x1402",
+    "course-write/x1403",
+    "course-write/x1404",
+    "course-write/x1405"
    ],
    "links": []
   },
@@ -557,7 +616,10 @@
    ],
    "write": [
     "course-write/w29",
-    "course-write/w30"
+    "course-write/w30",
+    "course-write/x1501",
+    "course-write/x1502",
+    "course-write/x1503"
    ],
    "links": []
   },
@@ -596,7 +658,12 @@
    ],
    "write": [
     "course-write/w31",
-    "course-write/w32"
+    "course-write/w32",
+    "course-write/x1601",
+    "course-write/x1602",
+    "course-write/x1603",
+    "course-write/x1604",
+    "course-write/x1605"
    ],
    "links": []
   },
@@ -634,7 +701,12 @@
    ],
    "write": [
     "course-write/w33",
-    "course-write/w34"
+    "course-write/w34",
+    "course-write/x1701",
+    "course-write/x1702",
+    "course-write/x1703",
+    "course-write/x1704",
+    "course-write/x1705"
    ],
    "links": []
   },
@@ -670,7 +742,11 @@
    ],
    "write": [
     "course-write/w35",
-    "course-write/w36"
+    "course-write/w36",
+    "course-write/x1801",
+    "course-write/x1802",
+    "course-write/x1803",
+    "course-write/x1804"
    ],
    "links": []
   },
@@ -710,7 +786,11 @@
    ],
    "write": [
     "course-write/w37",
-    "course-write/w38"
+    "course-write/w38",
+    "course-write/x1901",
+    "course-write/x1902",
+    "course-write/x1903",
+    "course-write/x1904"
    ],
    "links": []
   },
@@ -752,7 +832,12 @@
    ],
    "write": [
     "course-write/w39",
-    "course-write/w40"
+    "course-write/w40",
+    "course-write/x2001",
+    "course-write/x2002",
+    "course-write/x2003",
+    "course-write/x2004",
+    "course-write/x2005"
    ],
    "links": []
   },
@@ -792,7 +877,10 @@
    ],
    "write": [
     "course-write/w41",
-    "course-write/w42"
+    "course-write/w42",
+    "course-write/x2101",
+    "course-write/x2102",
+    "course-write/x2103"
    ],
    "links": []
   },
@@ -835,7 +923,11 @@
    ],
    "write": [
     "course-write/w43",
-    "course-write/w44"
+    "course-write/w44",
+    "course-write/x2201",
+    "course-write/x2202",
+    "course-write/x2203",
+    "course-write/x2204"
    ],
    "links": []
   },
@@ -883,7 +975,12 @@
    ],
    "write": [
     "course-write/w45",
-    "course-write/w46"
+    "course-write/w46",
+    "course-write/x2301",
+    "course-write/x2302",
+    "course-write/x2303",
+    "course-write/x2304",
+    "course-write/x2305"
    ],
    "links": []
   },
@@ -923,7 +1020,12 @@
    ],
    "write": [
     "course-write/w47",
-    "course-write/w48"
+    "course-write/w48",
+    "course-write/x2401",
+    "course-write/x2402",
+    "course-write/x2403",
+    "course-write/x2404",
+    "course-write/x2405"
    ],
    "links": []
   }
