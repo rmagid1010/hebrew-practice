@@ -1,18 +1,23 @@
 import { Session, scheduler, newLeftToday } from '../session.js';
-import { cards, answersFor, personLabel, tenseLabel, getDeck, itemByKey } from '../decks.js';
+import { cards, answersFor, getDeck, itemByKey, itemKey } from '../decks.js';
 import { checkAnswer, diff, stripNiqqud } from '../hebrew.js';
 import { previewLabel, newCard, State } from '../fsrs.js';
 import * as store from '../store.js';
 import * as tts from '../tts.js';
-import { esc, he, heb, sayBtn, regChip } from '../ui.js';
+import { esc, he, heb, sayBtn, regChip, toast } from '../ui.js';
 import { updateBadge } from '../app.js';
+import * as VC from './verbcard.js';
+import { pickFormat } from '../verbs.js';
 
 const RATING_NAMES = { 1: 'Again', 2: 'Hard', 3: 'Good', 4: 'Easy' };
 const RATING_CLASS = { 1: 'again', 2: 'hard', 3: 'good', 4: 'easy' };
 const VERDICT_RATING = { correct: 3, almost: 2, wrong: 1 };
 
 export function renderReview(app, deckId, opts = {}) {
-  const session = new Session({ deck: deckId, extraNew: opts.extraNew || 0 });
+  const practice = !!opts.practice;
+  const session = new Session({ deck: deckId, extraNew: opts.extraNew || 0, practice });
+  let format = null;      // test format for verb cards
+  let typedAnswer = '';
   let current = null;     // card id
   let phase = 'ask';      // 'ask' | 'answered'
   let suggested = 3;
@@ -30,6 +35,8 @@ export function renderReview(app, deckId, opts = {}) {
     if (!current) return finished();
     const c = cards().get(current);
     const st = store.get().cards[current];
+    format = c.item.kind === 'conj' ? pickFormat(c, { practice }) : null;
+    typedAnswer = '';
     // If the next card is a learning card that isn't due yet, it was picked via "learn ahead". Fine.
     render(c, st);
   }
@@ -41,7 +48,7 @@ export function renderReview(app, deckId, opts = {}) {
     const fmt = (n, k) => (k === curKind ? `<u>${n}</u>` : String(n));
     return `<div class="review-top">
       <a class="btn btn-ghost btn-sm" href="#/">← Home</a>
-      ${deckTitle ? `<span class="chip">${esc(deckTitle)}</span>` : ''}
+      ${practice ? '<span class="chip chip-casual">Verb workout · no scheduling</span>' : ''}${deckTitle ? `<span class="chip">${esc(deckTitle)}</span>` : ''}
       <span class="spacer"></span>
       <div class="review-counts" title="New · Learning · Review">
         <span class="n">${fmt(r.newLeft, 'n')}</span><span class="l">${fmt(r.learning, 'l')}</span><span class="r">${fmt(r.reviewLeft, 'r')}</span>
@@ -52,13 +59,14 @@ export function renderReview(app, deckId, opts = {}) {
 
   function metaRow(c) {
     const item = c.item;
-    const label = c.type === 'r' ? 'Read it' : c.type === 'c' ? 'Read the cursive' : item.kind === 'conj' ? 'Conjugate' : 'Write it in Hebrew';
+    const label = c.type === 'r' ? 'Read it' : c.type === 'c' ? 'Read the cursive' : item.kind === 'conj' ? VC.label(c, format) : 'Write it in Hebrew';
     const st = store.get().cards[c.id];
     const isNew = !st;
     return `<div class="flash-meta">
       <span class="chip">${label}</span>
       ${isNew ? '<span class="chip chip-casual">new</span>' : ''}
       ${regChip(item.reg)}
+      ${item.kind === 'conj' ? `<span class="chip">${esc(VC.stageLabel(item))}</span>` : ''}
       <span class="spacer"></span>
       <span class="small muted">${esc(getDeck(c.deck)?.meta.title || '')}</span>
     </div>`;
@@ -66,18 +74,7 @@ export function renderReview(app, deckId, opts = {}) {
 
   function promptHtml(c) {
     const item = c.item;
-    if (item.kind === 'conj') {
-      const v = item.verb;
-      const [pHe, pEn] = item.person ? personLabel(item.person) : ['', ''];
-      const slots = [`<div class="conj-slot"><small>tense</small><b>${esc(tenseLabel(item.tense))}</b></div>`];
-      if (item.person) slots.push(`<div class="conj-slot"><small>${esc(pEn)}</small>${he(pHe)}</div>`);
-      return `<div class="conj-prompt">
-        ${item.tense === 'inf'
-          ? `<div class="prompt-en">to ${esc(v.en)}</div><div class="conj-verb-en">${esc(v.binyanName)} · root ${he(v.root)}</div>`
-          : `<div class="prompt-row"><span class="conj-verb">${he(v.inf)}</span></div><div class="conj-verb-en">to ${esc(v.en)} · ${esc(v.binyanName)}</div>`}
-        <div class="conj-slots">${slots.join('')}</div>
-      </div>`;
-    }
+    if (item.kind === 'conj') return VC.promptHtml(c, format);
     if (c.type === 'c') {
       const plain = stripNiqqud(item.he);
       return `<div class="prompt-cursive ${plain.length > 16 ? 'long' : ''}" lang="he" dir="rtl">${esc(plain)}</div>
@@ -98,6 +95,7 @@ export function renderReview(app, deckId, opts = {}) {
 
   function revealHtml(c) {
     const item = c.item;
+    if (item.kind === 'conj') return VC.revealHtml(c, format, verdict, typedAnswer);
     const parts = [];
     if (c.type === 'r') {
       parts.push(`<div class="answer-en">${esc(item.en)}</div>`);
@@ -123,6 +121,11 @@ export function renderReview(app, deckId, opts = {}) {
   }
 
   function ratingsHtml(c) {
+    if (practice) {
+      return `<div class="ratings ratings-2"><button class="rate again ${suggested === 1 ? 'suggested' : ''}" data-rate="1">Missed it<small>see it again later</small></button>
+        <button class="rate good ${suggested > 1 ? 'suggested' : ''}" data-rate="3">Got it<small>next card</small></button></div>
+        <p class="rate-hint">Practice only — your review schedule is not changed.</p>`;
+    }
     const st = store.get().cards[c.id] || newCard();
     const now = Date.now();
     const prev = scheduler().preview(st, now, c.id);
@@ -184,8 +187,13 @@ export function renderReview(app, deckId, opts = {}) {
 
   function check(input) {
     const c = cards().get(current);
-    const mode = c.item.kind === 'conj' || (c.type === 'c' && stripNiqqud(c.item.he).length <= 2) ? 'strict' : 'vocab';
-    verdict = input.trim() ? checkAnswer(input, answersFor(c.item), mode) : { verdict: 'wrong', target: c.item.he, note: '' };
+    typedAnswer = input;
+    if (c.item.kind === 'conj') {
+      verdict = VC.check(c, format, input);
+    } else {
+      const mode = c.type === 'c' && stripNiqqud(c.item.he).length <= 2 ? 'strict' : 'vocab';
+      verdict = input.trim() ? checkAnswer(input, answersFor(c.item), mode) : { verdict: 'wrong', target: c.item.he, note: '' };
+    }
     suggested = VERDICT_RATING[verdict.verdict];
     phase = 'answered';
     render(c, null, input);
@@ -206,6 +214,13 @@ export function renderReview(app, deckId, opts = {}) {
   }
 
   function finished() {
+    if (practice) {
+      const r = session.practiceResults || { right: 0, wrong: 0 };
+      app.innerHTML = `<div class="card done"><div class="big">💪</div><h1>Workout done</h1>
+        <p class="muted">${session.done ? `${r.right} right, ${r.wrong} missed (missed cards came back until you got them).` : 'No learnt verb cards yet — study the verb decks first, then come back for a workout.'}</p>
+        <div class="row" style="justify-content:center"><a class="btn" href="#/verbs">Verb course</a><button class="btn btn-primary" data-act="again">Another round</button></div></div>`;
+      return;
+    }
     const st = store.get();
     const now = Date.now();
     const learningLater = session.learning.filter((id) => st.cards[id]).map((id) => st.cards[id].due).sort((a, b) => a - b);
@@ -233,6 +248,17 @@ export function renderReview(app, deckId, opts = {}) {
     if (act === 'show') reveal();
     else if (act === 'cursive') { cursiveView = !cursiveView; store.setSetting('cursiveReading', cursiveView); render(cards().get(current)); }
     else if (act === 'idk') check('');
+    else if (act === 'again') { Object.assign(session, { done: 0, practiceResults: { right: 0, wrong: 0 }, history: [] }); session.buildPractice(); show(); }
+    else if (act === 'flag-verb') {
+      const c = cards().get(current);
+      const st = store.get();
+      const k = itemKey(c.item);
+      if (st.flagged[k]) delete st.flagged[k];
+      else st.flagged[k] = { at: Date.now(), typed: t.dataset.typed || '', form: c.item.he };
+      store.save();
+      toast(st.flagged[k] ? 'Flagged — listed in Settings and on the verb check page' : 'Unflagged');
+      t.textContent = st.flagged[k] ? '⚑ Flagged' : '⚐ This looks wrong';
+    }
     else if (act === 'undo') { if (session.undo()) { updateBadge(); show(); } }
     else if (act === 'more') {
       const more = new Session({ deck: deckId, extraNew: (opts.extraNew || 0) + 5 });

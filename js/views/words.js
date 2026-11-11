@@ -60,7 +60,7 @@ export function renderWords(app, deckId) {
       const key = itemKey(item);
       const flagged = !!st.flagged[key];
       const extra = item.note || item.ex?.length || item.alt?.length;
-      const label = item.kind === 'conj' ? `${item.en} · ${item.tense}${item.person ? ' · ' + item.person : ''}` : item.en;
+      const label = item.kind === 'conj' ? (item.sub === 'form' ? `${item.en} · ${item.tense}${item.person ? ' · ' + item.person : ''}` : item.en) : item.en;
       return `<div class="word">
         <div class="word-he">${item.kind === 'cursive' ? `<span class="cursive" lang="he">${esc(item.he)}</span>` : he(item.he)}</div>
         <div><div class="word-en">${esc(label)}</div>

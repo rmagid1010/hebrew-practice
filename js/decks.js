@@ -1,5 +1,6 @@
 // Loads deck content and turns items into reviewable cards.
 import * as store from './store.js';
+import { expandVerbDeck, verbItemLocked } from './verbs.js';
 
 let catalog = null;          // [{id, title, ...meta}]
 const decks = new Map();     // id -> {meta, items}
@@ -14,7 +15,6 @@ const PERSONS = {
   'imp-ms': ['אַתָּה', 'to a man'], 'imp-fs': ['אַתְּ', 'to a woman'], 'imp-mp': ['אַתֶּם', 'to a group'],
 };
 const TENSE_LABEL = { present: 'present', past: 'past', future: 'future', imp: 'command', inf: 'infinitive' };
-const TENSE_ORDER = ['inf', 'present', 'past', 'future', 'imp'];
 
 export async function loadAll() {
   if (catalog) return;
@@ -34,25 +34,7 @@ export function rebuildCustom() {
 }
 
 function expand(meta, data) {
-  if (meta.kind === 'conjugation') {
-    const items = [];
-    for (const v of data.verbs) v.binyanName = v.binyanName || data.binyanName || '';
-    // order: all infinitives, then present, past, future, commands — verb by verb within each tense
-    for (const tense of TENSE_ORDER) {
-      for (const v of data.verbs) {
-        if (tense === 'inf') {
-          items.push({ id: `${v.id}-inf`, kind: 'conj', deck: meta.id, verb: v, tense, person: null, he: v.inf, en: `to ${v.en}` });
-          continue;
-        }
-        const forms = v.forms[tense] || {};
-        for (const [p, he] of Object.entries(forms)) {
-          const person = tense === 'imp' ? `imp-${p}` : p;
-          items.push({ id: `${v.id}-${tense}-${p}`, kind: 'conj', deck: meta.id, verb: v, tense, person, he: Array.isArray(he) ? he[0] : he, alt: Array.isArray(he) ? he.slice(1) : [], en: `${v.en}` });
-        }
-      }
-    }
-    return items;
-  }
+  if (meta.kind === 'conjugation') return expandVerbDeck(meta, data);
   const kind = meta.kind === 'sentences' ? 'sentence' : meta.kind === 'cursive' ? 'cursive' : 'vocab';
   return data.items.map((it) => ({ ...it, deck: meta.id, kind, types: it.types || meta.types }));
 }
@@ -87,7 +69,12 @@ export function lockInfo(item) {
   const missing = item.req.filter((k) => !isLearnt(k));
   return { total: item.req.length, missing };
 }
+function verbDecks() {
+  return catalog.filter((d) => d.kind === 'conjugation').map((d) => [d.id, decks.get(d.id)?.items || []]);
+}
+
 export function isLocked(item) {
+  if (item.kind === 'conj') return verbItemLocked(item, verbDecks);
   const info = lockInfo(item);
   return !!(info && info.missing.length);
 }

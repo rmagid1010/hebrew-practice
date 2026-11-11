@@ -1,0 +1,8 @@
+{
+  "name": "hebrew-practice",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate": "node tools/validate-verbs.mjs"
+  }
+}

@@ -55,6 +55,7 @@ export class Session {
   }
 
   build(now = Date.now()) {
+    if (this.opts.practice) return this.buildPractice();
     const st = store.get();
     const reviews = [];
     const newByDeck = new Map();
@@ -84,7 +85,7 @@ export class Session {
     }
 
     reviews.sort((a, b) => st.cards[a.id].due - st.cards[b.id].due);
-    this.reviews = reviews.slice(0, store.settings().maxReviews);
+    this.reviews = mixVerbReviews(reviews.slice(0, store.settings().maxReviews), today);
 
     // New cards: round-robin across decks (in catalog order), one card per item per day.
     const limit = newLeftToday(now, this.opts.deck || null) + (this.opts.extraNew || 0);
@@ -121,6 +122,17 @@ export class Session {
     });
     while (ni < picked.length) queue.push(picked[ni++].id);
     this.queue = queue;
+  }
+
+  /** Verb workout: a random mix of verb cards you've learnt, across all tenses. Doesn't touch the schedule. */
+  buildPractice() {
+    const st = store.get();
+    const pool = [...cards().values()].filter((c) => c.item.kind === 'conj' && st.cards[c.id]?.state >= 2 && !st.suspended[c.id]
+      && (!this.opts.deck || c.deck === this.opts.deck));
+    for (let i = pool.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [pool[i], pool[j]] = [pool[j], pool[i]]; }
+    this.reviews = pool.slice(0, this.opts.size || 20);
+    this.newCards = [];
+    this.queue = this.reviews.map((c) => c.id);
   }
 
   remaining(now = Date.now()) {
@@ -161,10 +173,22 @@ export class Session {
   }
 
   answer(id, rating, verdict = null, now = Date.now()) {
+    if (this.opts.practice) {
+      const qi = this.queue.indexOf(id);
+      if (qi >= 0) this.queue.splice(qi, 1);
+      if (rating === 1) this.queue.push(id); // try it again at the end
+      this.practiceResults = this.practiceResults || { right: 0, wrong: 0 };
+      this.practiceResults[rating === 1 ? 'wrong' : 'right']++;
+      this.history.push({ id, practice: true, qi, again: rating === 1 });
+      this.done++;
+      return null;
+    }
     const st = store.get();
     const before = st.cards[id] ? { ...st.cards[id] } : null;
     const wasNew = !before;
     const nextCard = scheduler().next(before || newCard(), rating, now, id);
+    // Count successful reviews made after graduating — verb stages unlock on these.
+    nextCard.rv = (before?.rv || 0) + (before && before.state === State.Review && rating > 1 ? 1 : 0);
     st.cards[id] = nextCard;
     st.log.push([now, id, rating, verdict]);
     if (wasNew) store.bumpNewDone(1, now, cards().get(id)?.deck);
@@ -189,6 +213,13 @@ export class Session {
   undo() {
     const h = this.history.pop();
     if (!h) return null;
+    if (h.practice) {
+      if (h.again) this.queue.pop();
+      if (h.qi >= 0) this.queue.splice(h.qi, 0, h.id);
+      this.practiceResults[h.again ? 'wrong' : 'right']--;
+      this.done--;
+      return h.id;
+    }
     const st = store.get();
     if (h.before) st.cards[h.id] = h.before; else delete st.cards[h.id];
     st.log.pop();
@@ -239,4 +270,25 @@ export function retention30(now = Date.now()) {
     if (rating > 1) ok++;
   }
   return n ? ok / n : null;
+}
+
+/** Spread verb reviews out so the same verb and tense don't come back-to-back. */
+function mixVerbReviews(reviews, seedKey) {
+  const verbs = reviews.filter((c) => c.item.kind === 'conj');
+  if (verbs.length < 3) return reviews;
+  let h = 0;
+  for (const ch of seedKey) h = (h * 31 + ch.charCodeAt(0)) | 0;
+  const rnd = () => { h = (Math.imul(h ^ (h >>> 15), 2246822507) + 0x9e3779b9) | 0; return (h >>> 0) / 4294967296; };
+  const shuffled = [...verbs];
+  for (let i = shuffled.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]; }
+  // avoid two cards of the same verb+tense in a row where possible
+  for (let i = 1; i < shuffled.length; i++) {
+    const same = (a, b) => a.item.verb === b.item.verb && a.item.tense === b.item.tense;
+    if (same(shuffled[i], shuffled[i - 1])) {
+      const k = shuffled.findIndex((c, j) => j > i && !same(c, shuffled[i - 1]));
+      if (k > 0) [shuffled[i], shuffled[k]] = [shuffled[k], shuffled[i]];
+    }
+  }
+  let vi = 0;
+  return reviews.map((c) => (c.item.kind === 'conj' ? shuffled[vi++] : c));
 }

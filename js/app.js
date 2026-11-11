@@ -9,6 +9,7 @@ import { renderGrammarIndex, renderGrammarPage } from './views/grammar.js';
 import { renderWords } from './views/words.js';
 import { renderSettings } from './views/settings.js';
 import { renderAdd } from './views/add.js';
+import { renderVerbs, renderVerbCheck } from './views/verbs.js';
 
 const app = document.getElementById('app');
 let cleanup = null;
@@ -16,6 +17,9 @@ let cleanup = null;
 const routes = [
   [/^#?\/?$/, () => renderHome(app), 'home'],
   [/^#\/review(?:\/([\w-]+))?$/, (m) => renderReview(app, m[1] || null), 'review'],
+  [/^#\/practice(?:\/([\w-]+))?$/, (m) => renderReview(app, m[1] || null, { practice: true }), 'verbs'],
+  [/^#\/verbs$/, () => renderVerbs(app), 'verbs'],
+  [/^#\/verbs\/check$/, () => renderVerbCheck(app), 'verbs'],
   [/^#\/decks$/, () => renderDecks(app), 'decks'],
   [/^#\/grammar$/, () => renderGrammarIndex(app), 'grammar'],
   [/^#\/grammar\/([\w-]+)$/, (m) => renderGrammarPage(app, m[1]), 'grammar'],

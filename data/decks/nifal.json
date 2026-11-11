@@ -74,6 +74,10 @@
       "תכנסו"
      ]
     }
+   },
+   "weak": null,
+   "review": {
+    "status": "unreviewed"
    }
   },
   {
@@ -132,6 +136,10 @@
       "יפגשו"
      ]
     }
+   },
+   "weak": null,
+   "review": {
+    "status": "unreviewed"
    }
   },
   {
@@ -207,6 +215,10 @@
       "תשארו"
      ]
     }
+   },
+   "weak": null,
+   "review": {
+    "status": "unreviewed"
    }
   },
   {
@@ -282,7 +294,12 @@
       "תזהרו"
      ]
     }
+   },
+   "weak": null,
+   "review": {
+    "status": "unreviewed"
    }
   }
- ]
+ ],
+ "reviewNote": "Tables written from standard references (Academy spelling). Status 'unreviewed' until a native speaker or teacher has checked them."
 }

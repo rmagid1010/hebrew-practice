@@ -10,6 +10,7 @@ export const DEFAULT_SETTINGS = {
   audio: true,         // text-to-speech buttons
   autoplay: false,     // speak Hebrew automatically when shown
   cursiveReading: false, // show reading prompts in handwriting
+  verbUnlock: 'strict',  // verb stages: 'strict' = learnt + one later review, 'fast' = learnt
   rate: 0.9,           // speech rate
   retention: 0.9,      // FSRS target retention
   theme: 'auto',

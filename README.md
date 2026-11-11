@@ -4,7 +4,11 @@ A static website for practicing everyday (Tel Aviv street) Hebrew:
 
 - **Spaced repetition** with the FSRS algorithm (the same one modern Anki uses): Again / Hard / Good / Easy.
 - **Reading cards** (Hebrew → meaning) and **writing cards** (English → type it in Hebrew with your Hebrew keyboard). Typed answers are checked automatically; vowel points are never required, final letters and spelling slips get "Almost".
-- **Verb drills** for pa'al and pi'el (present, past, future, commands).
+- **Verb course** (Verbs page): each verb moves through stages — meaning → root & binyan → present → past → future → commands.
+  A stage unlocks only when every card in the previous one has been learnt *and* survived a later review; if an earlier form lapses,
+  the verb pauses until it's fixed. Binyan "signature shapes" (e.g. pi'el present `me·1a·2e·3`, spelled `מ___`) are taught and tested.
+  Reviews rotate between four production formats (from the infinitive, from the root alone, fill-the-gap sentence, transform from
+  another tense), due verb cards are mixed across tenses, and a "verb workout" drills learnt forms without touching the schedule.
 - **Grammar explainers**: reading & niqqud, roots & binyanim, pa'al, pi'el, and how people actually talk.
 - **Slang-first vocabulary** with register tags (slang / casual / neutral / formal), notes and example sentences, plus a deck for your own words.
 - Optional text-to-speech using the browser's Hebrew voice.
@@ -18,6 +22,15 @@ python3 -m http.server 8000
 ```
 
 Then open http://localhost:8000.
+
+## Accuracy of the verb tables
+
+- `npm run validate` (or `node tools/validate-verbs.mjs`) checks every table: vowel points, final letters, root letters in order,
+  person prefixes/endings, "you (m)" = "she" in the future, and each binyan's signature shape for regular roots. It runs on every push (GitHub Actions).
+- Weak roots are marked with `"weak": "ל״ה"` etc.; shape-based cards are switched off for them.
+- Textbook-only forms (short imperatives, literary feminine plurals) are labelled; the spoken form is accepted where people really use it.
+- Every verb has `"review": {"status": "unreviewed"}` until a native speaker checks it — then set `{"status": "checked", "by": "…", "date": "…"}`.
+  The **Verbs → Check the tables** page shows all tables, check results and your flags, and copies them as text for a tutor.
 
 ## Adding content
 

@@ -21,6 +21,8 @@ export function renderSettings(app) {
           <h2>Daily study</h2>
           <label class="switch"><span>New cards per day<div class="field-hint">10 is a comfortable pace. Each new card adds future reviews.</div></span><input type="number" min="0" max="100" data-set="newPerDay" value="${s.newPerDay}"></label>
           <label class="switch"><span>Maximum reviews per day</span><input type="number" min="10" max="2000" data-set="maxReviews" value="${s.maxReviews}"></label>
+          <label class="switch"><span>Verb stages unlock<div class="field-hint">Strict waits until earlier forms survive a review on a later day — slower, but they stick.</div></span>
+            <select data-set="verbUnlock"><option value="strict" ${s.verbUnlock !== 'fast' ? 'selected' : ''}>Strict (recommended)</option><option value="fast" ${s.verbUnlock === 'fast' ? 'selected' : ''}>As soon as learnt</option></select></label>
           <label class="switch"><span>Target retention<div class="field-hint">How sure you want to be of remembering when a card comes back. Higher = more reviews.</div></span>
             <select data-set="retention">${[0.8, 0.85, 0.9, 0.93, 0.95].map((r) => `<option value="${r}" ${s.retention === r ? 'selected' : ''}>${Math.round(r * 100)}%</option>`).join('')}</select></label>
         </section>
