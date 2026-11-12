@@ -1,4 +1,5 @@
 // Loads deck content and turns items into reviewable cards.
+import { isAssumed } from './known.js';
 import * as store from './store.js';
 import { expandVerbDeck, verbItemLocked } from './verbs.js';
 
@@ -63,6 +64,7 @@ export function typesFor(item) {
 
 /** An item counts as "learnt" once any of its cards has graduated to review. */
 export function isLearnt(key) {
+  if (isAssumed(key)) return true;
   const st = store.get().cards;
   for (const t of ['r', 'w', 'c', 'p']) {
     const c = st[`${key}:${t}`];

@@ -532,3 +532,5 @@ ul.elements .he { font-size: 1.05rem; }
 @media (max-width: 860px) {
   .topbar { flex-direction: column; align-items: stretch; gap: 6px; padding: 8px 12px 6px; }
 }
+.lesson-tile.skipped { opacity: .75; }
+.lesson-tile.skipped .lesson-n { background: var(--surface-2, transparent); text-decoration: line-through; }

@@ -1,6 +1,7 @@
 import * as store from '../store.js';
 import * as tts from '../tts.js';
 import { cards } from '../decks.js';
+import { getCourse, startIndex } from '../course.js';
 import { esc, he, toast } from '../ui.js';
 
 export function renderSettings(app) {
@@ -39,6 +40,15 @@ export function renderSettings(app) {
       </div>
 
       <section class="card" style="margin-top:16px">
+        <h2>Course starting point</h2>
+        <p class="muted small" style="margin-top:0">Already know the early material? Start the course from a later lesson. Lessons before it are marked
+          <b>skipped</b>: their words, verb stages and sentences count as known, so later sentences and writing tasks unlock, and the main study session
+          leaves them out. You can still study any skipped lesson from its lesson page, and nothing you've already learnt is lost if you change this.</p>
+        <label class="switch"><span>Start the course from${startIndex() ? `<div class="field-hint">Lessons 1–${startIndex()} are skipped.</div>` : ''}</span>
+          <select data-set="courseStart">${getCourse().lessons.map((l, i) => `<option value="${i ? esc(l.id) : ''}" ${i === startIndex() ? 'selected' : ''}>Lesson ${i + 1}: ${esc(l.title)}${i ? '' : ' (beginning)'}</option>`).join('')}</select></label>
+      </section>
+
+      <section class="card" style="margin-top:16px">
         <h2>Backup</h2>
         <p class="muted">Your progress lives only in this browser. If you clear your browsing data or switch devices, it's gone unless you have a backup file.</p>
         <div class="row">
@@ -70,6 +80,14 @@ export function renderSettings(app) {
       let v = t.type === 'checkbox' ? t.checked : t.value;
       if (['newPerDay', 'maxReviews'].includes(k)) v = Math.max(0, parseInt(v, 10) || 0);
       if (['retention', 'rate'].includes(k)) v = parseFloat(v);
+      if (k === 'courseStart') {
+        const n = getCourse().lessons.findIndex((l) => l.id === v) + 1;
+        if (n > 1 && !confirm(`Start the course from lesson ${n}? Lessons 1–${n - 1} will count as known and leave the main study session. You can switch back at any time.`)) { draw(); return; }
+        store.setSetting(k, v);
+        toast(n > 1 ? `Course now starts at lesson ${n}` : 'Course starts from lesson 1 again');
+        draw();
+        return;
+      }
       store.setSetting(k, v);
       if (k === 'theme') {
         if (v === 'auto') delete document.documentElement.dataset.theme;

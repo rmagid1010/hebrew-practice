@@ -1,4 +1,5 @@
 // Verb course: stages, unlock rules and test formats for conjugation decks.
+import { isAssumed } from './known.js';
 import * as store from './store.js';
 import { SHAPES, SHAPE_SLOT, fillShape, withFinal, skeleton } from './verbcheck.js';
 import { stripNiqqud } from './hebrew.js';
@@ -93,11 +94,13 @@ store.onChange(() => { cache = null; });
 
 /** "Proven": graduated to review AND survived at least one later review (or the fast setting is on). */
 export function proven(cardId) {
+  if (isAssumed(cardId)) return true;
   const c = store.get().cards[cardId];
   if (!c || c.state !== 2) return false;
   return store.settings().verbUnlock === 'fast' ? true : (c.rv || 0) >= 1;
 }
 export function learnt(cardId) {
+  if (isAssumed(cardId)) return true;
   const c = store.get().cards[cardId];
   return !!(c && c.state >= 2);
 }

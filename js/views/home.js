@@ -40,7 +40,7 @@ export function renderHome(app) {
   app.innerHTML = `
     ${first ? `<div class="notice notice-info" style="margin-bottom:16px">
       <b>Welcome!</b> Press <b>Continue course</b> and the site takes you through A1 and A2 step by step: a few new words, verbs and sentences each day,
-      your reviews mixed in, and short writing tasks. Read <a href="#/grammar/reading">Reading Hebrew</a> when you have 10 minutes.
+      your reviews mixed in, and short writing tasks. Read <a href="#/reading/learn/reading">Reading Hebrew</a> when you have 10 minutes.
     </div>` : ''}
     <section class="card hero course-hero">
       <div>

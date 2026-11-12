@@ -11,6 +11,7 @@ export const DEFAULT_SETTINGS = {
   autoplay: false,     // speak Hebrew automatically when shown
   cursiveReading: false, // show reading prompts in handwriting
   verbUnlock: 'strict',  // verb stages: 'strict' = learnt + one later review, 'fast' = learnt
+  courseStart: '',     // lesson id to start the course from ('' = lesson 1); earlier lessons count as known
   rate: 0.9,           // speech rate
   retention: 0.9,      // FSRS target retention
   theme: 'auto',

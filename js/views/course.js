@@ -20,6 +20,7 @@ export function renderCourse(app) {
       <b>write</b> something yourself. Sentences only unlock once you know their words, and every study session also brings back what's due from earlier
       lessons, so new material keeps revising the old. A lesson opens when ${Math.round(UNLOCK_SHARE * 100)}% of the one before is learnt.</p>
     <div class="notice notice-info" style="margin:12px 0 4px">Today: <b>${c.due + c.learning}</b> due · <b>${newLeftToday()}</b> new cards left (change in <a href="#/settings">Settings</a>).
+      ${list[0].skipped ? ` Starting from lesson ${list.findIndex((x) => !x.skipped) + 1} — earlier lessons are skipped (change in <a href="#/settings">Settings</a>).` : ''}
       ${cur ? ` You're on <a href="#/course/${esc(cur.lesson.id)}">lesson ${list.findIndex((x) => x.lesson.id === cur.lesson.id) + 1}: ${esc(cur.lesson.title)}</a>.` : ''}</div>
     ${levels.map((lv) => `
       <div class="section-title"><h2>${lv === 'A1' ? 'A1 · Beginner' : 'A2 · Elementary'}</h2></div>
@@ -31,12 +32,12 @@ export function renderCourse(app) {
 
 function lessonTile(x, n, isCur) {
   const { lesson, stats, status } = x;
-  const icon = { done: '✓', current: '▶', open: '○', locked: '🔒' }[status];
+  const icon = { done: '✓', current: '▶', open: '○', locked: '🔒', skipped: '↷' }[status];
   return `<a class="lesson-tile ${status} ${isCur ? 'is-current' : ''}" href="#/course/${esc(lesson.id)}">
     <span class="lesson-n">${n}</span>
     <span class="lesson-body"><b>${esc(lesson.title)}</b> ${he(lesson.he, 'lesson-he')}
       <span class="progress"><span style="width:${pct(stats)}%"></span></span>
-      <small>${status === 'locked' ? 'Locked' : `${stats.learnt}/${stats.total} learnt`}</small></span>
+      <small>${status === 'locked' ? 'Locked' : status === 'skipped' ? `Skipped · ${stats.learnt}/${stats.total} learnt` : `${stats.learnt}/${stats.total} learnt`}</small></span>
     <span class="lesson-icon">${icon}</span>
   </a>`;
 }
@@ -97,6 +98,7 @@ export function renderLesson(app, id) {
     <div class="row" style="margin-bottom:10px"><span class="chip">${esc(lesson.level)}</span>
       <span class="small muted">${stats.learnt}/${stats.total} cards learnt</span><span class="spacer"></span>
       ${x.unlocked ? `<a class="btn btn-primary" href="#/study/${esc(id)}">Study this lesson</a>` : `<span class="chip">🔒 Opens when ${Math.round(UNLOCK_SHARE * 100)}% of lesson ${n - 1} is learnt</span>`}</div>
+    ${x.skipped ? `<div class="notice notice-info" style="margin-bottom:12px">↷ You skipped this lesson in <a href="#/settings">Settings</a>, so its content counts as known and stays out of the main study session. Press <b>Study this lesson</b> to go through it anyway.</div>` : ''}
     <div class="callout">${lesson.intro}</div>
     ${GROUPS.map(([key, title, test]) => {
       const rows = [...items.values()].filter((e) => test(e.cards[0]));

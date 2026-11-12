@@ -2,6 +2,7 @@
 import * as store from './store.js';
 import { cards, verbData, itemKey } from './decks.js';
 import { lessonKeys } from './coursecore.js';
+import { setAssumed } from './known.js';
 
 const UNLOCK_SHARE = 0.8; // next lesson opens when 80% of this one's cards are learnt
 
@@ -11,7 +12,31 @@ let lessonCards = null; // lessonId -> [cardId]
 export async function loadCourse() {
   if (course) return course;
   course = await (await fetch('data/course.json')).json();
+  syncSkipped();
+  store.onChange(syncSkipped);
   return course;
+}
+
+/* ---- Starting later in the course (Settings → Course) ---- */
+
+/** Index of the lesson the course starts from (0 = lesson 1). Unknown ids fall back to 0. */
+export function startIndex() {
+  const id = store.settings().courseStart;
+  const i = id ? course.lessons.findIndex((l) => l.id === id) : 0;
+  return Math.max(0, i);
+}
+export function isSkipped(lessonId) {
+  return course.lessons.findIndex((l) => l.id === lessonId) < startIndex();
+}
+
+// Everything taught in skipped lessons counts as known, so later sentences, writing and verb stages unlock.
+let syncedStart = null;
+function syncSkipped() {
+  const n = startIndex();
+  if (n === syncedStart) return;
+  syncedStart = n;
+  const vd = verbData();
+  setAssumed(course.lessons.slice(0, n).flatMap((l) => lessonKeys(l, vd).keys));
 }
 export function getCourse() { return course; }
 export function getLesson(id) { return course?.lessons.find((l) => l.id === id) || null; }
@@ -56,23 +81,25 @@ export function lessonStats(id) {
   return { total: ids.length, learnt, seen, share: ids.length ? learnt / ids.length : 1 };
 }
 
-/** Lessons with their status: done / current / open / locked. */
+/** Lessons with their status: done / current / open / locked, or skipped (before the chosen start lesson). */
 export function lessonStatuses() {
   const out = [];
+  const start = startIndex();
   let prevOk = true;
-  for (const l of course.lessons) {
+  course.lessons.forEach((l, i) => {
     const s = lessonStats(l.id);
-    const unlocked = prevOk;
-    const status = !unlocked ? 'locked' : s.learnt === s.total ? 'done' : s.seen ? 'current' : 'open';
-    out.push({ lesson: l, stats: s, unlocked, status });
-    prevOk = unlocked && s.share >= UNLOCK_SHARE;
-  }
+    const skipped = i < start;
+    const unlocked = skipped || i === start || prevOk;
+    const status = !unlocked ? 'locked' : s.learnt === s.total ? 'done' : skipped ? 'skipped' : s.seen ? 'current' : 'open';
+    out.push({ lesson: l, stats: s, unlocked, skipped, status });
+    prevOk = skipped || (unlocked && s.share >= UNLOCK_SHARE);
+  });
   return out;
 }
 
 /** The lesson you're on: the first unlocked one that still has cards you haven't seen. */
 export function currentLesson() {
-  const list = lessonStatuses().filter((x) => x.unlocked);
+  const list = lessonStatuses().filter((x) => x.unlocked && !x.skipped);
   return list.find((x) => x.stats.seen < x.stats.total) || list[list.length - 1];
 }
 
@@ -82,7 +109,7 @@ export function courseNewCards(lessonId = null) {
   const out = [];
   for (const x of lessonStatuses()) {
     if (!x.unlocked) break;
-    if (lessonId && x.lesson.id !== lessonId) continue;
+    if (lessonId ? x.lesson.id !== lessonId : x.skipped) continue; // skipped lessons only when studied on purpose
     for (const id of cardsOfLesson(x.lesson.id)) if (!st[id]) out.push(id);
   }
   return out;
