@@ -26,6 +26,8 @@ EXTRA = {
     'לֹא, אֲנִי לֹא דָּנִי. אֲנִי מִיכַל.'),
  ],
  'a1-02': [
+  T('x0207', 'Point at your friends and say: yes, these are friends of mine. Then point at a cup: and this is coffee.', ['basics/ele', 'basics/ze', 'basics/ken'],
+    'כֵּן, אֵלֶּה חֲבֵרִים שֶׁלִּי. וְזֶה קָפֶה.', forms={'basics/ele': ['אלה', 'אלו']}),
   T('x0201', 'Greet people at three times of day: morning, evening and bedtime. End with "שלום".', ['basics/boker-tov', 'basics/erev-tov', 'basics/laila-tov', 'basics/shalom'],
     'בּוֹקֶר טוֹב! עֶרֶב טוֹב! לַיְלָה טוֹב, שָׁלוֹם!'),
   T('x0202', "At a party, point people out: he's Dani, she's Michal, and they are friends of mine. Then say who you are.", ['basics/hu', 'basics/hi', 'basics/hem', 'basics/ani'],

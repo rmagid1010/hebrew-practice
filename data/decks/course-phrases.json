@@ -131,7 +131,16 @@
    "alt": [
     "אני אוהבת קפה אבל לא תה"
    ],
-   "hint": "(male or female speaker)"
+   "v": [
+    {
+     "w": "m",
+     "he": "אֲנִי אוֹהֵב קָפֶה, אֲבָל לֹא תֵּה."
+    },
+    {
+     "w": "f",
+     "he": "אֲנִי אוֹהֶבֶת קָפֶה, אֲבָל לֹא תֵּה."
+    }
+   ]
   },
   {
    "id": "cp12",
@@ -145,7 +154,16 @@
    "alt": [
     "אני קונה קפה כל בוקר"
    ],
-   "hint": "(male or female speaker)"
+   "v": [
+    {
+     "w": "m",
+     "he": "אֲנִי קוֹנֶה קָפֶה כָּל בּוֹקֶר."
+    },
+    {
+     "w": "f",
+     "he": "אֲנִי קוֹנָה קָפֶה כָּל בּוֹקֶר."
+    }
+   ]
   },
   {
    "id": "cp13",
@@ -160,7 +178,24 @@
     "מה את כותבת אני כותבת מייל",
     "מה אתה כותב אני כותב מייל"
    ],
-   "hint": "(to a man)"
+   "v": [
+    {
+     "w": "tm m",
+     "he": "מָה אַתָּה כּוֹתֵב? — אֲנִי כּוֹתֵב מֵייל."
+    },
+    {
+     "w": "tf f",
+     "he": "מָה אַתְּ כּוֹתֶבֶת? — אֲנִי כּוֹתֶבֶת מֵייל."
+    },
+    {
+     "w": "tm f",
+     "he": "מָה אַתָּה כּוֹתֵב? — אֲנִי כּוֹתֶבֶת מֵייל."
+    },
+    {
+     "w": "tf m",
+     "he": "מָה אַתְּ כּוֹתֶבֶת? — אֲנִי כּוֹתֵב מֵייל."
+    }
+   ]
   },
   {
    "id": "cp14",
@@ -198,6 +233,16 @@
    "alt": [
     "אני אכתוב לך מחר",
     "מחר אכתוב לך"
+   ],
+   "v": [
+    {
+     "w": "tm",
+     "he": "מָחָר אֲנִי אֶכְתּוֹב לְךָ."
+    },
+    {
+     "w": "tf",
+     "he": "מָחָר אֲנִי אֶכְתּוֹב לָךְ."
+    }
    ]
   },
   {
@@ -224,7 +269,16 @@
    "alt": [
     "אני מדברת עברית אבל לאט"
    ],
-   "hint": "(male or female speaker)"
+   "v": [
+    {
+     "w": "m",
+     "he": "אֲנִי מְדַבֵּר עִבְרִית, אֲבָל לְאַט."
+    },
+    {
+     "w": "f",
+     "he": "אֲנִי מְדַבֶּרֶת עִבְרִית, אֲבָל לְאַט."
+    }
+   ]
   },
   {
    "id": "cp19",
@@ -325,6 +379,583 @@
    "alt": [
     "אני איכנס רק לדקה",
     "אכנס רק לדקה"
+   ]
+  },
+  {
+   "id": "ag04",
+   "he": "זֶה קָפֶה טוֹב.",
+   "en": "This is good coffee.",
+   "req": [
+    "basics/ze",
+    "basics/zot",
+    "basics/kafe",
+    "cafe/bira",
+    "adjectives/tov"
+   ],
+   "reg": "neutral",
+   "v": [
+    {
+     "w": "",
+     "he": "זֶה קָפֶה טוֹב.",
+     "en": "This is good coffee."
+    },
+    {
+     "w": "",
+     "he": "זֹאת בִּירָה טוֹבָה.",
+     "en": "This is a good beer."
+    }
+   ]
+  },
+  {
+   "id": "ag06",
+   "he": "הַהָפוּךְ טָעִים.",
+   "en": "The latte is tasty.",
+   "req": [
+    "cafe/hafuch",
+    "cafe/shakshuka",
+    "cafe/taim"
+   ],
+   "reg": "neutral",
+   "v": [
+    {
+     "w": "",
+     "he": "הַהָפוּךְ טָעִים.",
+     "en": "The latte is tasty."
+    },
+    {
+     "w": "",
+     "he": "הַשַּׁקְשׁוּקָה טְעִימָה.",
+     "en": "The shakshuka is tasty."
+    }
+   ]
+  },
+  {
+   "id": "ag07",
+   "he": "הַשּׁוּק קָרוֹב.",
+   "en": "The market is close.",
+   "req": [
+    "around/shuk",
+    "around/tachana",
+    "around/yam",
+    "around/karov",
+    "around/rachok"
+   ],
+   "reg": "neutral",
+   "v": [
+    {
+     "w": "",
+     "he": "הַשּׁוּק קָרוֹב.",
+     "en": "The market is close."
+    },
+    {
+     "w": "",
+     "he": "הַתַּחֲנָה קְרוֹבָה.",
+     "en": "The (bus) stop is close."
+    },
+    {
+     "w": "",
+     "he": "הַתַּחֲנָה רְחוֹקָה.",
+     "en": "The (bus) stop is far."
+    },
+    {
+     "w": "",
+     "he": "הַיָּם רָחוֹק.",
+     "en": "The sea is far."
+    }
+   ]
+  },
+  {
+   "id": "ag08",
+   "he": "הַהָפוּךְ יָקָר.",
+   "en": "The latte is expensive.",
+   "req": [
+    "cafe/hafuch",
+    "cafe/bira",
+    "cafe/shakshuka",
+    "around/yakar",
+    "around/zol"
+   ],
+   "reg": "neutral",
+   "v": [
+    {
+     "w": "",
+     "he": "הַהָפוּךְ יָקָר.",
+     "en": "The latte is expensive."
+    },
+    {
+     "w": "",
+     "he": "הַבִּירָה זוֹלָה.",
+     "en": "The beer is cheap."
+    },
+    {
+     "w": "",
+     "he": "הַשַּׁקְשׁוּקָה יְקָרָה.",
+     "en": "The shakshuka is expensive."
+    }
+   ]
+  },
+  {
+   "id": "ag11",
+   "he": "הוּא עָיֵף.",
+   "en": "He's tired.",
+   "req": [
+    "basics/hu",
+    "basics/hi",
+    "basics/hem",
+    "health/ayef"
+   ],
+   "reg": "neutral",
+   "v": [
+    {
+     "w": "",
+     "he": "הוּא עָיֵף.",
+     "en": "He's tired."
+    },
+    {
+     "w": "",
+     "he": "הִיא עֲיֵפָה.",
+     "en": "She's tired."
+    },
+    {
+     "w": "",
+     "he": "הֵם עֲיֵפִים.",
+     "en": "They're tired."
+    }
+   ]
+  },
+  {
+   "id": "ag13a",
+   "he": "זֶה חֶדֶר קָטָן.",
+   "en": "This is a small room.",
+   "req": [
+    "basics/ze",
+    "basics/zot",
+    "basics/ele",
+    "home/cheder",
+    "around/dira",
+    "adjectives/katan"
+   ],
+   "reg": "neutral",
+   "v": [
+    {
+     "w": "",
+     "he": "זֶה חֶדֶר קָטָן.",
+     "en": "This is a small room."
+    },
+    {
+     "w": "",
+     "he": "זֹאת דִּירָה קְטַנָּה.",
+     "en": "This is a small apartment."
+    },
+    {
+     "w": "",
+     "he": "אֵלֶּה חֲדָרִים קְטַנִּים.",
+     "en": "These are small rooms."
+    }
+   ]
+  },
+  {
+   "id": "ag13b",
+   "he": "הַמִּיטָּה גְּדוֹלָה.",
+   "en": "The bed is big.",
+   "req": [
+    "home/mita",
+    "home/shulchan",
+    "home/mirpeset",
+    "adjectives/gadol"
+   ],
+   "reg": "neutral",
+   "v": [
+    {
+     "w": "",
+     "he": "הַמִּיטָּה גְּדוֹלָה.",
+     "en": "The bed is big."
+    },
+    {
+     "w": "",
+     "he": "הַשּׁוּלְחָן גָּדוֹל.",
+     "en": "The table is big."
+    },
+    {
+     "w": "",
+     "he": "הַמִּרְפֶּסֶת גְּדוֹלָה.",
+     "en": "The balcony is big."
+    }
+   ]
+  },
+  {
+   "id": "ag13c",
+   "he": "הַמַּזְגָן רוֹעֵשׁ.",
+   "en": "The air conditioner is noisy.",
+   "req": [
+    "home/mazgan",
+    "home/shchenim",
+    "around/dira",
+    "adjectives/roesh"
+   ],
+   "reg": "neutral",
+   "v": [
+    {
+     "w": "",
+     "he": "הַמַּזְגָן רוֹעֵשׁ.",
+     "en": "The air conditioner is noisy."
+    },
+    {
+     "w": "",
+     "he": "הַשְּׁכֵנִים רוֹעֲשִׁים.",
+     "en": "The neighbors are noisy."
+    },
+    {
+     "w": "",
+     "he": "הַדִּירָה רוֹעֶשֶׁת.",
+     "en": "The apartment is noisy."
+    }
+   ]
+  },
+  {
+   "id": "ag14",
+   "he": "זֹאת חוּלְצָה יְקָרָה.",
+   "en": "This is an expensive shirt.",
+   "req": [
+    "basics/ze",
+    "basics/zot",
+    "basics/ele",
+    "clothes/chultza",
+    "shopping/mechir",
+    "around/yakar",
+    "adjectives/tov"
+   ],
+   "reg": "neutral",
+   "v": [
+    {
+     "w": "",
+     "he": "זֹאת חוּלְצָה יְקָרָה.",
+     "en": "This is an expensive shirt."
+    },
+    {
+     "w": "",
+     "he": "זֶה מְחִיר טוֹב.",
+     "en": "This is a good price."
+    },
+    {
+     "w": "",
+     "he": "אֵלֶּה מְחִירִים טוֹבִים.",
+     "en": "These are good prices."
+    }
+   ]
+  },
+  {
+   "id": "ag15",
+   "he": "הַלֶּחֶם טָעִים.",
+   "en": "The bread is tasty.",
+   "req": [
+    "food/lechem",
+    "food/gvina",
+    "food/peirot",
+    "food/beitzim",
+    "cafe/taim"
+   ],
+   "reg": "neutral",
+   "v": [
+    {
+     "w": "",
+     "he": "הַלֶּחֶם טָעִים.",
+     "en": "The bread is tasty."
+    },
+    {
+     "w": "",
+     "he": "הַגְּבִינָה טְעִימָה.",
+     "en": "The cheese is tasty."
+    },
+    {
+     "w": "",
+     "he": "הַפֵּירוֹת טְעִימִים.",
+     "en": "The fruit is tasty."
+    },
+    {
+     "w": "",
+     "he": "הַבֵּיצִים טְעִימוֹת.",
+     "en": "The eggs are tasty."
+    }
+   ]
+  },
+  {
+   "id": "ag16",
+   "he": "הָאָח שֶׁלִּי נֶחְמָד.",
+   "en": "My brother is nice.",
+   "req": [
+    "family/ach",
+    "family/achot",
+    "family/horim",
+    "feelings/nechmad",
+    "basics/sheli"
+   ],
+   "reg": "neutral",
+   "v": [
+    {
+     "w": "",
+     "he": "הָאָח שֶׁלִּי נֶחְמָד.",
+     "en": "My brother is nice."
+    },
+    {
+     "w": "",
+     "he": "הָאָחוֹת שֶׁלִּי נֶחְמָדָה.",
+     "en": "My sister is nice."
+    },
+    {
+     "w": "",
+     "he": "הַהוֹרִים שֶׁלִּי נֶחְמָדִים.",
+     "en": "My parents are nice."
+    }
+   ]
+  },
+  {
+   "id": "ag17",
+   "he": "אַבָּא שָׂמֵחַ.",
+   "en": "Dad is happy.",
+   "req": [
+    "family/aba",
+    "family/ima",
+    "family/yeladim",
+    "feelings/sameach",
+    "feelings/atzuv"
+   ],
+   "reg": "neutral",
+   "v": [
+    {
+     "w": "",
+     "he": "אַבָּא שָׂמֵחַ.",
+     "en": "Dad is happy."
+    },
+    {
+     "w": "",
+     "he": "אִמָּא עֲצוּבָה.",
+     "en": "Mom is sad."
+    },
+    {
+     "w": "",
+     "he": "הַיְּלָדִים שְׂמֵחִים.",
+     "en": "The kids are happy."
+    },
+    {
+     "w": "",
+     "he": "אִמָּא שְׂמֵחָה.",
+     "en": "Mom is happy."
+    }
+   ]
+  },
+  {
+   "id": "ag18",
+   "he": "הָרוֹפֵא נֶחְמָד.",
+   "en": "The doctor (a man) is nice.",
+   "req": [
+    "health/rofe",
+    "feelings/nechmad",
+    "family/yeladim",
+    "health/chole"
+   ],
+   "reg": "neutral",
+   "v": [
+    {
+     "w": "",
+     "he": "הָרוֹפֵא נֶחְמָד.",
+     "en": "The doctor (a man) is nice."
+    },
+    {
+     "w": "",
+     "he": "הָרוֹפְאָה נֶחְמָדָה.",
+     "en": "The doctor (a woman) is nice."
+    },
+    {
+     "w": "",
+     "he": "הַיְּלָדִים חוֹלִים.",
+     "en": "The children are sick."
+    }
+   ]
+  },
+  {
+   "id": "ag19",
+   "he": "הַקַּיִץ חַם.",
+   "en": "The summer is hot.",
+   "req": [
+    "weather/kayitz",
+    "around/yam",
+    "weather/shemesh",
+    "weather/cham",
+    "weather/kar"
+   ],
+   "reg": "neutral",
+   "v": [
+    {
+     "w": "",
+     "he": "הַקַּיִץ חַם.",
+     "en": "The summer is hot."
+    },
+    {
+     "w": "",
+     "he": "הַשֶּׁמֶשׁ חַמָּה.",
+     "en": "The sun is hot."
+    },
+    {
+     "w": "",
+     "he": "הַיָּם קַר.",
+     "en": "The sea is cold."
+    }
+   ]
+  },
+  {
+   "id": "ag20",
+   "he": "הַמְּנַהֵל עָמוּס.",
+   "en": "The manager (a man) is swamped.",
+   "req": [
+    "work/menahel",
+    "work/amus",
+    "work/lachutz"
+   ],
+   "reg": "neutral",
+   "v": [
+    {
+     "w": "",
+     "he": "הַמְּנַהֵל עָמוּס.",
+     "en": "The manager (a man) is swamped."
+    },
+    {
+     "w": "",
+     "he": "הַמְּנַהֶלֶת לְחוּצָה.",
+     "en": "The manager (a woman) is stressed."
+    },
+    {
+     "w": "",
+     "he": "הַמְּנַהֶלֶת עֲמוּסָה.",
+     "en": "The manager (a woman) is swamped."
+    }
+   ]
+  },
+  {
+   "id": "ag21",
+   "he": "זֹאת תְּמוּנָה טוֹבָה.",
+   "en": "This is a good photo.",
+   "req": [
+    "basics/ze",
+    "basics/zot",
+    "basics/ele",
+    "tech/tmuna",
+    "tech/mitan",
+    "adjectives/tov",
+    "around/yakar"
+   ],
+   "reg": "neutral",
+   "v": [
+    {
+     "w": "",
+     "he": "זֹאת תְּמוּנָה טוֹבָה.",
+     "en": "This is a good photo."
+    },
+    {
+     "w": "",
+     "he": "זֶה מִטְעָן יָקָר.",
+     "en": "This is an expensive charger."
+    },
+    {
+     "w": "",
+     "he": "אֵלֶּה תְּמוּנוֹת טוֹבוֹת.",
+     "en": "These are good photos."
+    }
+   ]
+  },
+  {
+   "id": "ag22",
+   "he": "זֶה סֶרֶט מְעַנְיֵין.",
+   "en": "This is an interesting movie.",
+   "req": [
+    "basics/ze",
+    "basics/zot",
+    "freetime/seret",
+    "freetime/sidra",
+    "freetime/hofaa",
+    "adjectives/meanyen",
+    "adjectives/muzar"
+   ],
+   "reg": "neutral",
+   "v": [
+    {
+     "w": "",
+     "he": "זֶה סֶרֶט מְעַנְיֵין.",
+     "en": "This is an interesting movie."
+    },
+    {
+     "w": "",
+     "he": "זֹאת סִדְרָה מְעַנְיֶינֶת.",
+     "en": "This is an interesting series."
+    },
+    {
+     "w": "",
+     "he": "הַהוֹפָעָה מוּזָרָה.",
+     "en": "The show is weird."
+    }
+   ]
+  },
+  {
+   "id": "ag23",
+   "he": "הָאוֹטוֹבּוּס מָהִיר.",
+   "en": "The bus is fast.",
+   "req": [
+    "around/otobus",
+    "adjectives/mahir",
+    "adjectives/ragil",
+    "around/dira",
+    "shopping/mechir",
+    "basics/zot",
+    "basics/ele"
+   ],
+   "reg": "neutral",
+   "v": [
+    {
+     "w": "",
+     "he": "הָאוֹטוֹבּוּס מָהִיר.",
+     "en": "The bus is fast."
+    },
+    {
+     "w": "",
+     "he": "זֹאת דִּירָה רְגִילָה.",
+     "en": "This is a normal apartment."
+    },
+    {
+     "w": "",
+     "he": "אֵלֶּה מְחִירִים רְגִילִים.",
+     "en": "These are normal prices."
+    }
+   ]
+  },
+  {
+   "id": "ag24",
+   "he": "הַחֲתוּנָה גְּדוֹלָה.",
+   "en": "The wedding is big.",
+   "req": [
+    "family/chatuna",
+    "adjectives/gadol",
+    "home/mamad",
+    "adjectives/katan",
+    "smalltalk/shutaf",
+    "feelings/nechmad"
+   ],
+   "reg": "neutral",
+   "v": [
+    {
+     "w": "",
+     "he": "הַחֲתוּנָה גְּדוֹלָה.",
+     "en": "The wedding is big."
+    },
+    {
+     "w": "",
+     "he": "הַמַּמָּ״ד קָטָן.",
+     "en": "The safe room is small."
+    },
+    {
+     "w": "",
+     "he": "הַשּׁוּתָּפִים נֶחְמָדִים.",
+     "en": "The roommates are nice."
+    }
    ]
   }
  ]

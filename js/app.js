@@ -14,6 +14,7 @@ import { renderCourse, renderLesson } from './views/course.js';
 import { loadCourse } from './course.js';
 import { pageArea, pageHref } from './views/grammar.js';
 import { renderReading } from './views/reading.js';
+import { setLexicon } from './gender.js';
 
 const app = document.getElementById('app');
 let cleanup = null;
@@ -74,7 +75,8 @@ export function updateBadge() {
 
 async function start() {
   try {
-    await decks.loadAll();
+    const [, lex] = await Promise.all([decks.loadAll(), fetch('data/agree.json').then((r) => r.json())]);
+    setLexicon(lex);
     await loadCourse();
   } catch (err) {
     app.innerHTML = `<div class="card"><h2>Could not load lessons</h2><p class="muted">If you opened this file directly, serve the folder over HTTP instead (e.g. <code>python3 -m http.server</code>).</p><p class="muted small">${String(err)}</p></div>`;

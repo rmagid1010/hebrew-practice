@@ -16,6 +16,10 @@
   --bad: #c2413a;
   --bad-soft: #fbe3e1;
   --easy: #2f6fdb;
+  --masc: #2f6fdb;
+  --masc-soft: #e2ebfb;
+  --fem: #c2417a;
+  --fem-soft: #f9e2ed;
   --heat-0: #ebe5da;
   --heat-1: #b9dbe5;
   --heat-2: #6fb6cb;
@@ -47,6 +51,10 @@
     --bad: #f07a72;
     --bad-soft: #3d1f1d;
     --easy: #7aa7f5;
+    --masc: #7aa7f5;
+    --masc-soft: #1c2a44;
+    --fem: #f08ab8;
+    --fem-soft: #3f1d2e;
     --heat-0: #232d33;
     --heat-1: #1d4a5a;
     --heat-2: #24728b;
@@ -110,6 +118,7 @@ main.container { flex: 1; padding-top: 24px; padding-bottom: 40px; outline: none
 
 .he, [lang="he"] { font-family: var(--font-he); }
 .he { direction: rtl; unicode-bidi: isolate; }
+span[lang="he"], bdi[lang="he"] { direction: rtl; unicode-bidi: isolate; }
 
 /* ---------- top bar ---------- */
 .topbar {
@@ -534,3 +543,19 @@ ul.elements .he { font-size: 1.05rem; }
 }
 .lesson-tile.skipped { opacity: .75; }
 .lesson-tile.skipped .lesson-n { background: var(--surface-2, transparent); text-decoration: line-through; }
+
+/* ---------- gender ---------- */
+.who-badge { display: inline-flex; align-items: center; gap: 6px; margin: 0 auto 10px; padding: 4px 12px; border-radius: 999px;
+  font-size: .9rem; font-weight: 600; background: var(--surface-2); color: var(--text); border: 1px solid var(--border); }
+.flash .who-badge, .write-prompt .who-badge { display: flex; width: fit-content; }
+.who-badge.who-m, .who-mini.who-m, .who-badge.who-tm, .who-mini.who-tm { background: var(--masc-soft); color: var(--masc); border-color: transparent; }
+.who-badge.who-f, .who-mini.who-f, .who-badge.who-tf, .who-mini.who-tf { background: var(--fem-soft); color: var(--fem); border-color: transparent; }
+.who-mini { display: inline-block; font-size: .75rem; font-weight: 600; padding: 1px 8px; border-radius: 999px; background: var(--surface-2); margin-inline-end: 6px; }
+.gender-line { margin: 6px 0; text-align: center; }
+.gender-line.g-m b, .gender-line.g-mp b, .g-tag.g-m, .g-tag.g-mp { color: var(--masc); }
+.gender-line.g-f b, .gender-line.g-fp b, .g-tag.g-f, .g-tag.g-fp { color: var(--fem); }
+.g-tag { font-size: .72rem; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; }
+.versions { margin: 10px auto 0; padding: 8px 12px; border-radius: 10px; background: var(--surface-2); max-width: 520px; }
+.version { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 3px 0; flex-wrap: wrap; }
+.gender-errors { list-style: none; margin: 8px 0 4px; padding: 8px 12px; border-radius: 10px; background: var(--bad-soft); color: var(--bad); font-weight: 500; }
+.gender-errors li { margin: 2px 0; }

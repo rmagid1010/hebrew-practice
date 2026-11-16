@@ -1,5 +1,6 @@
 import { getCatalog, getDeck, itemKey, lockInfo, itemByKey, typesFor } from '../decks.js';
 import { stripNiqqud } from '../hebrew.js';
+import { DEM, GENDER_NAME, facesOf, whoLabel, whoClass } from '../gender.js';
 import { State, formatInterval } from '../fsrs.js';
 import * as store from '../store.js';
 import { esc, he, heb, sayBtn, regChip, toast } from '../ui.js';
@@ -59,16 +60,20 @@ export function renderWords(app, deckId) {
     list.innerHTML = rows.length ? `<p class="small muted">${total} item${total === 1 ? '' : 's'}${total > 300 ? ' (showing 300)' : ''}</p>` + rows.map((item) => {
       const key = itemKey(item);
       const flagged = !!st.flagged[key];
-      const extra = item.note || item.ex?.length || item.alt?.length;
+      const extra = item.note || item.ex?.length || item.alt?.length || item.v?.length || item.fem;
+      const shown = item.g ? `${DEM[item.g]} ${item.he}` : item.he;
+      const gTag = item.g ? `<span class="g-tag g-${item.g}" title="${GENDER_NAME[item.g]} noun">${item.g === 'm' ? 'masc.' : item.g === 'f' ? 'fem.' : item.g === 'mp' ? 'masc. pl.' : 'fem. pl.'}</span> ` : '';
+      const versions = (item.v?.length || item.fem) && item.kind !== 'write' ? facesOf(item) : [];
       const label = item.kind === 'conj' ? (item.sub === 'form' ? `${item.en} · ${item.tense}${item.person ? ' · ' + item.person : ''}` : item.en) : item.en;
       return `<div class="word">
-        <div class="word-he">${item.kind === 'cursive' ? `<span class="cursive" lang="he">${esc(item.he)}</span>` : he(item.he)}</div>
+        <div class="word-he">${item.kind === 'cursive' ? `<span class="cursive" lang="he">${esc(item.he)}</span>` : he(shown)}</div>
         <div><div class="word-en">${esc(label)}</div>
-          <div class="word-sub">${regChip(item.reg)}${status(item)}${state.deck ? '' : `<span>· ${esc(getDeck(item.deck)?.meta.title || '')}</span>`}</div></div>
-        <div class="word-actions">${sayBtn(item.he)}
+          <div class="word-sub">${gTag}${regChip(item.reg)}${status(item)}${state.deck ? '' : `<span>· ${esc(getDeck(item.deck)?.meta.title || '')}</span>`}</div></div>
+        <div class="word-actions">${sayBtn(shown)}
           <button class="icon-btn ${flagged ? 'flagged' : ''}" data-flag="${esc(key)}" title="${flagged ? 'Unflag' : 'Flag as wrong / unnatural'}" aria-label="Flag">${FLAG}</button>
         </div>
         ${extra ? `<details><summary>details</summary>
+          ${versions.length > 1 ? `<div class="versions">${versions.map((o) => `<div class="version">${o.w ? `<span class="who-mini ${whoClass(o.w)}">${esc(whoLabel(o.w))}</span>` : `<span class="small muted">${esc(o.en)}</span>`} ${he(o.he)}</div>`).join('')}</div>` : ''}
           ${item.alt?.length ? `<p class="small">Also accepted: ${item.alt.map((a) => he(a)).join(' · ')}</p>` : ''}
           ${item.note ? `<div class="note">${esc(heb(item.note))}</div>` : ''}
           ${item.ex?.length ? `<div class="examples">${item.ex.map(([h, e]) => `<div class="example">${sayBtn(h)}<div class="he" lang="he" dir="rtl">${esc(heb(h))}</div><div class="en">${esc(e)}</div></div>`).join('')}</div>` : ''}

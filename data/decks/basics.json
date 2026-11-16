@@ -81,7 +81,7 @@
    "he": "זֶה",
    "en": "this / that / it",
    "reg": "neutral",
-   "note": "Used for almost anything in speech: מה זה? = what's this?"
+   "note": "With a masculine noun: זֶה שׁוּלְחָן. Also the general 'it / that': מָה זֶה? = what's this?"
   },
   {
    "id": "zot",
@@ -91,7 +91,14 @@
    "alt": [
     "זו"
    ],
-   "note": "Often זו in writing."
+   "note": "With a feminine noun: זֹאת מִיטָּה, זֹאת דִּירָה. Often זו in writing."
+  },
+  {
+   "id": "ele",
+   "he": "אֵלֶּה",
+   "en": "these",
+   "reg": "neutral",
+   "note": "For plural nouns of both genders: אֵלֶּה חֲבֵרִים, אֵלֶּה נַעֲלַיִים. Often אלו in writing."
   },
   {
    "id": "yesh",
@@ -134,13 +141,13 @@
    "note": "Comes after the noun: החבר שלי = my friend."
   },
   {
-   "id": "kafe",
+   "id": "kafe", "g": "m",
    "he": "קָפֶה",
    "en": "coffee",
    "reg": "neutral"
   },
   {
-   "id": "te",
+   "id": "te", "g": "m",
    "he": "תֵּה",
    "en": "tea",
    "reg": "neutral"

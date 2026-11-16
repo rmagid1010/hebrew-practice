@@ -40,7 +40,7 @@
    "level": "A1",
    "title": "Me, you, them",
    "he": "אֲנִי, אַתָּה, הִיא",
-   "intro": "<p>Hebrew pronouns have gender: <b>אַתָּה</b> to a man, <b>אַתְּ</b> to a woman. <b>זֶה</b> (this/that/it) is the most useful word you'll learn this week.</p><p>\"My\" comes <i>after</i> the noun: <b>חָבֵר שֶׁלִּי</b> = a friend of mine. More in <a href=\"#/grammar/spoken\">How people actually talk</a>.</p>",
+   "intro": "<p>Hebrew pronouns have gender: <b>אַתָּה</b> to a man, <b>אַתְּ</b> to a woman. <b>זֶה</b> (this/that/it) is the most useful word you'll learn this week.</p><p>Every noun is masculine or feminine, so from now on nouns come with <b>זֶה</b> (masculine), <b>זֹאת</b> (feminine) or <b>אֵלֶּה</b> (plural): <b>זֶה קָפֶה</b>, <b>זֹאת בִּירָה</b>. Sentences show a badge — <b>♂ / ♀</b> for who's speaking, <b>→♂ / →♀</b> for who you're talking to — and only that version counts. See <a href=\"#/grammar/gender\">Gender &amp; agreement</a>.</p><p>\"My\" comes <i>after</i> the noun: <b>חָבֵר שֶׁלִּי</b> = a friend of mine. More in <a href=\"#/grammar/spoken\">How people actually talk</a>.</p>",
    "items": [
     "basics/ata",
     "basics/at",
@@ -52,6 +52,7 @@
     "basics/hen",
     "basics/ze",
     "basics/zot",
+    "basics/ele",
     "basics/sheli",
     "basics/kafe",
     "basics/boker-tov",
@@ -71,6 +72,7 @@
    "write": [
     "course-write/w03",
     "course-write/w04",
+    "course-write/x0207",
     "course-write/x0201",
     "course-write/x0202",
     "course-write/x0203",
@@ -143,7 +145,8 @@
    "phrases": [
     "phrases/p07",
     "course-phrases/cp10",
-    "course-phrases/cp11"
+    "course-phrases/cp11",
+    "course-phrases/ag04"
    ],
    "write": [
     "course-write/w07",
@@ -222,7 +225,8 @@
     "phrases/p05",
     "phrases/p39",
     "phrases/p44",
-    "course-phrases/cp12"
+    "course-phrases/cp12",
+    "course-phrases/ag06"
    ],
    "write": [
     "course-write/w11",
@@ -266,7 +270,8 @@
     "phrases/p10",
     "phrases/p11",
     "phrases/p12",
-    "challenge/c06"
+    "challenge/c06",
+    "course-phrases/ag07"
    ],
    "write": [
     "course-write/w13",
@@ -309,7 +314,8 @@
    "phrases": [
     "phrases/p13",
     "phrases/p14",
-    "course-phrases/cp13"
+    "course-phrases/cp13",
+    "course-phrases/ag08"
    ],
    "write": [
     "course-write/w15",
@@ -437,7 +443,8 @@
     "phrases2/q03",
     "phrases/p37",
     "phrases/p38",
-    "course-phrases/cp15"
+    "course-phrases/cp15",
+    "course-phrases/ag11"
    ],
    "write": [
     "course-write/w21",
@@ -524,7 +531,10 @@
    "phrases": [
     "challenge/c16",
     "challenge/c17",
-    "course-phrases/cp17"
+    "course-phrases/cp17",
+    "course-phrases/ag13a",
+    "course-phrases/ag13b",
+    "course-phrases/ag13c"
    ],
    "write": [
     "course-write/w25",
@@ -570,7 +580,8 @@
     "challenge/c14",
     "challenge/c15",
     "phrases2/q21",
-    "course-phrases/cp18"
+    "course-phrases/cp18",
+    "course-phrases/ag14"
    ],
    "write": [
     "course-write/w27",
@@ -612,7 +623,8 @@
    ],
    "phrases": [
     "challenge/c20",
-    "phrases2/q27"
+    "phrases2/q27",
+    "course-phrases/ag15"
    ],
    "write": [
     "course-write/w29",
@@ -654,7 +666,8 @@
    "phrases": [
     "challenge/c09",
     "challenge/c29",
-    "course-phrases/cp19"
+    "course-phrases/cp19",
+    "course-phrases/ag16"
    ],
    "write": [
     "course-write/w31",
@@ -697,7 +710,8 @@
     "challenge/c30",
     "challenge/c34",
     "challenge/c41",
-    "course-phrases/cp20"
+    "course-phrases/cp20",
+    "course-phrases/ag17"
    ],
    "write": [
     "course-write/w33",
@@ -738,7 +752,8 @@
    "phrases": [
     "challenge/c11",
     "challenge/c26",
-    "challenge/c27"
+    "challenge/c27",
+    "course-phrases/ag18"
    ],
    "write": [
     "course-write/w35",
@@ -782,7 +797,8 @@
     "challenge/c21",
     "challenge/c32",
     "challenge/c13",
-    "course-phrases/cp21"
+    "course-phrases/cp21",
+    "course-phrases/ag19"
    ],
    "write": [
     "course-write/w37",
@@ -828,7 +844,8 @@
     "challenge/c18",
     "challenge/c19",
     "challenge/c36",
-    "course-phrases/cp22"
+    "course-phrases/cp22",
+    "course-phrases/ag20"
    ],
    "write": [
     "course-write/w39",
@@ -873,7 +890,8 @@
     "challenge/c42",
     "challenge/c47",
     "phrases2/q12",
-    "course-phrases/cp23"
+    "course-phrases/cp23",
+    "course-phrases/ag21"
    ],
    "write": [
     "course-write/w41",
@@ -919,7 +937,8 @@
     "challenge/c28",
     "challenge/c39",
     "challenge/c48",
-    "course-phrases/cp24"
+    "course-phrases/cp24",
+    "course-phrases/ag22"
    ],
    "write": [
     "course-write/w43",
@@ -971,7 +990,8 @@
     "challenge/c33",
     "challenge/c45",
     "challenge/c31",
-    "course-phrases/cp25"
+    "course-phrases/cp25",
+    "course-phrases/ag23"
    ],
    "write": [
     "course-write/w45",
@@ -1016,7 +1036,8 @@
     "challenge/c50",
     "challenge/c46",
     "challenge/c44",
-    "course-phrases/cp26"
+    "course-phrases/cp26",
+    "course-phrases/ag24"
    ],
    "write": [
     "course-write/w47",

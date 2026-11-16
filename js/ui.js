@@ -57,3 +57,8 @@ document.addEventListener('click', (e) => {
 export function plural(n, word, pluralWord = word + 's') {
   return `${n} ${n === 1 ? word : pluralWord}`;
 }
+
+/** Escape an English sentence that contains Hebrew words, isolating each Hebrew run so the order reads right. */
+export function mixed(text) {
+  return esc(text).replace(/[\u0590-\u05FF][\u0590-\u05FF\s'"״׳…]*[\u0590-\u05FF]|[\u0590-\u05FF]/g, (m) => `<bdi lang="he" dir="rtl" class="he">${m}</bdi>`);
+}

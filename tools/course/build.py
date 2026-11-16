@@ -105,8 +105,8 @@ lesson('a1-01', 'A1', 'Hello!', 'שָׁלוֹם',
   ])
 
 lesson('a1-02', 'A1', 'Me, you, them', 'אֲנִי, אַתָּה, הִיא',
-  "<p>Hebrew pronouns have gender: <b>אַתָּה</b> to a man, <b>אַתְּ</b> to a woman. <b>זֶה</b> (this/that/it) is the most useful word you'll learn this week.</p><p>\"My\" comes <i>after</i> the noun: <b>חָבֵר שֶׁלִּי</b> = a friend of mine. More in <a href=\"#/grammar/spoken\">How people actually talk</a>.</p>",
-  B('ata', 'at', 'hu', 'hi', 'anachnu', 'atem', 'hem', 'hen', 'ze', 'zot', 'sheli', 'kafe', 'boker-tov', 'erev-tov', 'laila-tov') + S('connectors', 'mi', 'ma') + S('smalltalk', 'chaver', 'gam-ani'),
+  "<p>Hebrew pronouns have gender: <b>אַתָּה</b> to a man, <b>אַתְּ</b> to a woman. <b>זֶה</b> (this/that/it) is the most useful word you'll learn this week.</p><p>Every noun is masculine or feminine, so from now on nouns come with <b>זֶה</b> (masculine), <b>זֹאת</b> (feminine) or <b>אֵלֶּה</b> (plural): <b>זֶה קָפֶה</b>, <b>זֹאת בִּירָה</b>. Sentences show a badge — <b>♂ / ♀</b> for who's speaking, <b>→♂ / →♀</b> for who you're talking to — and only that version counts. See <a href=\"#/grammar/gender\">Gender &amp; agreement</a>.</p><p>\"My\" comes <i>after</i> the noun: <b>חָבֵר שֶׁלִּי</b> = a friend of mine. More in <a href=\"#/grammar/spoken\">How people actually talk</a>.</p>",
+  B('ata', 'at', 'hu', 'hi', 'anachnu', 'atem', 'hem', 'hen', 'ze', 'zot', 'ele', 'sheli', 'kafe', 'boker-tov', 'erev-tov', 'laila-tov') + S('connectors', 'mi', 'ma') + S('smalltalk', 'chaver', 'gam-ani'),
   phrases=[
     cp('cp04', 'מִי זֶה? — זֶה חָבֵר שֶׁלִּי.', "Who's that? — That's a friend of mine.", ['connectors/mi', 'basics/ze', 'smalltalk/chaver', 'basics/sheli']),
     cp('cp05', 'אֲנִי דָּנִי, וְהִיא מִיכַל.', "I'm Dani, and she's Michal.", ['basics/ani', 'basics/hi']),
@@ -456,8 +456,22 @@ from write_extra import EXTRA
 for _l in LESSONS:
     _l['write'] += [ut(**t) for t in EXTRA.get(_l['id'], [])]
 
+# ---------------- agreement drills: the same adjective with a masculine, feminine and plural noun ----------------
+from agree_extra import AGREE
+for _l in LESSONS:
+    for _id, _req, _vs in AGREE.get(_l['id'], []):
+        CP[_id] = {'id': _id, 'he': _vs[0][1], 'en': _vs[0][0], 'req': _req, 'reg': 'neutral',
+                   'v': [{'w': '', 'he': h, 'en': e, **({'alt': x[0]} if x else {})} for e, h, *x in _vs]}
+        _l['phrases'].append(f'course-phrases/{_id}')
+
 json.dump(basics, open(D('basics.json'), 'w'), ensure_ascii=False, indent=1)
 json.dump({'items': list(CP.values())}, open(D('course-phrases.json'), 'w'), ensure_ascii=False, indent=1)
 json.dump({'items': list(WT.values())}, open(D('course-write.json'), 'w'), ensure_ascii=False, indent=1)
 json.dump({'lessons': LESSONS}, open(os.path.join(ROOT, 'data', 'course.json'), 'w'), ensure_ascii=False, indent=1)
 print('lessons', len(LESSONS), 'basics', len(basics['items']), 'course phrases', len(CP), 'writing tasks', len(WT))
+
+# Gender: noun genders, the agreement lexicon, and ♂/♀ versions of sentences and writing tasks.
+sys.path.insert(0, os.path.join(ROOT, 'tools', 'gender'))
+import apply as gender_apply
+gender_apply.main(ROOT)
+gender_apply.apply_variants(ROOT)

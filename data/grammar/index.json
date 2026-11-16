@@ -24,6 +24,12 @@
    "title": "Nouns, adjectives & little words",
    "pages": [
     {
+     "id": "gender",
+     "title": "Gender & agreement",
+     "he": "זָכָר וּנְקֵבָה",
+     "summary": "Why every noun comes with זה / זאת / אלה, the ♂ / ♀ badges on cards, and how adjectives and verbs agree. How this site checks it."
+    },
+    {
      "id": "nouns",
      "title": "Nouns: gender & plural",
      "he": "שֵׁם עֶצֶם",

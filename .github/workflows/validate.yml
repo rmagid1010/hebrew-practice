@@ -12,3 +12,4 @@ jobs:
           node-version: 22
       - run: node tools/validate-verbs.mjs
       - run: node tools/validate-course.mjs
+      - run: node tools/validate-gender.mjs

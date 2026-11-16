@@ -1,15 +1,16 @@
 import { Session, scheduler, newLeftToday } from '../session.js';
 import { cards, answersFor, getDeck, itemByKey, itemKey } from '../decks.js';
-import { checkAnswer, diff, stripNiqqud } from '../hebrew.js';
+import { checkAnswer, diff, stripNiqqud, lenient } from '../hebrew.js';
 import { previewLabel, newCard, State } from '../fsrs.js';
 import * as store from '../store.js';
 import * as tts from '../tts.js';
-import { esc, he, heb, sayBtn, regChip, toast } from '../ui.js';
+import { mixed, esc, he, heb, sayBtn, regChip, toast } from '../ui.js';
 import { updateBadge } from '../app.js';
 import * as VC from './verbcard.js';
 import * as WC from './writecard.js';
 import { getLesson } from '../course.js';
 import { pickFormat } from '../verbs.js';
+import { pickFace, facesOf, checkFace, whoLabel, whoClass, GENDER_NAME, DEM } from '../gender.js';
 
 const RATING_NAMES = { 1: 'Again', 2: 'Hard', 3: 'Good', 4: 'Easy' };
 const RATING_CLASS = { 1: 'again', 2: 'hard', 3: 'good', 4: 'easy' };
@@ -20,6 +21,7 @@ export function renderReview(app, deckId, opts = {}) {
   const baseOpts = { deck: deckId, practice, course: !!opts.course, lesson: opts.lesson || null };
   const session = new Session({ ...baseOpts, extraNew: opts.extraNew || 0 });
   let format = null;      // test format for verb cards
+  let face = null;        // the version of a word/sentence shown this time (gender, speaker, listener)
   let typedAnswer = '';
   let current = null;     // card id
   let phase = 'ask';      // 'ask' | 'answered'
@@ -39,6 +41,7 @@ export function renderReview(app, deckId, opts = {}) {
     const c = cards().get(current);
     const st = store.get().cards[current];
     format = c.item.kind === 'conj' ? pickFormat(c, { practice }) : null;
+    face = c.item.kind === 'conj' || c.type === 'c' ? null : pickFace(c, st?.reps || 0, practice);
     typedAnswer = '';
     // If the next card is a learning card that isn't due yet, it was picked via "learn ahead". Fine.
     render(c, st);
@@ -77,24 +80,26 @@ export function renderReview(app, deckId, opts = {}) {
 
   function promptHtml(c) {
     const item = c.item;
-    if (c.type === 'p') return WC.promptHtml(c);
+    if (c.type === 'p') return WC.promptHtml(c, face);
     if (item.kind === 'conj') return VC.promptHtml(c, format);
+    const who = face?.w ? `<div class="who-badge ${whoClass(face.w)}">${esc(whoLabel(face.w))}</div>` : '';
     if (c.type === 'c') {
       const plain = stripNiqqud(item.he);
       return `<div class="prompt-cursive ${plain.length > 16 ? 'long' : ''}" lang="he" dir="rtl">${esc(plain)}</div>
         <p class="prompt-hint">${plain.length <= 2 ? 'Which letter is this? Type it in print.' : 'Read the handwriting, then type it in print letters.'}</p>`;
     }
     if (c.type === 'r') {
-      const long = stripNiqqud(item.he).length > 14;
+      const long = stripNiqqud(face.he).length > 14;
       const main = cursiveView
-        ? `<div class="prompt-cursive ${long ? 'long' : ''}" lang="he" dir="rtl">${esc(stripNiqqud(item.he))}</div>`
-        : `<div class="prompt-he ${long ? 'long' : ''}">${he(item.he)}</div>`;
-      return `<div class="prompt-row">${main}${sayBtn(item.he)}</div>
+        ? `<div class="prompt-cursive ${long ? 'long' : ''}" lang="he" dir="rtl">${esc(stripNiqqud(face.he))}</div>`
+        : `<div class="prompt-he ${long ? 'long' : ''}">${he(face.he)}</div>`;
+      return `${who}<div class="prompt-row">${main}${sayBtn(face.he)}</div>
         <p class="prompt-hint">Read it out loud. What does it mean?
           <button type="button" class="btn btn-ghost btn-sm cursive-toggle" data-act="cursive" title="Switch between print and handwriting (C)">${cursiveView ? 'Show print' : '✍ Show in cursive'}</button></p>`;
     }
-    return `<div class="prompt-en">${esc(item.en)}</div>
-      ${item.hint ? `<p class="prompt-hint">${esc(item.hint)}</p>` : '<p class="prompt-hint">&nbsp;</p>'}`;
+    const hint = face.noun ? 'Start with זֶה / זֹאת / אֵלֶּה — the right one for this noun.' : face.hint;
+    return `${who}<div class="prompt-en">${esc(face.en)}</div>
+      ${hint ? `<p class="prompt-hint">${esc(hint)}</p>` : '<p class="prompt-hint">&nbsp;</p>'}`;
   }
 
   function revealHtml(c) {
@@ -102,16 +107,24 @@ export function renderReview(app, deckId, opts = {}) {
     if (item.kind === 'conj') return VC.revealHtml(c, format, verdict, typedAnswer);
     const parts = [];
     if (c.type === 'r') {
-      parts.push(`<div class="answer-en">${esc(item.en)}</div>`);
-      if (item.hint) parts.push(`<p class="answer-plain">${esc(item.hint)}</p>`);
+      parts.push(`<div class="answer-en">${esc(face.en)}</div>`);
+      if (face.hint) parts.push(`<p class="answer-plain">${esc(face.hint)}</p>`);
     } else {
-      const target = verdict?.target || item.he;
+      const target = verdict?.target || face?.he || item.he;
       parts.push(`<div class="prompt-row"><div class="answer-he">${he(target)}</div>${sayBtn(target)}</div>`);
       if (store.settings().niqqud) parts.push(`<p class="answer-plain">spelled ${he(stripNiqqud(target))}</p>`);
-      const others = answersFor(item).filter((a) => stripNiqqud(a) !== stripNiqqud(target));
+      const others = (face ? [face.he, ...face.alt] : answersFor(item)).filter((a) => lenient(a) !== lenient(target));
       if (others.length) parts.push(`<p class="answer-plain">also accepted: ${others.map((o) => he(o)).join(' · ')}</p>`);
       if (c.type === 'c') parts.push(`<div class="answer-en">${esc(item.en)}</div>`);
       if (item.kind === 'conj' && item.verb.note) parts.push(`<div class="note">${esc(heb(item.verb.note))}</div>`);
+    }
+    if (face?.noun) {
+      parts.push(`<p class="gender-line g-${face.noun}"><b>${esc(GENDER_NAME[face.noun])}</b> — ${he(DEM[face.noun])} ${he(face.nounHe)}</p>`);
+    }
+    if (face && face.count > 1) {
+      const rest = facesOf(item).filter((_, i) => i !== face.index);
+      parts.push(`<div class="versions"><div class="small muted">${face.noun ? 'Other form' : 'Other versions'}</div>${rest.map((o) => `<div class="version">
+        ${o.w ? `<span class="who-mini ${whoClass(o.w)}">${esc(whoLabel(o.w))}</span>` : `<span class="small muted">${esc(o.en)}</span>`} ${he(o.he)}</div>`).join('')}</div>`);
     }
     if (item.req?.length) {
       const used = item.req.map(itemByKey).filter(Boolean);
@@ -155,7 +168,8 @@ export function renderReview(app, deckId, opts = {}) {
     void c;
     return `<div class="verdict ${verdict.verdict}">
       <div class="verdict-title">${titles[verdict.verdict]}</div>
-      ${verdict.note ? `<div class="small">${esc(verdict.note)}</div>` : ''}
+      ${verdict.note ? `<div class="small">${mixed(verdict.note)}</div>` : ''}
+      ${verdict.gender?.length ? `<ul class="gender-errors" dir="ltr">${verdict.gender.map((g) => `<li>⚥ ${mixed(g)}</li>`).join('')}</ul>` : ''}
       ${body}
     </div>`;
   }
@@ -170,7 +184,7 @@ export function renderReview(app, deckId, opts = {}) {
     } else if (phase === 'ask') {
       body = write
         ? `<form data-form="check" autocomplete="off">
-            <input class="answer-input" name="answer" lang="he" dir="rtl" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="הקלד כאן…" aria-label="Your answer in Hebrew">
+            <input class="answer-input" name="answer" lang="he" dir="rtl" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="מַקְלִידִים כָּאן…" aria-label="Your answer in Hebrew">
             <div class="input-actions">
               <button type="button" class="btn btn-ghost btn-sm" data-act="idk">I don't know</button>
               <span class="kbd-hint">Type with your Hebrew keyboard, then <kbd>Enter</kbd></span>
@@ -187,9 +201,9 @@ export function renderReview(app, deckId, opts = {}) {
     app.innerHTML = `${header()}<div class="card flash">${metaRow(c)}${promptHtml(c)}${body}</div>`;
     if (phase === 'ask') {
       if (write) app.querySelector('.answer-input').focus();
-      if (!write && store.settings().autoplay) tts.speak(c.item.he);
+      if (!write && store.settings().autoplay) tts.speak(face?.he || c.item.he);
     } else if (write && store.settings().autoplay) {
-      tts.speak(verdict?.target || c.item.he);
+      tts.speak(verdict?.target || face?.he || c.item.he);
     }
   }
 
@@ -197,12 +211,14 @@ export function renderReview(app, deckId, opts = {}) {
     const c = cards().get(current);
     typedAnswer = input;
     if (c.type === 'p') {
-      verdict = WC.check(c, input);
+      verdict = WC.check(c, input, face);
     } else if (c.item.kind === 'conj') {
       verdict = VC.check(c, format, input);
     } else {
       const mode = c.type === 'c' && stripNiqqud(c.item.he).length <= 2 ? 'strict' : 'vocab';
-      verdict = input.trim() ? checkAnswer(input, answersFor(c.item), mode) : { verdict: 'wrong', target: c.item.he, note: '' };
+      verdict = c.type === 'c'
+        ? (input.trim() ? checkAnswer(input, answersFor(c.item), mode) : { verdict: 'wrong', target: c.item.he, note: '' })
+        : checkFace(face, facesOf(c.item), input, mode);
     }
     suggested = VERDICT_RATING[verdict.verdict];
     phase = 'answered';
@@ -301,7 +317,7 @@ export function renderReview(app, deckId, opts = {}) {
     }
     if ((e.key === 'z' || e.key === 'ז') && session.canUndo()) { if (session.undo()) { updateBadge(); show(); } }
     if ((e.key === 'c' || e.key === 'ב') && current && phase === 'ask' && cards().get(current).type === 'r') { cursiveView = !cursiveView; store.setSetting('cursiveReading', cursiveView); render(cards().get(current)); return; }
-    if ((e.key === 'r' || e.key === 'ר') && current) { const c = cards().get(current); if (phase === 'answered' || c.type === 'r') tts.speak(c.item.he); }
+    if ((e.key === 'r' || e.key === 'ר') && current) { const c = cards().get(current); if (phase === 'answered' || c.type === 'r') tts.speak(face?.he || c.item.he); }
   }
 
   app.addEventListener('click', onClick);

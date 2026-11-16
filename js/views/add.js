@@ -16,6 +16,7 @@ export function renderAdd(app) {
         </div>
         <div class="grid grid-2">
           <label class="field"><span>Other accepted spellings / forms</span><input type="text" name="alt" lang="he" dir="rtl" placeholder="separate with commas"></label>
+          <label class="field"><span>If it's a noun: gender</span><select name="g"><option value="">Not a noun</option><option value="m">Masculine — זֶה</option><option value="f">Feminine — זֹאת</option><option value="mp">Masculine plural — אֵלֶּה</option><option value="fp">Feminine plural — אֵלֶּה</option></select><div class="field-hint">Nouns are tested with זה / זאת / אלה in front, so you learn the gender too.</div></label>
           <label class="field"><span>Register</span><select name="reg"><option value="slang">Slang</option><option value="casual" selected>Casual</option><option value="neutral">Neutral</option><option value="formal">Formal</option></select></label>
         </div>
         <label class="field"><span>Hint shown with the English prompt (optional)</span><input type="text" name="hint" placeholder="e.g. (to a woman)"></label>
@@ -45,6 +46,7 @@ export function renderAdd(app) {
       en: f.en.value.trim(),
       alt: f.alt.value.split(/[,،]/).map((s) => s.trim()).filter(Boolean),
       reg: f.reg.value,
+      g: f.g.value || undefined,
       hint: f.hint.value.trim() || undefined,
       note: f.note.value.trim() || undefined,
       ex: f.exhe.value.trim() ? [[f.exhe.value.trim(), f.exen.value.trim()]] : undefined,
