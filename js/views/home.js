@@ -1,5 +1,6 @@
 import { counts, newLeftToday, dailyCounts, streak, retention30 } from '../session.js';
 import { getCatalog, cards, isLocked } from '../decks.js';
+import { scenarioStatuses } from './scenarios.js';
 import { currentLesson, lessonStatuses, courseNewCards, UNLOCK_SHARE } from '../course.js';
 import * as store from '../store.js';
 import { esc, he } from '../ui.js';
@@ -70,6 +71,7 @@ export function renderHome(app) {
       <div class="card stat"><b>${itemsKnown}</b><span>words &amp; phrases started</span></div>
     </div>
 
+    ${scenHtml()}
     <div class="section-title"><h2>Reading Hebrew</h2><a class="small" href="#/reading">Open reading →</a></div>
     <div class="grid grid-2 reading-home">
       <a href="#/reading/learn/reading" class="tile-link"><div class="card reading-card"><div class="reading-glyph he" lang="he">אָבָּא</div>
@@ -109,4 +111,19 @@ function deckMini(d) {
     <div class="deck-stats"><span><b>${c.seen}</b>/${c.total} cards started</span><span><b>${c.due + c.learning}</b> due</span>
     <span class="spacer"></span><a href="#/review/${esc(d.id)}">Study →</a></div>
   </div>`;
+}
+
+function scenHtml() {
+  const list = scenarioStatuses();
+  if (!list.length) return '';
+  const open = list.filter((x) => x.open);
+  const next = open.find((x) => !x.rec) || null;
+  const locked = list.find((x) => !x.open);
+  return `<div class="section-title"><h2>Scenarios</h2><a class="small" href="#/scenarios">All scenarios →</a></div>
+    <a class="tile-link" href="${next ? `#/scenarios/${next.s.id}` : '#/scenarios'}"><div class="card scen-home">
+      <div><b>${next ? `New: ${esc(next.s.title)}` : open.length ? 'Replay a conversation' : 'Real conversations, unlocked by the course'}</b>
+        <span class="he muted" lang="he">${next ? next.s.he : 'סִימוּלַצְיוֹת'}</span></div>
+      <p class="small muted" style="margin:4px 0 0">${next ? esc(next.s.setting) : open.length ? `${open.length} open — play them as ♂ and ♀.` : ''}
+        ${locked ? ` Next unlocks after lesson ${locked.n} (${Math.round((locked.stats?.share || 0) * 100)}% learnt).` : ''}</p>
+    </div></a>`;
 }

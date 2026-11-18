@@ -5,6 +5,7 @@ import { State } from '../fsrs.js';
 import * as store from '../store.js';
 import { esc, he } from '../ui.js';
 import { counts, newLeftToday } from '../session.js';
+import { scenarioStatuses } from './scenarios.js';
 
 const pct = (s) => Math.round(s.share * 100);
 
@@ -97,7 +98,8 @@ export function renderLesson(app, id) {
     <h1>Lesson ${n}: ${esc(lesson.title)} <span class="he" lang="he">${esc(lesson.he)}</span></h1>
     <div class="row" style="margin-bottom:10px"><span class="chip">${esc(lesson.level)}</span>
       <span class="small muted">${stats.learnt}/${stats.total} cards learnt</span><span class="spacer"></span>
-      ${x.unlocked ? `<a class="btn btn-primary" href="#/study/${esc(id)}">Study this lesson</a>` : `<span class="chip">🔒 Opens when ${Math.round(UNLOCK_SHARE * 100)}% of lesson ${n - 1} is learnt</span>`}</div>
+      ${x.unlocked ? `<a class="btn btn-primary" href="#/study/${esc(id)}">Study this lesson</a>` : `<span class="chip">🔒 Opens when ${Math.round(UNLOCK_SHARE * 100)}% of lesson ${n - 1} is learnt</span>`}
+      ${(() => { const sc = scenarioStatuses().find((y) => y.s.lesson === id); return sc ? (sc.open ? `<a class="btn" href="#/scenarios/${sc.s.id}">🎭 Scenario: ${esc(sc.s.title)}</a>` : `<span class="chip" title="Opens at ${Math.round(UNLOCK_SHARE * 100)}% learnt">🎭 Scenario opens at ${Math.round(UNLOCK_SHARE * 100)}%</span>`) : ''; })()}</div>
     ${x.skipped ? `<div class="notice notice-info" style="margin-bottom:12px">↷ You skipped this lesson in <a href="#/settings">Settings</a>, so its content counts as known and stays out of the main study session. Press <b>Study this lesson</b> to go through it anyway.</div>` : ''}
     <div class="callout">${lesson.intro}</div>
     ${GROUPS.map(([key, title, test]) => {

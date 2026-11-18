@@ -15,6 +15,8 @@ export const DEFAULT_SETTINGS = {
   rate: 0.9,           // speech rate
   retention: 0.9,      // FSRS target retention
   theme: 'auto',
+  scenarioAs: 'alt',   // scenarios: play as 'm', 'f', or 'alt' (switch every time)
+  scenarioEnglish: false, // scenarios: show translations of what people say
 };
 
 function blank() {
@@ -26,6 +28,7 @@ function blank() {
     flagged: {},        // itemKey -> note
     enabledDecks: [],   // the course drives new cards; switch decks on to study them separately
     custom: [],         // user-added vocab items
+    scenarios: {},      // scenarioId -> {plays, best, total, last, lastAs}
     log: [],            // [timestamp, cardId, rating, verdict]
     newDone: {},        // dayKey -> number of new cards introduced
     created: Date.now(),

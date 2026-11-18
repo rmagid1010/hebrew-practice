@@ -13,3 +13,4 @@ jobs:
       - run: node tools/validate-verbs.mjs
       - run: node tools/validate-course.mjs
       - run: node tools/validate-gender.mjs
+      - run: node tools/validate-scenarios.mjs

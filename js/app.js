@@ -15,6 +15,7 @@ import { loadCourse } from './course.js';
 import { pageArea, pageHref } from './views/grammar.js';
 import { renderReading } from './views/reading.js';
 import { setLexicon } from './gender.js';
+import { renderScenarios, renderScenario, loadScenarios } from './views/scenarios.js';
 
 const app = document.getElementById('app');
 let cleanup = null;
@@ -29,6 +30,8 @@ const routes = [
   [/^#\/reading$/, () => renderReading(app), 'reading'],
   [/^#\/reading\/learn\/([\w-]+)$/, (m) => renderGrammarPage(app, m[1]), 'reading'],
   [/^#\/practice(?:\/([\w-]+))?$/, (m) => renderReview(app, m[1] || null, { practice: true }), 'verbs'],
+  [/^#\/scenarios$/, () => renderScenarios(app), 'scenarios'],
+  [/^#\/scenarios\/([\w-]+)$/, (m) => renderScenario(app, m[1]), 'scenarios'],
   [/^#\/verbs$/, () => renderVerbs(app), 'verbs'],
   [/^#\/verbs\/check$/, () => renderVerbCheck(app), 'verbs'],
   [/^#\/decks$/, () => renderDecks(app), 'decks'],
@@ -78,6 +81,7 @@ async function start() {
     const [, lex] = await Promise.all([decks.loadAll(), fetch('data/agree.json').then((r) => r.json())]);
     setLexicon(lex);
     await loadCourse();
+    await loadScenarios();
   } catch (err) {
     app.innerHTML = `<div class="card"><h2>Could not load lessons</h2><p class="muted">If you opened this file directly, serve the folder over HTTP instead (e.g. <code>python3 -m http.server</code>).</p><p class="muted small">${String(err)}</p></div>`;
     return;
