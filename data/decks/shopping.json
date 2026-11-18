@@ -41,7 +41,7 @@
       "note": "Expected at the shuk, not in the supermarket.", "ex": [] },
     { "id": "mocher", "g": "m", "fem": {"he": "מוֹכֶרֶת", "en": "saleswoman"}, "he": "מוֹכֵר", "en": "seller / salesperson", "reg": "neutral",
       "note": "Female: מוֹכֶרֶת.", "ex": [] },
-    { "id": "rak-mistakel", "v": [{"w": "m", "he": "רַק מִסְתַּכֵּל", "alt": ["אני רק מסתכל"]}, {"w": "f", "he": "רַק מִסְתַּכֶּלֶת", "alt": ["אני רק מסתכלת"]}], "he": "רַק מִסְתַּכֵּל", "alt": ["רק מסתכלת"], "en": "just looking", "reg": "neutral",
+    { "id": "rak-mistakel", "v": [{"w": "m", "he": "רַק מִסְתַּכֵּל", "alt": ["אני רק מסתכל"]}, {"w": "f", "he": "רַק מִסְתַּכֶּלֶת", "alt": ["אני רק מסתכלת"]}, {"w": "pm", "he": "רַק מִסְתַּכְּלִים", "alt": ["אנחנו רק מסתכלים"], "en": "we're just looking"}, {"w": "pf", "he": "רַק מִסְתַּכְּלוֹת", "alt": ["אנחנו רק מסתכלות"], "en": "we're just looking"}], "he": "רַק מִסְתַּכֵּל", "alt": ["רק מסתכלת"], "en": "just looking", "reg": "neutral",
       "note": "Female: מִסְתַּכֶּלֶת.", "ex": [] },
     { "id": "achrayut", "g": "f", "he": "אַחְרָיוּת", "en": "warranty / responsibility", "reg": "neutral", "ex": [] },
     { "id": "mishloach", "g": "m", "he": "מִשְׁלוֹחַ", "en": "delivery / shipping", "reg": "neutral",

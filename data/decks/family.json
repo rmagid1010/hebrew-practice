@@ -1,8 +1,8 @@
 {
   "items": [
-    { "id": "ima", "g": "f", "he": "אִמָּא", "en": "mom", "reg": "neutral",
+    { "id": "ima", "g": "f", "this": "this is Mom", "he": "אִמָּא", "en": "mom", "reg": "neutral",
       "note": "Also an exclamation: 'אמא'לה!' = oh my god!", "ex": [] },
-    { "id": "aba", "g": "m", "he": "אַבָּא", "en": "dad", "reg": "neutral", "ex": [] },
+    { "id": "aba", "g": "m", "this": "this is Dad", "he": "אַבָּא", "en": "dad", "reg": "neutral", "ex": [] },
     { "id": "horim", "g": "mp", "he": "הוֹרִים", "en": "parents", "reg": "neutral",
       "ex": [["אֲנִי אוֹכֵל אֵצֶל הַהוֹרִים בְּשִׁישִּׁי.", "I'm eating at my parents' on Friday."]] },
     { "id": "ach", "g": "m", "he": "אָח", "en": "brother", "reg": "neutral", "ex": [] },

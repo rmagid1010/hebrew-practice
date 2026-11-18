@@ -1,6 +1,6 @@
 {
   "items": [
-    { "id": "guf", "g": "m", "he": "גּוּף", "en": "body", "reg": "neutral", "ex": [] },
+    { "id": "guf", "g": "m", "this": "this is a body", "he": "גּוּף", "en": "body", "reg": "neutral", "ex": [] },
     { "id": "rosh", "g": "m", "he": "רֹאשׁ", "en": "head", "reg": "neutral",
       "note": "Spelled ראש even in modern spelling (no ו).", "ex": [] },
     { "id": "beten", "g": "f", "he": "בֶּטֶן", "en": "stomach / belly", "reg": "neutral", "ex": [] },
@@ -18,9 +18,9 @@
       "ex": [["כּוֹאֵב לִי הָרֹאשׁ.", "I have a headache."], ["כּוֹאֶבֶת לִי הַבֶּטֶן.", "My stomach hurts."]] },
     { "id": "chole", "he": "חוֹלֶה", "en": "sick / ill", "reg": "neutral",
       "note": "Female: חוֹלָה — the same spelling.", "ex": [["אֲנִי חוֹלֶה, אֲנִי לֹא בָּא הַיּוֹם.", "I'm sick, I'm not coming today."]] },
-    { "id": "chom", "g": "m", "he": "חוֹם", "en": "fever (also: heat)", "reg": "neutral",
+    { "id": "chom", "g": "m", "this": "this is a fever (also: heat)", "he": "חוֹם", "en": "fever (also: heat)", "reg": "neutral",
       "ex": [["יֵשׁ לִי חוֹם.", "I have a fever."]] },
-    { "id": "shapaat", "g": "f", "he": "שַׁפַעַת", "en": "flu", "reg": "neutral", "ex": [] },
+    { "id": "shapaat", "g": "f", "this": "this is the flu", "he": "שַׁפַעַת", "en": "flu", "reg": "neutral", "ex": [] },
     { "id": "hitztanani", "he": "הִצְטַנַּנְתִּי", "en": "I caught a cold", "reg": "neutral",
       "note": "From לְהִצְטַנֵּן (hitpa'el). 'אני מצונן' = I have a cold.", "ex": [] },
     { "id": "rofe", "g": "m", "fem": {"he": "רוֹפְאָה", "en": "doctor (a woman)"}, "he": "רוֹפֵא", "en": "doctor", "reg": "neutral", "note": "Female: רוֹפְאָה.", "ex": [] },
@@ -32,7 +32,7 @@
     { "id": "beit-merkachat", "g": "m", "he": "בֵּית מִרְקַחַת", "en": "pharmacy", "reg": "neutral",
       "note": "Most people just say 'סופר-פארם' (the big chain).", "ex": [] },
     { "id": "beit-cholim", "g": "m", "he": "בֵּית חוֹלִים", "en": "hospital", "reg": "neutral", "ex": [] },
-    { "id": "miyun", "g": "m", "he": "מִיּוּן", "en": "ER / emergency room", "reg": "neutral", "ex": [] },
+    { "id": "miyun", "g": "m", "this": "this is the ER / emergency room", "he": "מִיּוּן", "en": "ER / emergency room", "reg": "neutral", "ex": [] },
     { "id": "ishur-machala", "g": "m", "he": "אִישּׁוּר מַחֲלָה", "en": "sick note", "reg": "neutral",
       "note": "Employers ask for one after a sick day or two — you get it from the קופה.", "ex": [] },
     { "id": "ayef", "he": "עָיֵיף", "alt": ["עייפה"], "en": "tired", "reg": "neutral", "hint": "(male or female speaker)",
@@ -45,7 +45,7 @@
     { "id": "chadar-kosher", "g": "m", "he": "חֲדַר כּוֹשֶׁר", "en": "gym", "reg": "neutral",
       "note": "Lit. 'fitness room'. Many people just say 'ג׳ים'.", "ex": [] },
     { "id": "lehitamen", "he": "לְהִתְאַמֵּן", "en": "to work out / train", "reg": "neutral", "ex": [] },
-    { "id": "targish-tov", "v": [{"w": "tm", "he": "תַּרְגִּישׁ טוֹב"}, {"w": "tf", "he": "תַּרְגִּישִׁי טוֹב"}], "he": "תַּרְגִּישׁ טוֹב", "alt": ["תרגישי טוב"], "en": "feel better!", "reg": "neutral",
+    { "id": "targish-tov", "v": [{"w": "tm", "he": "תַּרְגִּישׁ טוֹב"}, {"w": "tf", "he": "תַּרְגִּישִׁי טוֹב"}, {"w": "tp", "he": "תַּרְגִּישׁוּ טוֹב", "alt": [], "en": "feel better (all of you)!"}], "he": "תַּרְגִּישׁ טוֹב", "alt": ["תרגישי טוב"], "en": "feel better!", "reg": "neutral",
       "note": "To a woman: תַּרְגִּישִׁי טוֹב. More formal: רפואה שלמה.", "ex": [] }
   ]
 }

@@ -1,7 +1,8 @@
 // Verb course overview (#/verbs) and the table-check page for human review (#/verbs/check).
 import { getCatalog, getDeck, itemKey } from '../decks.js';
 import { verbProgress, STAGES, PERSON_EN } from '../verbs.js';
-import { checkVerb, SHAPES, shapeBlanks } from '../verbcheck.js';
+import { checkVerb, SHAPES } from '../verbcheck.js';
+import { shapeSlots } from './verbcard.js';
 import { counts } from '../session.js';
 import { stripNiqqud } from '../hebrew.js';
 import * as store from '../store.js';
@@ -51,7 +52,7 @@ export async function renderVerbs(app) {
       <div class="deck-head"><div><div class="deck-title">${esc(d.title)}</div>
         <div class="small muted">${c.due + c.learning} due · ${c.newAvail} new available · ${c.locked} locked</div></div>
         ${d.he ? he(d.he, 'deck-he') : ''}</div>
-      ${shapes ? `<div class="shape-strip">${['inf', 'present', 'past', 'future'].map((t) => `<div><small>${t === 'inf' ? 'infinitive' : t}</small><b>${esc(shapes[t].say)}</b><span class="he" lang="he">${esc(shapeBlanks(shapes[t].spell))}</span></div>`).join('')}</div>` : ''}
+      ${shapes ? `<div class="shape-strip">${['inf', 'present', 'past', 'future'].map((t) => `<div><small>${t === 'inf' ? 'infinitive' : t}</small><b>${esc(shapes[t].say)}</b>${shapeSlots(shapes[t].spell)}</div>`).join('')}</div>` : ''}
       <table class="verb-progress"><tbody>
         ${verbs.map((v) => verbRow(deck.items, v)).join('')}
       </tbody></table>

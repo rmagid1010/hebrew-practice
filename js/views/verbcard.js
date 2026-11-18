@@ -1,7 +1,7 @@
 // Rendering and checking for verb (conjugation) cards in the review screen.
 import { checkAnswer, stripNiqqud } from '../hebrew.js';
 import { answersFor, itemKey } from '../decks.js';
-import { BINYANIM, matchBinyan, shapeBlanks } from '../verbcheck.js';
+import { BINYANIM, matchBinyan } from '../verbcheck.js';
 import {
   PRONOUN, PERSON_EN, STAGES, clozeFrame, transformFrame, shapeFor, checkRoot, diagnose, registerNotes, githubIssueUrl,
 } from '../verbs.js';
@@ -27,10 +27,20 @@ function slotChips(item) {
   return `<div class="conj-slots">${chips.join('')}</div>`;
 }
 
+/** The binyan skeleton in Hebrew with numbered slots for the root letters: ל①②ו③ (right to left). */
+export function shapeSlots(spell) {
+  return `<span class="slots" lang="he" dir="rtl">${[...spell].map((ch) => (/[123]/.test(ch) ? `<span class="slot">${ch}</span>` : `<span class="fix">${esc(ch)}</span>`)).join('')}</span>`;
+}
+/** Which root letter goes in which slot, right to left: ① כ  ② ת  ③ ב */
+function slotLegend(root) {
+  const letters = root.split(/[־\-\s]+/).filter(Boolean);
+  return `<div class="slot-legend" dir="rtl">${letters.map((l, i) => `<span><span class="slot">${i + 1}</span> = <b lang="he">${esc(l)}</b></span>`).join('')}</div>`;
+}
+
 function shapeHint(item) {
   const s = shapeFor(item);
   if (!s) return '';
-  return `<p class="shape-hint">Shape for ${esc(item.verb.binyanName)} ${esc(TENSE_EN[item.tense])} (${esc(s.form)}): <b class="say">${esc(s.say)}</b> · spelled <span class="he" lang="he">${esc(shapeBlanks(s.spell))}</span></p>`;
+  return `<p class="shape-hint">Shape for ${esc(item.verb.binyanName)} ${esc(TENSE_EN[item.tense])} (${esc(s.form)}): <b class="say">${esc(s.say)}</b> · spelled ${shapeSlots(s.spell)}</p>`;
 }
 
 export function promptHtml(c, format) {
@@ -52,9 +62,10 @@ export function promptHtml(c, format) {
     const s = item.shape;
     return `<div class="conj-prompt">
       <div class="shape-box"><div class="shape-title">${esc(item.binyan)} · ${esc(TENSE_EN[item.tense])}${item.slot ? ` · ${esc(PERSON_EN[item.slot])}` : ''}</div>
-        <div class="shape-say">${esc(s.say)}</div><div class="he shape-spell" lang="he">${esc(shapeBlanks(s.spell))}</div>
-        <div class="small muted">1 · 2 · 3 = the root letters</div></div>
-      <p class="prompt-hint">Apply the shape to the root ${he(v.root)} (to ${esc(v.en)}).</p></div>`;
+        <div class="shape-spell">${shapeSlots(s.spell)}</div>
+        <div class="small muted">sounds like <b class="say">${esc(s.say)}</b> · slots ①②③ = the 3 root letters, read right to left</div></div>
+      <p class="prompt-hint">Put the root ${he(v.root)} (to ${esc(v.en)}) into the slots:</p>
+      ${slotLegend(v.root)}</div>`;
   }
   if (format === 'build') {
     return `<div class="conj-prompt">
@@ -137,7 +148,7 @@ export function revealHtml(c, format, verdict, typed) {
     parts.push(`<div class="answer-he">${he(v.root)}</div>`);
     parts.push(`<p class="answer-plain">root ${he(v.root)} · binyan <b>${esc(v.binyanName)}</b> ${b ? he(b.he) : ''}</p>`);
     const s = shapeFor({ ...item, tense: 'inf' });
-    if (s && !v.weak) parts.push(`<p class="shape-hint">${esc(v.binyanName)} infinitive shape: <b class="say">${esc(s.say)}</b> · spelled <span class="he" lang="he">${esc(shapeBlanks(s.spell))}</span> → ${he(v.inf)}</p>`);
+    if (s && !v.weak) parts.push(`<p class="shape-hint">${esc(v.binyanName)} infinitive shape: <b class="say">${esc(s.say)}</b> · spelled ${shapeSlots(s.spell)} → ${he(v.inf)}</p>`);
     if (v.weak) parts.push(`<p class="shape-hint">Weak root (${esc(v.weak)}): one root letter hides in some forms.</p>`);
   } else {
     const target = verdict?.target || item.he;

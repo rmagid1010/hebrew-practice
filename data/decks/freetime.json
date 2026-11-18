@@ -1,9 +1,9 @@
 {
   "items": [
     { "id": "seret", "g": "m", "he": "סֶרֶט", "en": "movie / film", "reg": "neutral", "ex": [] },
-    { "id": "sidra", "g": "f", "he": "סִדְרָה", "en": "TV series / show", "reg": "neutral",
+    { "id": "sidra", "g": "f", "this": "this is a TV series / show", "he": "סִדְרָה", "en": "TV series / show", "reg": "neutral",
       "ex": [["אֵיזוֹ סִדְרָה אַתָּה רוֹאֶה עַכְשָׁיו?", "What show are you watching now?"]] },
-    { "id": "kolnoa", "g": "m", "he": "קוֹלְנוֹעַ", "en": "cinema", "reg": "neutral", "ex": [] },
+    { "id": "kolnoa", "g": "m", "this": "this is a cinema", "he": "קוֹלְנוֹעַ", "en": "cinema", "reg": "neutral", "ex": [] },
     { "id": "hofaa", "g": "f", "he": "הוֹפָעָה", "en": "concert / show / gig", "reg": "neutral", "ex": [] },
     { "id": "muzika", "g": "f", "he": "מוּזִיקָה", "en": "music", "reg": "neutral", "ex": [] },
     { "id": "shir", "g": "m", "he": "שִׁיר", "en": "song (also: poem)", "reg": "neutral", "ex": [] },
@@ -12,7 +12,7 @@
     { "id": "lesachek", "he": "לְשַׂחֵק", "en": "to play (a game, sport) / to act", "reg": "neutral",
       "note": "Playing an instrument is a different verb: לנגן.", "ex": [] },
     { "id": "kaduregel", "g": "m", "he": "כַּדּוּרֶגֶל", "en": "football / soccer", "reg": "neutral", "ex": [] },
-    { "id": "matkot", "g": "fp", "he": "מַטְקוֹת", "en": "matkot (beach paddle ball)", "reg": "neutral",
+    { "id": "matkot", "g": "fp", "this": "this is matkot (beach paddle ball)", "he": "מַטְקוֹת", "en": "matkot (beach paddle ball)", "reg": "neutral",
       "note": "The tak-tak-tak soundtrack of every Tel Aviv beach.", "ex": [] },
     { "id": "larutz", "he": "לָרוּץ", "en": "to run", "reg": "neutral", "ex": [] },
     { "id": "likro", "he": "לִקְרוֹא", "en": "to read / to call (someone)", "reg": "neutral", "ex": [] },

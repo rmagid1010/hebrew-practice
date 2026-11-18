@@ -17,6 +17,7 @@ const DEM_PLAIN = { 'זה': 'm', 'זאת': 'f', 'זו': 'f', 'אלה': 'p', 'א�
 
 const WHO = {
   m: ['♂', 'You’re a man'], f: ['♀', 'You’re a woman'],
+  pm: ['♂♂', 'a group: men or mixed'], pf: ['♀♀', 'a group of women'],
   tm: ['→♂', 'talking to a man'], tf: ['→♀', 'talking to a woman'], tp: ['→♂♀', 'talking to a group'],
 };
 /** "f tm" → {speaker:'f', to:'m'} */
@@ -25,6 +26,7 @@ export function personaOf(w) {
   for (const t of (w || '').split(/\s+/)) {
     if (t === 'm' || t === 'f') p.speaker = t;
     if (t === 'tm' || t === 'tf' || t === 'tp') p.to = t[1];
+    if (t === 'pm' || t === 'pf') p.group = t === 'pm' ? 'mp' : 'fp';
   }
   return p;
 }
@@ -38,6 +40,8 @@ export function whoShort(w) {
 }
 export function whoClass(w) {
   const p = personaOf(w);
+  if (/\bpf\b/.test(w || '')) return 'who-f';
+  if (/\bpm\b/.test(w || '')) return 'who-m';
   return p.speaker ? `who-${p.speaker}` : p.to ? `who-t${p.to}` : '';
 }
 
@@ -45,12 +49,30 @@ export function whoClass(w) {
 /* Faces: the concrete version of an item shown in one review          */
 /* ------------------------------------------------------------------ */
 
+// Nouns you don't say "a" with in English.
+const MASS = new Set(['coffee', 'tea', 'water', 'milk', 'bread', 'money', 'sugar', 'rice', 'salt', 'meat', 'chicken', 'fish', 'cheese', 'cottage cheese',
+  'food', 'electricity', 'light', 'rent', 'cash', 'change', 'weather', 'sand', 'snow', 'rain', 'music', 'sports', 'internet', 'hummus', 'ice cream',
+  'garbage', 'laundry', 'olive oil', 'sunscreen', 'tech industry', 'tahini', 'homework', 'patience', 'nerve', 'fever', 'flu', 'nausea', 'medicine',
+  'shakshuka', 'fries', 'salad', 'free time', 'vacation', 'reception', 'heat', 'army reserve duty', 'work', 'delivery', 'wind', 'sun', 'Shabbat',
+  'Saturday', 'Friday', 'WhatsApp', 'breakfast', 'lunch', 'dinner', 'football', 'Friday-night dinner', 'barbecue', 'chaos', 'nonsense', 'warranty',
+  'family', 'body', 'salary', 'ER', 'summer', 'winter', 'spring', 'autumn', 'north', 'south', 'cinema', 'mess']);
+/** "table" → "this is a table"; plural nouns → "these are …". */
+export function thisIs(en, g) {
+  const first = en.split(' / ')[0];
+  if (g === 'mp' || g === 'fp') return `these are ${en}`;
+  const bare = first.replace(/\s*\(.*?\)\s*/g, ' ').replace(/^(a|an|the)\s+/i, '').trim().split(' — ')[0];
+  if (/^(the|a|an)\s/i.test(first) || /^[A-Z]/.test(first) && !MASS.has(bare)) return `this is ${en}`;
+  if (MASS.has(bare) || MASS.has(bare.split(' ')[0]) || /^[\d]/.test(first)) return `this is ${en}`;
+  const word = first.replace(/^\(.*?\)\s*/, '');
+  return `this is ${/^[aeiou]/i.test(word) ? 'an' : 'a'} ${en}`;
+}
+
 /** All versions of an item a card can show. Each: {he, alt, en, w, hint, noun?: g, nounHe}. */
 export function facesOf(item) {
   if (item.g && item.kind === 'vocab') {
-    const base = { he: `${DEM[item.g]} ${item.he}`, alt: (item.alt || []).map((a) => `${stripNiqqud(DEM[item.g])} ${a}`), en: item.en, noun: item.g, nounHe: item.he };
+    const base = { he: `${DEM[item.g]} ${item.he}`, alt: (item.alt || []).map((a) => `${stripNiqqud(DEM[item.g])} ${a}`), en: item.this || thisIs(item.en, item.g), noun: item.g, nounHe: item.he };
     if (!item.fem) return [base];
-    return [{ ...base, w: '' }, { he: `${DEM.f} ${item.fem.he}`, alt: [], en: item.fem.en, noun: 'f', nounHe: item.fem.he, w: '' }];
+    return [{ ...base, w: '' }, { he: `${DEM.f} ${item.fem.he}`, alt: [], en: thisIs(item.fem.en, 'f'), noun: 'f', nounHe: item.fem.he, w: '' }];
   }
   if (item.v?.length) {
     return item.v.map((x) => {
@@ -189,6 +211,7 @@ export function checkAgreement(text, persona = {}) {
       if (PRON[pr] && i + 1 < toks.length) {
         let want = PRON[pr];
         if (want === 'I') want = persona.speaker === 'm' ? 'ms' : persona.speaker === 'f' ? 'fs' : null;
+        if (want === 'p' && persona.group) want = persona.group; // "we" in a version about a group of men / of women
         const j = pr === 'את' ? (toks[i + 1] === 'לא' ? i + 2 : i + 1) : next(i + 1); // accusative את: look only at the very next word
         const w = toks[j];
         const m = w && LEX.forms.get(w);

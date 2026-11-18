@@ -4,7 +4,7 @@ Run from the repo root:  python3 tools/gender/apply.py .   (tools/course/build.p
 """
 import json, os, re, sys
 sys.path.insert(0, os.path.dirname(__file__))
-from lexicon import NOUNS, FEM, EXTRA_NOUNS, ADJ, VERBS, IMP
+from lexicon import THIS, NOUNS, FEM, EXTRA_NOUNS, ADJ, VERBS, IMP
 from variants import SENT, WRITE, WRITE_EN, ELEMENT_ADD
 
 MARKS = re.compile('[֑-ׇֽֿׁׂׅׄ]')
@@ -20,10 +20,12 @@ def write_fields(path, data):
     txt = open(path).read()
     txt = re.sub(r' "g": "\w+",', '', txt)
     txt = re.sub(r' "fem": \{[^{}]*\},', '', txt)
+    txt = re.sub(r' "this": "[^"]*",', '', txt)
     for it in data['items']:
         if 'g' not in it: continue
         extra = f' "g": "{it["g"]}",'
         if 'fem' in it: extra += ' "fem": ' + json.dumps(it['fem'], ensure_ascii=False) + ','
+        if 'this' in it: extra += ' "this": ' + json.dumps(it['this'], ensure_ascii=False) + ','
         pat = re.compile(r'("id": ' + re.escape(json.dumps(it['id'], ensure_ascii=False)) + r',)')
         txt, n = pat.subn(lambda m: m.group(1) + extra, txt, count=1)
         if n != 1: raise SystemExit(f'{path}: could not place gender for {it["id"]}')
@@ -101,6 +103,7 @@ def main(root):
         for it in data['items']:
             if it['id'] in genders:
                 it['g'] = genders[it['id']]
+                if f"{deck}/{it['id']}" in THIS: it['this'] = THIS[f"{deck}/{it['id']}"]
                 fem = FEM.get(f"{deck}/{it['id']}")
                 if fem: it['fem'] = {'he': fem[0], 'en': fem[1]}
                 else: it.pop('fem', None)

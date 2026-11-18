@@ -56,6 +56,20 @@ FEM = {
   'home/baal-habayit': ('בַּעֲלַת הַבַּיִת', 'landlady'),
 }
 
+# English for noun cards where "this is a …" / "these are …" doesn't fit.
+THIS = {
+  'street/fadicha': 'this is an embarrassment', 'street/balagan': 'this is a mess',
+  'cafe/mayim': 'this is water', 'around/ofanayim': 'this is a bicycle', 'home/sherutim': 'this is the toilet / restroom',
+  'time/shniya': 'this is a second', 'time/shaa': 'this is an hour', 'around/yam': "this is the sea (also: 'the beach')",
+  'weather/mezeg-avir': 'this is the weather', 'weather/shemesh': 'this is the sun', 'work/korot-chayim': 'this is a CV / résumé',
+  'work/shiurei-bayit': 'this is homework', 'work/miluim': 'this is army reserve duty', 'work/universita': 'this is a university',
+  'health/guf': 'this is a body', 'freetime/sidra': 'this is a TV series / show', 'work/hightech': 'this is the tech industry',
+  'health/miyun': 'this is the ER / emergency room', 'tech/internet': 'this is the internet', 'freetime/kolnoa': 'this is a cinema',
+  'family/ima': 'this is Mom', 'family/aba': 'this is Dad', 'health/chom': 'this is a fever (also: heat)', 'health/shapaat': 'this is the flu',
+  'work/maskoret': 'this is a salary', 'smalltalk/mishpacha': 'this is a family', 'cafe/chips': 'these are fries / chips',
+  'freetime/matkot': 'this is matkot (beach paddle ball)', 'cafe/cheshbon': 'this is the bill / the check',
+}
+
 # Extra nouns that appear in sentences but have no card of their own (plain spelling, gender).
 EXTRA_NOUNS = '''תל_אביב:f ירושלים:f חיפה:f כוס:f פיצה:f בעיה:f מסעדה:f מקום:m עיר:f ארץ:f שבוע:m שנה:f יום:m לילה:m ערב:m בוקר:m שאלה:f עזרה:f כביש:m טלפון:m מפתחות:mp
 חולצות:fp שולחנות:mp חדרים:mp דירות:fp מיטות:fp כיסאות:mp ספרים:mp סרטים:mp שירים:mp חנויות:fp מסעדה:f מסעדות:fp

@@ -8,7 +8,7 @@
       "note": "Israeli apartments are described in rooms: 'שלושה חדרים' = a living room plus two bedrooms.", "ex": [] },
     { "id": "chadar-sheina", "g": "m", "he": "חֲדַר שֵׁינָה", "en": "bedroom", "reg": "neutral", "ex": [] },
     { "id": "mitbach", "g": "m", "he": "מִטְבָּח", "en": "kitchen", "reg": "neutral", "ex": [] },
-    { "id": "sherutim", "g": "mp", "he": "שֵׁירוּתִים", "en": "toilet / restroom", "reg": "neutral",
+    { "id": "sherutim", "g": "mp", "this": "this is the toilet / restroom", "he": "שֵׁירוּתִים", "en": "toilet / restroom", "reg": "neutral",
       "ex": [["סְלִיחָה, אֵיפֹה הַשֵּׁירוּתִים?", "Excuse me, where's the restroom?"]] },
     { "id": "miklachat", "g": "f", "he": "מִקְלַחַת", "en": "shower", "reg": "neutral", "ex": [] },
     { "id": "mita", "g": "f", "he": "מִיטָּה", "en": "bed", "reg": "neutral", "ex": [] },

@@ -599,3 +599,12 @@ ul.elements .he { font-size: 1.05rem; }
 .scen-cue { font-weight: 500; margin-bottom: 8px; }
 .scen-hint { background: var(--warn-soft); border-radius: 10px; padding: 6px 10px; margin-bottom: 8px; display: flex; flex-wrap: wrap; gap: 6px 10px; }
 @media (max-width: 600px) { .bubble { max-width: 96%; } .bubble-he { font-size: 1.15rem; } }
+
+/* binyan shape slots */
+.slots { display: inline-flex; gap: 3px; align-items: center; direction: rtl; font-family: var(--font-he); vertical-align: middle; }
+.slots .fix { font-size: 1.15em; font-weight: 600; }
+.slot { display: inline-grid; place-items: center; width: 1.45em; height: 1.45em; border-radius: 6px; border: 2px dashed var(--accent);
+  color: var(--accent); font-family: var(--font); font-size: .78em; font-weight: 700; line-height: 1; }
+.shape-spell .slots { font-size: 2rem; gap: 6px; }
+.slot-legend { display: flex; justify-content: center; gap: 18px; font-size: 1.25rem; margin: 2px 0 6px; }
+.slot-legend .slot { font-size: .8em; }

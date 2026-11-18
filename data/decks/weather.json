@@ -1,6 +1,6 @@
 {
   "items": [
-    { "id": "mezeg-avir", "g": "m", "he": "מֶזֶג אֲוִויר", "en": "weather", "reg": "neutral",
+    { "id": "mezeg-avir", "g": "m", "this": "this is the weather", "he": "מֶזֶג אֲוִויר", "en": "weather", "reg": "neutral",
       "ex": [["אֵיךְ מֶזֶג הָאֲוִויר?", "How's the weather?"]] },
     { "id": "cham", "he": "חַם", "en": "hot", "reg": "neutral",
       "ex": [["חַם לִי.", "I'm hot."], ["אֵיזֶה חוֹם!", "What heat!"]] },
@@ -10,7 +10,7 @@
       "note": "Tel Aviv summer in one word: 'ממש לח היום'.", "ex": [] },
     { "id": "chamsin", "g": "m", "he": "חַמְסִין", "en": "heatwave (hot dry desert wind)", "reg": "neutral",
       "note": "Also called שרב.", "ex": [] },
-    { "id": "shemesh", "g": "f", "he": "שֶׁמֶשׁ", "en": "sun", "reg": "neutral", "ex": [] },
+    { "id": "shemesh", "g": "f", "this": "this is the sun", "he": "שֶׁמֶשׁ", "en": "sun", "reg": "neutral", "ex": [] },
     { "id": "geshem", "g": "m", "he": "גֶּשֶׁם", "en": "rain", "reg": "neutral", "ex": [] },
     { "id": "yored-geshem", "he": "יוֹרֵד גֶּשֶׁם", "en": "it's raining", "reg": "neutral",
       "note": "Lit. 'rain is coming down'.", "ex": [] },
