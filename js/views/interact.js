@@ -82,12 +82,33 @@ export function letterTiles(answer, decoyFrom, seed) {
   return { kind: 'tiles', unit: 'letter', tiles, picked: [], title: 'Tap the letters in order — there are a couple of extras' };
 }
 
+// Letters people mix up when spelling: each missing letter gets one look-alike / sound-alike decoy.
+const CONFUSE = { 'ו': 'י', 'י': 'ו', 'א': 'ע', 'ע': 'א', 'ה': 'א', 'ח': 'כ', 'כ': 'ח', 'ך': 'ח', 'ק': 'כ', 'ת': 'ט', 'ט': 'ת', 'ס': 'ש', 'ש': 'ס',
+  'ב': 'ו', 'מ': 'נ', 'ם': 'ן', 'נ': 'מ', 'ן': 'ם', 'פ': 'ב', 'ף': 'פ', 'צ': 'ס', 'ץ': 'צ', 'ל': 'ר', 'ר': 'ד', 'ד': 'ר', 'ג': 'ק', 'ז': 'ס' };
+// How useful a letter is to blank out: vowel letters and sound-alikes are where spelling goes wrong.
+const WORTH = { 'ו': 4, 'י': 4, 'א': 3, 'ע': 3, 'ה': 3, 'ח': 3, 'כ': 3, 'ך': 3, 'ק': 3, 'ת': 3, 'ט': 3, 'ס': 3, 'ש': 3 };
+
 /**
- * Letter boxes: a row of fixed letters and empty boxes (right to left), with an optional bank of tiles.
- * parts: [{fixed:'ל'} | {slot:0}, ...]; n = number of boxes; bank = letters to tap (or null).
+ * Fill the missing letters: the word (no niqqud) with a few letters blanked out, and a bank of
+ * those letters plus look-alike decoys.
  */
-export function boxes(parts, n, bank, opts = {}) {
-  return { kind: 'boxes', parts, n, bank: bank ? bank.map((t, i) => ({ t, i })) : null, vals: Array(n).fill(''), used: Array(n).fill(null), title: opts.title || '', sound: opts.sound || null, soundPick: null };
+export function gaps(answer, seed) {
+  const chars = [...plain(answer)];
+  const idx = chars.map((ch, i) => i).filter((i) => chars[i] !== ' ');
+  const n = idx.length <= 3 ? 1 : idx.length <= 7 ? 2 : 3;
+  const r = rng(seed);
+  const ranked = idx.map((i) => ({ i, w: (WORTH[chars[i]] || 1) + r() * 2.5 })).sort((a, b) => b.w - a.w).slice(0, n).map((x) => x.i).sort((a, b) => a - b);
+  const want = ranked.map((i) => chars[i]);
+  const parts = chars.map((ch, i) => (ch === ' ' ? { space: true } : ranked.includes(i) ? { slot: ranked.indexOf(i) } : { fixed: ch }));
+  const decoys = [];
+  for (const ch of want) {
+    const d = CONFUSE[ch];
+    if (d && !want.includes(d) && !decoys.includes(d)) decoys.push(d);
+  }
+  if (!decoys.length) decoys.push(want.includes('ה') ? 'א' : 'ה');
+  const bank = shuffle([...want, ...decoys], seed).map((t, i) => ({ t, i }));
+  return { kind: 'boxes', parts, n: want.length, want, bank, vals: Array(want.length).fill(''), used: Array(want.length).fill(null),
+    title: `Fill in the missing letter${want.length > 1 ? 's' : ''}` };
 }
 
 /** זה / זאת / אלה buttons + type the noun. */
@@ -117,16 +138,15 @@ export function askHtml(ix) {
         <button type="button" class="btn btn-primary" data-act="ix-check" ${ix.picked.length ? '' : 'disabled'}>Check</button></div></div>`;
   }
   if (ix.kind === 'boxes') {
-    const row = ix.parts.map((p) => (p.fixed !== undefined
+    const row = ix.parts.map((p) => (p.space ? '<span class="box-space"></span>' : p.fixed !== undefined
       ? `<span class="box-fixed">${esc(p.fixed)}</span>`
-      : `<input class="box-in" data-box="${p.slot}" maxlength="2" value="${esc(ix.vals[p.slot])}" lang="he" dir="rtl" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="root letter ${p.slot + 1}"><span class="box-num">${p.slot + 1}</span>`)).map((h) => `<span class="box-cell">${h}</span>`).join('');
+      : `<input class="box-in" data-box="${p.slot}" maxlength="2" value="${esc(ix.vals[p.slot])}" lang="he" dir="rtl" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="missing letter">`)).join('');
     const bankUsed = new Set(ix.used.filter((u) => u !== null));
     const bank = ix.bank ? `<div class="tile-bank" dir="rtl" lang="he">${ix.bank.map((x, bi) => `<button type="button" class="tile ${bankUsed.has(bi) ? 'used' : ''}" data-bank="${bi}" ${bankUsed.has(bi) ? 'disabled' : ''}>${esc(x.t)}</button>`).join('')}</div>` : '';
-    const sound = ix.sound ? `<div class="ix-sub">…and how does it sound?</div><div class="seg sound-pick">${ix.sound.options.map((s, i) => `<button type="button" class="seg-btn ${ix.soundPick === i ? 'on' : ''}" data-sound="${i}">${esc(s)}</button>`).join('')}</div>` : '';
-    return `<div class="ix ix-boxes">${ix.title ? `<div class="ix-title">${esc(ix.title)}</div>` : ''}
-      <div class="box-row" dir="rtl">${row}</div>${bank}${sound}
+    return `<div class="ix ix-boxes"><div class="ix-title">${esc(ix.title)}</div>
+      <div class="box-row" dir="rtl">${row}</div>${bank}
       <div class="input-actions"><button type="button" class="btn btn-ghost btn-sm" data-act="idk">I don't know</button>
-        <span class="kbd-hint">${ix.bank ? 'Tap a letter or type in the boxes' : 'One letter per box'} · <kbd>Enter</kbd> check</span>
+        <span class="kbd-hint">Tap a letter or type it · <kbd>Enter</kbd> check</span>
         <button type="button" class="btn btn-primary" data-act="ix-check">Check</button></div></div>`;
   }
   if (ix.kind === 'dem') {
@@ -149,27 +169,23 @@ export function choiceResultHtml(ix, pickedIdx) {
     ${ix.latin ? `<span>${esc(o.he)}</span>` : `<span class="he" lang="he" dir="rtl">${disp(o.he)}</span>`}${o.sub ? `<small>${esc(o.sub)}</small>` : ''}${o.ok ? ' ✓' : i === pickedIdx ? ' ✗' : ''}</div>`).join('')}</div></div>`;
 }
 
-/** After answering a letter-box card: your letters, marked, with the right ones underneath where you missed. */
-export function boxesResultHtml(ix, want) {
-  const W = want.map((x) => unfinal(x));
-  const row = (fillFn, cls) => `<div class="box-row ${cls}" dir="rtl">${ix.parts.map((p, i) => {
-    if (p.fixed !== undefined) return `<span class="box-cell"><span class="box-fixed">${esc(p.fixed)}</span></span>`;
-    const [ch, state] = fillFn(p.slot, i === ix.parts.length - 1);
-    return `<span class="box-cell"><span class="box-root ${state}">${esc(ch || '·')}</span><span class="box-num">${p.slot + 1}</span></span>`;
-  }).join('')}</div>`;
-  const fin = (ch, last) => (last && ch ? (ch in REG ? REG[ch] : ch) : ch);
-  const allOk = ix.vals.every((v, k) => unfinal(v) === W[k]);
-  const mine = row((k, last) => [fin(ix.vals[k], last), unfinal(ix.vals[k]) === W[k] ? 'ok' : 'bad'], 'mine');
-  const fix = allOk ? '' : `<div class="small muted box-caption">should be</div>${row((k, last) => [fin(W[k], last), 'ok'], 'want')}`;
-  const sound = ix.sound ? `<div class="sound-result">${ix.sound.options.map((s, i) => `<span class="seg-btn ${i === ix.sound.answer ? 'right' : i === ix.soundPick ? 'wrong' : ''}">${esc(s)}</span>`).join('')}</div>` : '';
-  return `<div class="ix ix-boxes done">${mine}${fix}${sound}</div>`;
+/** After answering a fill-the-letters card: the word with your letters marked right or wrong. */
+export function boxesResultHtml(ix) {
+  const cell = (p) => {
+    if (p.space) return '<span class="box-space"></span>';
+    if (p.fixed !== undefined) return `<span class="box-fixed">${esc(p.fixed)}</span>`;
+    const got = ix.vals[p.slot];
+    const ok = unfinal(got) === unfinal(ix.want[p.slot]);
+    return ok ? `<span class="box-root ok">${esc(ix.want[p.slot])}</span>`
+      : `<span class="box-root bad"><s>${esc(got || '·')}</s><b>${esc(ix.want[p.slot])}</b></span>`;
+  };
+  return `<div class="ix ix-boxes done"><div class="box-row" dir="rtl">${ix.parts.map(cell).join('')}</div></div>`;
 }
-const REG = { 'כ': 'ך', 'מ': 'ם', 'נ': 'ן', 'פ': 'ף', 'צ': 'ץ' };
 
 /** The answer string a widget currently holds. */
 export function answerOf(ix, root) {
   if (ix.kind === 'tiles') return ix.picked.map((ti) => ix.tiles[ti].t).join(ix.unit === 'word' ? ' ' : '');
-  if (ix.kind === 'boxes') return ix.vals.join('');
+  if (ix.kind === 'boxes') return ix.parts.map((p) => (p.space ? ' ' : p.fixed !== undefined ? p.fixed : ix.vals[p.slot] || '')).join('');
   if (ix.kind === 'dem') {
     const typed = (root?.querySelector('.answer-input')?.value || '').trim();
     if (!ix.pick) return typed;
@@ -202,7 +218,6 @@ export function onClick(ix, t) {
       ix.used[k] = bi;
       return 'render';
     }
-    if (t.dataset.sound !== undefined) { ix.soundPick = Number(t.dataset.sound); return 'render'; }
   }
   if (ix.kind === 'dem' && t.dataset.dem) { ix.pick = t.dataset.dem; return 'dem'; }
   return null;

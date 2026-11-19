@@ -216,6 +216,8 @@ EXTRA = {
     'תַּרְגִּישׁ טוֹב! נְדַבֵּר מָחָר.'),
   T('x1804', 'Say you want to start the day early, tidy up the house and order medicine.', ['hifil/hitchil-inf', 'piel/sider-inf', 'home/bayit', 'hifil/hizmin-inf', 'health/trufa'],
     'אֲנִי רוֹצֶה לְהַתְחִיל אֶת הַיּוֹם מוּקְדָּם, לְסַדֵּר אֶת הַבַּיִת וּלְהַזְמִין תְּרוּפָה.'),
+  T('x1805', "A friend calls. Say you're tidying the apartment and looking for work.", ['piel/sider-present-ms', 'around/dira', 'piel/chipes-present-ms', 'smalltalk/avoda'],
+    'אֲנִי מְסַדֵּר אֶת הַדִּירָה וּמְחַפֵּשׂ עֲבוֹדָה.'),
  ],
  'a2-19': [
   T('x1901', 'Compare summer and winter in Tel Aviv: hot and sunny, versus cold and rainy.', ['weather/kayitz', 'weather/cham', 'weather/shemesh', 'connectors/aval', 'weather/choref', 'weather/kar', 'weather/geshem'],

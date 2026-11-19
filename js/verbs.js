@@ -1,18 +1,17 @@
 // Verb course: stages, unlock rules and test formats for conjugation decks.
 import { isAssumed } from './known.js';
 import * as store from './store.js';
-import { SHAPES, SHAPE_SLOT, fillShape, withFinal, skeleton } from './verbcheck.js';
+import { skeleton } from './verbcheck.js';
 import { stripNiqqud } from './hebrew.js';
 
 export const STAGES = [
   { n: 1, key: 'meaning', label: 'Meaning', short: 'Inf.' },
-  { n: 2, key: 'binyan', label: 'Root & binyan', short: 'Binyan' },
-  { n: 3, key: 'present', label: 'Present', short: 'Pres.' },
-  { n: 4, key: 'past', label: 'Past', short: 'Past' },
-  { n: 5, key: 'future', label: 'Future', short: 'Fut.' },
-  { n: 6, key: 'imp', label: 'Commands', short: 'Cmd.' },
+  { n: 2, key: 'present', label: 'Present', short: 'Pres.' },
+  { n: 3, key: 'past', label: 'Past', short: 'Past' },
+  { n: 4, key: 'future', label: 'Future', short: 'Fut.' },
+  { n: 5, key: 'imp', label: 'Commands', short: 'Cmd.' },
 ];
-export const TENSE_STAGE = { inf: 1, present: 3, past: 4, future: 5, imp: 6 };
+export const TENSE_STAGE = { inf: 1, present: 2, past: 3, future: 4, imp: 5 };
 
 export const PRONOUN = {
   '1s': 'אֲנִי', '2ms': 'אַתָּה', '2fs': 'אַתְּ', '3ms': 'הוּא', '3fs': 'הִיא', '1p': 'אֲנַחְנוּ', '2mp': 'אַתֶּם', '3p': 'הֵם',
@@ -44,24 +43,14 @@ function rest(f) { return Array.isArray(f) ? f.slice(1) : []; }
 export function expandVerbDeck(meta, data) {
   const binyan = data.binyanName;
   for (const v of data.verbs) { v.binyanName = binyan; v.deck = meta.id; }
-  const regular = data.verbs.filter((v) => !v.weak);
-  const model = regular[0] || data.verbs[0];
   const items = [];
   const base = { kind: 'conj', deck: meta.id };
 
   // Stage 1 — meaning: produce the infinitive.
   for (const v of data.verbs) items.push({ ...base, id: `${v.id}-inf`, sub: 'form', stage: 1, verb: v, tense: 'inf', person: null, he: v.inf, alt: [], en: `to ${v.en}` });
 
-  // Stage 2 — root & binyan, plus the binyan's infinitive shape.
-  items.push(sigItem(base, 'inf', model, binyan));
-  for (const v of data.verbs) {
-    items.push({ ...base, id: `${v.id}-root`, sub: 'root', stage: 2, verb: v, he: v.root, alt: [], en: `root of to ${v.en}` });
-    items.push({ ...base, id: `${v.id}-binyan`, sub: 'binyan', stage: 2, verb: v, he: binyan, alt: [], en: `binyan of to ${v.en}` });
-  }
-
-  // Stages 3–6 — present, past, future, commands (each opens with its shape card).
+  // Stages 2–5 — present, past, future, commands.
   for (const tense of ['present', 'past', 'future', 'imp']) {
-    if (tense !== 'imp') items.push(sigItem(base, tense, model, binyan));
     for (const v of data.verbs) {
       const forms = v.forms[tense];
       if (!forms) continue;
@@ -75,16 +64,6 @@ export function expandVerbDeck(meta, data) {
     }
   }
   return items;
-}
-
-function sigItem(base, tense, model, binyan) {
-  const slot = SHAPE_SLOT[tense];
-  const form = tense === 'inf' ? model.inf : first(model.forms[tense][slot]);
-  return {
-    ...base, id: `shape-${tense}`, sub: 'shape', stage: TENSE_STAGE[tense] === 1 ? 2 : TENSE_STAGE[tense],
-    verb: model, tense, person: slot, slot, he: form, alt: [], en: `${binyan} ${tense === 'inf' ? 'infinitive' : tense} shape`,
-    shape: SHAPES[binyan]?.[tense], binyan,
-  };
 }
 
 /* ---------------- progress & unlocking ---------------- */
@@ -109,10 +88,9 @@ const cardIdOf = (item) => `${item.deck}/${item.id}:w`;
 
 /** Per verb: which stage it's on, and per-stage progress. */
 export function verbProgress(deckItems, verb) {
-  const mine = deckItems.filter((i) => i.verb === verb && i.sub !== 'shape');
-  const shapes = deckItems.filter((i) => i.sub === 'shape');
+  const mine = deckItems.filter((i) => i.verb === verb);
   const stages = STAGES.map((s) => {
-    const items = [...shapes.filter((i) => i.stage === s.n), ...mine.filter((i) => i.stage === s.n)];
+    const items = mine.filter((i) => i.stage === s.n);
     const done = items.filter((i) => proven(cardIdOf(i))).length;
     const started = items.filter((i) => store.get().cards[cardIdOf(i)]).length;
     return { ...s, items, total: items.length, done, started };
@@ -140,7 +118,6 @@ function computeCache(getDeckItems) {
 /** Is this conjugation item still locked? */
 export function verbItemLocked(item, getDeckItems) {
   if (!cache) cache = computeCache(getDeckItems);
-  if (item.sub === 'shape') return item.stage > (cache.deckMax.get(item.deck) || 1);
   return item.stage > (cache.verbStage.get(item.verb) || 1);
 }
 
@@ -158,16 +135,14 @@ function hash(s) {
  */
 export function pickFormat(card, opts = {}) {
   const item = card.item;
-  if (item.sub !== 'form') return item.sub;
   const st = store.get().cards[card.id];
   if (!st && !opts.practice) return 'direct';
-  const v = item.verb;
-  const rootKnown = learnt(`${item.deck}/${v.id}-root:w`) && learnt(`${item.deck}/${v.id}-binyan:w`);
-  const formats = ['direct', 'cloze'];
-  if (!v.weak && rootKnown && SHAPES[v.binyanName]) formats.push('build');
-  if (transformSource(item)) formats.push('transform');
-  if (item.tense === 'inf') return rootKnown && !v.weak ? (hash(card.id + (st?.reps || 0)) % 2 ? 'build' : 'direct') : 'direct';
   const seed = opts.practice ? Math.floor(Math.random() * 1e9) : hash(card.id + ':' + (st?.reps || 0));
+  // While a new card is still in its choose → spell steps, it's always produced, not read.
+  const early = !opts.practice && store.settings().scaffold !== false && (st?.reps || 0) < 3;
+  if (item.tense === 'inf') return !early && seed % 2 ? 'meaning' : 'direct';
+  const formats = early ? ['direct', 'cloze'] : ['direct', 'cloze', 'meaning'];
+  if (transformSource(item)) formats.push('transform');
   return formats[seed % formats.length];
 }
 
@@ -205,22 +180,7 @@ export function transformFrame(item) {
   return { from, to, what };
 }
 
-/** Shape of this card's tense in its binyan, filled with the verb's root (for teaching). */
-export function shapeFor(item) {
-  const v = item.verb;
-  const tense = item.tense === 'imp' ? null : item.tense;
-  const shape = tense && SHAPES[v.binyanName]?.[tense];
-  if (!shape) return null;
-  return { ...shape, filled: withFinal(fillShape(shape.spell, v.root, v.binyanName)) };
-}
-
 /* ---------------- answer checking helpers ---------------- */
-
-export function checkRoot(input, root) {
-  const typed = skeleton(input).replace(/[שׂשׁ]/g, 'ש');
-  const want = skeleton(root);
-  return typed === want;
-}
 
 /** If the typed answer is a different real form of the same verb, say which one. */
 export function diagnose(input, item) {

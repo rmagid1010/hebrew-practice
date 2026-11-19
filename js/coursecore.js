@@ -9,7 +9,7 @@ const PERSONS = {
 
 /**
  * Expand a verb reference like "paal/katav@present" into item keys of the verb deck.
- * Stages: @inf, @binyan (root, binyan + the infinitive shape), @present, @past, @future, @imp.
+ * Stages: @inf, @present, @past, @future, @imp.
  */
 export function expandVerbRef(ref, verbDeckData) {
   const [deckVerb, stage] = ref.split('@');
@@ -19,11 +19,10 @@ export function expandVerbRef(ref, verbDeckData) {
   const k = (id) => `${deck}/${id}`;
   switch (stage) {
     case 'inf': return { keys: [k(`${verbId}-inf`)] };
-    case 'binyan': return { keys: [k('shape-inf'), k(`${verbId}-root`), k(`${verbId}-binyan`)] };
     case 'present': case 'past': case 'future': case 'imp': {
       const forms = v.forms?.[stage];
       if (!forms) return { error: `${deckVerb} has no ${stage} forms` };
-      const keys = stage === 'imp' ? [] : [k(`shape-${stage}`)];
+      const keys = [];
       for (const p of PERSONS[stage]) if (forms[p]) keys.push(k(`${verbId}-${stage}-${p}`));
       return { keys };
     }

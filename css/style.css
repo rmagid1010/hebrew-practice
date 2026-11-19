@@ -704,3 +704,11 @@ button.choice-btn:active { transform: scale(.98); }
 .sound-result .seg-btn { cursor: default; opacity: .55; }
 .sound-result .seg-btn.right { opacity: 1; border-color: var(--good); background: var(--good-soft); font-weight: 600; }
 .sound-result .seg-btn.wrong { opacity: 1; border-color: var(--bad); background: var(--bad-soft); text-decoration: line-through; }
+.box-space { width: 18px; }
+.box-row .box-fixed, .box-row .box-in, .box-row .box-root { width: 44px; height: 56px; font-size: 1.8rem; }
+.box-row { gap: 4px; }
+.box-fixed { color: var(--text); background: transparent; }
+.box-root.bad { flex-direction: column; text-decoration: none; line-height: 1; gap: 2px; font-size: 1.3rem !important; }
+.box-root.bad s { color: var(--bad); font-size: .8em; }
+.box-root.bad b { color: var(--good); }
+@media (max-width: 560px) { .box-row .box-fixed, .box-row .box-in, .box-row .box-root { width: 34px; height: 46px; font-size: 1.45rem; } }

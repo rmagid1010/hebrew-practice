@@ -212,7 +212,7 @@ export function renderReview(app, deckId, opts = {}) {
     } else if (ix?.kind === 'choice') {
       body = IX.choiceResultHtml(ix, ixPicked) + verdictHtml('', c) + revealHtml(c) + ratingsHtml(c);
     } else if (ix?.kind === 'boxes') {
-      body = IX.boxesResultHtml(ix, VC.boxTarget(c)) + verdictHtml('', c) + revealHtml(c) + ratingsHtml(c);
+      body = IX.boxesResultHtml(ix) + verdictHtml('', c) + revealHtml(c) + ratingsHtml(c);
     } else {
       body = (write
         ? `<input class="answer-input ${verdict?.verdict || ''}" value="${esc(inputValue)}" lang="he" dir="rtl" disabled aria-label="Your answer">${verdictHtml(inputValue, c)}`
@@ -250,13 +250,15 @@ export function renderReview(app, deckId, opts = {}) {
   function check(input) {
     const c = cards().get(current);
     typedAnswer = input;
-    if (ix?.kind === 'choice' && c.type === 'r') {
+    if (ix?.kind === 'choice' && ix.latin) {
+      // Meaning cards: pick the English.
       const ok = ixPicked !== null && ix.options[ixPicked]?.ok;
-      verdict = { verdict: ok ? 'correct' : 'wrong', target: face.he, note: ok ? '' : `It means: ${face.en}` };
+      const right = ix.options.find((o) => o.ok)?.he || '';
+      verdict = { verdict: ok ? 'correct' : 'wrong', target: face?.he || c.item.he, note: ok ? '' : `It means: ${right}` };
     } else if (c.type === 'p') {
       verdict = WC.check(c, input, face);
     } else if (c.item.kind === 'conj') {
-      verdict = VC.check(c, format, input, ix);
+      verdict = VC.check(c, format, input);
     } else {
       const mode = c.type === 'c' && stripNiqqud(c.item.he).length <= 2 ? 'strict' : 'vocab';
       verdict = c.type === 'c'

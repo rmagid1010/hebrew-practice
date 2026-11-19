@@ -39,7 +39,9 @@ export function vocabInteraction(c, face, reps) {
       const other = neighbours(item, face, seed, 3).filter((f) => f.noun).slice(0, 1);
       return IX.choice(face.he, [...wrongDem, ...other], seed, { title: 'Pick the right one — זֶה, זֹאת or אֵלֶּה?' });
     }
-    return reps <= 2 ? IX.dem() : null;
+    if (reps === 1) return IX.dem();
+    if (reps === 2) return IX.gaps(face.he, seed);
+    return null;
   }
 
   const versions = otherVersions(item, face);
@@ -55,5 +57,7 @@ export function vocabInteraction(c, face, reps) {
     const trap = versions.map((f) => ({ he: f.he }));
     return IX.choice(face.he, [...trap, ...neighbours(item, face, seed, 4)], seed, { title: trap.length ? 'Pick the right one — watch who is speaking' : 'Pick the right one' });
   }
+  // Short words and phrases: a spelling step before typing it all.
+  if (reps <= 2 && words(face.he) <= 3) return IX.gaps(face.he, seed);
   return null;
 }

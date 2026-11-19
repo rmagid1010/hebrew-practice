@@ -156,9 +156,9 @@ lesson('a1-04', 'A1', 'I want, I like, I have', 'רוֹצֶה, אוֹהֵב, י�
   ])
 
 lesson('a1-05', 'A1', 'Where are you from?', 'מֵאֵיפֹה אַתָּה?',
-  "<p>Small talk survival kit: where you live, that you're learning Hebrew, and how to ask people to slow down or repeat.</p><p>Verb course: meet <b>roots and binyanim</b>. Almost every verb is three root letters poured into a pattern — <b>לָגוּר</b> and <b>לִקְנוֹת</b> are both in <i>pa'al</i>. Read <a href=\"#/verbs/learn/binyanim\">Roots &amp; binyanim</a> (10 minutes).</p>",
+  "<p>Small talk survival kit: where you live, that you're learning Hebrew, and how to ask people to slow down or repeat.</p><p>Verb course: <b>לִכְתּוֹב</b> (to write) — the verb you'll conjugate most in this course. Curious why so many verbs look alike? <a href=\"#/verbs/learn/binyanim\">Verb families</a> (optional, 10 minutes).</p>",
   S('smalltalk', 'meeifo', 'eifo-gar', 'gar-tlv', 'lomed-ivrit', 'lo-mevin', 'lo-yodea', 'eich-omrim', 'ma-ze-omer', 'leat-bevakasha', 'lachzor') + B('od-paam'),
-  verbs=['paal/gar@binyan', 'paal/kana@binyan', 'paal/katav@inf'],
+  verbs=['paal/katav@inf'],
   phrases=['phrases/p02', 'phrases/p03', 'phrases/p28'],
   write=[
     wt('w09', "Tell someone where you live and that you're learning Hebrew.",
@@ -185,9 +185,9 @@ lesson('a1-06', 'A1', 'At the café', 'בְּבֵית קָפֶה',
   ])
 
 lesson('a1-07', 'A1', 'Getting around', 'בָּעִיר',
-  "<p>Two verbs of movement: <b>לָלֶכֶת</b> (to go on foot / to go) and <b>לִנְסוֹעַ</b> (to go by bus, car or train). Directions are easy: <b>יָמִינָה, שְׂמֹאלָה, יָשָׁר</b>.</p><p>Verb course: <b>לִכְתּוֹב</b> — your model regular pa'al verb. Find its root and binyan.</p>",
+  "<p>Two verbs of movement: <b>לָלֶכֶת</b> (to go on foot / to go) and <b>לִנְסוֹעַ</b> (to go by bus, car or train). Directions are easy: <b>יָמִינָה, שְׂמֹאלָה, יָשָׁר</b>.</p><p>Verb course: <b>לִגְמוֹר</b> (to finish).</p>",
   S('around', 'otobus', 'tachana', 'kav', 'yamina', 'smola', 'yashar', 'karov', 'rachok', 'leyad', 'po', 'sham', 'eich-magiim', 'yam', 'shuk') + S('verbs', 'lalechet', 'lavo', 'linsoa'),
-  verbs=['paal/katav@binyan', 'paal/gamar@inf'],
+  verbs=['paal/gamar@inf'],
   phrases=['phrases/p10', 'phrases/p11', 'phrases/p12', 'challenge/c06'],
   write=[
     wt('w13', 'Ask how to get to the beach and whether it\'s far from here.',
@@ -199,9 +199,9 @@ lesson('a1-07', 'A1', 'Getting around', 'בָּעִיר',
   ])
 
 lesson('a1-08', 'A1', 'Numbers & prices', 'כַּמָּה זֶה עוֹלֶה?',
-  "<p>For counting, prices and the time, people use the <b>feminine</b> numbers: אַחַת, שְׁתַּיִים, שָׁלוֹשׁ… And money stays singular: <b>עֶשְׂרִים שֶׁקֶל</b>. Details in <a href=\"#/grammar/numbers\">Numbers &amp; time</a>.</p><p>Verb course: present tense of <b>לִכְתּוֹב</b> — see the pa'al present shape <b>1o·2e3</b> (כּוֹתֵב).</p>",
+  "<p>For counting, prices and the time, people use the <b>feminine</b> numbers: אַחַת, שְׁתַּיִים, שָׁלוֹשׁ… And money stays singular: <b>עֶשְׂרִים שֶׁקֶל</b>. Details in <a href=\"#/grammar/numbers\">Numbers &amp; time</a>.</p><p>Verb course: present tense of <b>לִכְתּוֹב</b>: <b>כּוֹתֵב, כּוֹתֶבֶת, כּוֹתְבִים, כּוֹתְבוֹת</b> — one form for a man, a woman, men, women.</p>",
   S('numbers', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '20', '100') + S('shopping', 'shekel') + S('around', 'kama-ole', 'yakar', 'zol'),
-  verbs=['paal/katav@present', 'paal/gamar@binyan'],
+  verbs=['paal/katav@present'],
   phrases=['phrases/p13', 'phrases/p14',
            cp('cp13', 'מָה אַתָּה כּוֹתֵב? — אֲנִי כּוֹתֵב מֵייל.', "What are you writing? — I'm writing an email.", ['paal/katav-present-ms', 'connectors/ma'], alt=['מה את כותבת אני כותבת מייל', 'מה אתה כותב אני כותב מייל'], hint='(to a man)')],
   write=[
@@ -228,7 +228,7 @@ lesson('a1-09', 'A1', 'Time & plans', 'מָתַי נִיפָּגֵשׁ?',
   ])
 
 lesson('a1-10', 'A1', 'Small talk', 'מָה אַתָּה עוֹשֶׂה בַּחַיִּים?',
-  "<p>The questions every new friend asks — and the fillers (<b>תַּכְלֶס, סְתָם, מַמָּשׁ</b>) that make your answers sound natural.</p><p>Verb course: the <b>past tense</b>. It's built with endings, so you don't need the pronoun: <b>כָּתַבְתִּי</b> = I wrote. Pa'al past shape: <b>1a·2a3</b>.</p>",
+  "<p>The questions every new friend asks — and the fillers (<b>תַּכְלֶס, סְתָם, מַמָּשׁ</b>) that make your answers sound natural.</p><p>Verb course: the <b>past tense</b>. It's built with endings, so you don't need the pronoun: <b>כָּתַבְתִּי</b> = I wrote. Same endings on every verb: <b>־תִּי</b> (I), <b>־תָּ / ־תְּ</b> (you), <b>־נוּ</b> (we).</p>",
   S('smalltalk', 'ma-ata-ose', 'avoda', 'tagid', 'tishma', 'nitraeh', 'nedaber', 'chevre') + S('street', 'tachles', 'stam', 'mamash', 'legamrei', 'lo-meshane') + S('verbs', 'laavod'),
   verbs=['paal/katav@past', 'paal/gamar@past'],
   phrases=['phrases/p24', 'phrases/p25', 'phrases/p32', 'phrases/p33', 'phrases/p35',
@@ -258,7 +258,7 @@ lesson('a1-11', 'A1', 'What did you do?', 'מָה עָשִׂיתָ?',
   ])
 
 lesson('a1-12', 'A1', 'Street talk 2 · A1 review', 'אֵין מַצָּב!',
-  "<p>Reactions for good news and bad, plus a review of the whole A1 level: the challenge sentences here combine words from all the earlier lessons.</p><p>Verb course: your first <b>future</b> — pa'al future shape <b>yi·12o3</b> (יִכְתּוֹב).</p>",
+  "<p>Reactions for good news and bad, plus a review of the whole A1 level: the challenge sentences here combine words from all the earlier lessons.</p><p>Verb course: your first <b>future</b> — <b>אֶכְתּוֹב</b> (I'll write), <b>יִכְתּוֹב</b> (he'll write).</p>",
   S('street', 'ein-matzav', 'haval-al-hazman', 'al-hapanim', 'basa', 'ma-pitom', 'achi', 'yofi', 'balagan', 'chaval', 'kapara'),
   verbs=['paal/katav@future'],
   phrases=['phrases/p18', 'phrases/p19', 'phrases/p20', 'phrases/p21', 'challenge/c01', 'challenge/c03', 'challenge/c05',
@@ -274,9 +274,9 @@ lesson('a1-12', 'A1', 'Street talk 2 · A1 review', 'אֵין מַצָּב!',
 
 # ===================== A2 =====================
 lesson('a2-13', 'A2', 'Home', 'הַבַּיִת',
-  "<p>Adjectives come <b>after</b> the noun and agree with it: <b>דִּירָה קְטַנָּה</b>, <b>חֶדֶר גָּדוֹל</b>. See <a href=\"#/grammar/adjectives\">Adjectives</a>.</p><p>Verb course: future of לִגְמוֹר and לִקְנוֹת, and the root and binyan of the pi'el verbs לְדַבֵּר and לְשַׁלֵּם.</p>",
+  "<p>Adjectives come <b>after</b> the noun and agree with it: <b>דִּירָה קְטַנָּה</b>, <b>חֶדֶר גָּדוֹל</b>. See <a href=\"#/grammar/adjectives\">Adjectives</a>.</p><p>Verb course: future of לִגְמוֹר and לִקְנוֹת.</p>",
   S('home', 'bayit', 'cheder', 'salon', 'mitbach', 'mita', 'shulchan', 'mirpeset', 'schar-dira', 'shchenim', 'mazgan', 'koma') + S('around', 'dira') + S('adjectives', 'gadol', 'katan', 'roesh') + S('time', 'balayla'),
-  verbs=['paal/gamar@future', 'paal/kana@future', 'piel/diber@binyan', 'piel/shilem@binyan'],
+  verbs=['paal/gamar@future', 'paal/kana@future'],
   phrases=['challenge/c16', 'challenge/c17',
            cp('cp17', 'הֵם גָּרִים בְּדִירָה קְטַנָּה עִם מִרְפֶּסֶת.', 'They live in a small apartment with a balcony.', ['paal/gar-present-mp', 'around/dira', 'adjectives/katan', 'home/mirpeset'])],
   write=[
@@ -289,7 +289,7 @@ lesson('a2-13', 'A2', 'Home', 'הַבַּיִת',
   ])
 
 lesson('a2-14', 'A2', 'Shopping', 'קְנִיּוֹת',
-  "<p>Paying, sizes, sales and returns. Remember: <b>אֶפְשָׁר</b> + infinitive = \"can I…?\": <b>אֶפְשָׁר לִמְדּוֹד?</b> (can I try it on?).</p><p>Verb course: pi'el <b>present</b> — shape <b>me·1a·2e3</b>: מְדַבֵּר, מְשַׁלֵּם. And your first <b>commands</b> with לִכְתּוֹב.</p>",
+  "<p>Paying, sizes, sales and returns. Remember: <b>אֶפְשָׁר</b> + infinitive = \"can I…?\": <b>אֶפְשָׁר לִמְדּוֹד?</b> (can I try it on?).</p><p>Verb course: <b>present</b> of לְדַבֵּר and לְשַׁלֵּם — they start with מ: מְדַבֵּר, מְשַׁלֵּם. And your first <b>commands</b> with לִכְתּוֹב.</p>",
   S('shopping', 'kesef', 'mechir', 'ashrai', 'mezuman', 'hanacha', 'mivtza', 'super', 'chanut', 'lehachzir', 'mida', 'limdod') + S('clothes', 'chultza') + S('connectors', 'rak', 'o') + S('verbs', 'leshalem', 'liknot'),
   verbs=['piel/diber@present', 'piel/shilem@present', 'paal/katav@imp'],
   phrases=['challenge/c14', 'challenge/c15', 'phrases2/q21',
@@ -304,7 +304,7 @@ lesson('a2-14', 'A2', 'Shopping', 'קְנִיּוֹת',
   ])
 
 lesson('a2-15', 'A2', 'Food & cooking', 'אוֹכֶל',
-  "<p>Groceries and cooking. Lots of verbs this week — and four new infinitives in the verb course from two new binyanim: <b>לְהַזְמִין</b> and <b>לְהַתְחִיל</b> (hif'il), <b>לְסַדֵּר</b> and <b>לְחַפֵּשׂ</b> (pi'el).</p>",
+  "<p>Groceries and cooking. Lots of verbs this week — four new ones in the verb course: <b>לְהַזְמִין</b> (to order / invite), <b>לְהַתְחִיל</b> (to start), <b>לְסַדֵּר</b> (to tidy / arrange) and <b>לְחַפֵּשׂ</b> (to look for).</p>",
   S('food', 'lechem', 'chalav', 'beitzim', 'gvina', 'yerakot', 'of', 'peirot', 'levashel', 'aruchat-erev', 'save') + S('cafe', 'raev', 'lehazmin') + S('shopping', 'mishloach'),
   verbs=['piel/sider@inf', 'piel/chipes@inf', 'hifil/hizmin@inf', 'hifil/hitchil@inf'],
   phrases=['challenge/c20', 'phrases2/q27'],
@@ -318,7 +318,7 @@ lesson('a2-15', 'A2', 'Food & cooking', 'אוֹכֶל',
   ])
 
 lesson('a2-16', 'A2', 'Family', 'מִשְׁפָּחָה',
-  "<p>Family words and Friday dinner. \"My\" is usually <b>שֶׁלִּי</b> after the noun (<b>הַהוֹרִים שֶׁלִּי</b>), except a few words like <b>אִשְׁתִּי, בַּעְלִי</b>.</p><p>Verb course: pi'el <b>past</b> — shape <b>1i·2e3</b>, spelled with an extra י: <b>דִּיבֵּר, שִׁילֵּם</b>. Plus two nif'al infinitives.</p>",
+  "<p>Family words and Friday dinner. \"My\" is usually <b>שֶׁלִּי</b> after the noun (<b>הַהוֹרִים שֶׁלִּי</b>), except a few words like <b>אִשְׁתִּי, בַּעְלִי</b>.</p><p>Verb course: <b>past</b> of לְדַבֵּר and לְשַׁלֵּם, spelled with an extra י: <b>דִּיבֵּר, שִׁילֵּם</b>. Plus two nif'al infinitives.</p>",
   S('family', 'ima', 'aba', 'horim', 'ach', 'achot', 'yeladim', 'chaverim', 'lehakir', 'nasui', 'ben-zug', 'aruchat-shishi') + S('time', 'shishi') + S('connectors', 'acharei') + S('feelings', 'nechmad'),
   verbs=['piel/diber@past', 'piel/shilem@past', 'nifal/nichnas@inf', 'nifal/nifgash@inf'],
   phrases=['challenge/c09', 'challenge/c29',
@@ -348,9 +348,9 @@ lesson('a2-17', 'A2', 'Feelings', 'רְגָשׁוֹת',
   ])
 
 lesson('a2-18', 'A2', 'Health', 'בְּרִיאוּת',
-  "<p><b>כּוֹאֵב לִי</b> (it hurts me) agrees with the body part: <b>כּוֹאֵב לִי הָרֹאשׁ</b>, <b>כּוֹאֶבֶת לִי הַבֶּטֶן</b>. Sick days need an <b>אִישּׁוּר מַחֲלָה</b> from the קופת חולים.</p><p>Verb course: root and binyan of the hif'il verbs — shape <b>leha·12i3</b>.</p>",
+  "<p><b>כּוֹאֵב לִי</b> (it hurts me) agrees with the body part: <b>כּוֹאֵב לִי הָרֹאשׁ</b>, <b>כּוֹאֶבֶת לִי הַבֶּטֶן</b>. Sick days need an <b>אִישּׁוּר מַחֲלָה</b> from the קופת חולים.</p><p>Verb course: <b>present</b> of לְסַדֵּר and לְחַפֵּשׂ: מְסַדֵּר, מְחַפֵּשׂ.</p>",
   S('health', 'rosh', 'beten', 'koev-li', 'chole', 'chom', 'rofe', 'kupat-cholim', 'trufa', 'ishur-machala', 'hitztanani', 'targish-tov') + S('verbs', 'lishon'),
-  verbs=['hifil/hizmin@binyan', 'hifil/hitchil@binyan', 'piel/sider@binyan'],
+  verbs=['piel/sider@present', 'piel/chipes@present'],
   phrases=['challenge/c11', 'challenge/c26', 'challenge/c27'],
   write=[
     wt('w35', "Message your boss: you're sick, you have a fever, and you're not coming in today.",
@@ -362,9 +362,9 @@ lesson('a2-18', 'A2', 'Health', 'בְּרִיאוּת',
   ])
 
 lesson('a2-19', 'A2', 'Weather & weekends', 'מֶזֶג אֲוִויר',
-  "<p>Real conditions use <b>אִם</b> + future: <b>אִם יִהְיֶה חַם, נֵלֵךְ לַיָּם</b>. Weather talk is a national hobby (especially <b>לַח</b> — humid).</p><p>Verb course: hif'il <b>present</b> — shape <b>ma·12i3</b>: מַזְמִין, מַתְחִיל. And meet nif'al: root and binyan of <b>לְהִיכָּנֵס</b>.</p>",
+  "<p>Real conditions use <b>אִם</b> + future: <b>אִם יִהְיֶה חַם, נֵלֵךְ לַיָּם</b>. Weather talk is a national hobby (especially <b>לַח</b> — humid).</p><p>Verb course: <b>present</b> of לְהַזְמִין and לְהַתְחִיל — they start with מַ: מַזְמִין, מַתְחִיל.</p>",
   S('weather', 'cham', 'kar', 'lach', 'geshem', 'yored-geshem', 'shemesh', 'kayitz', 'choref', 'mitriya', 'tiyul', 'maalot') + S('connectors', 'im') + S('time', 'shabat') + S('home', 'lehadlik'),
-  verbs=['hifil/hizmin@present', 'hifil/hitchil@present', 'nifal/nichnas@binyan', 'nifal/nishar@inf'],
+  verbs=['hifil/hizmin@present', 'hifil/hitchil@present', 'nifal/nishar@inf'],
   phrases=['challenge/c21', 'challenge/c32', 'challenge/c13',
            cp('cp21', 'הֵם מַזְמִינִים מִשְׁלוֹחַ כָּל עֶרֶב.', 'They order delivery every evening.', ['hifil/hizmin-present-mp', 'shopping/mishloach'])],
   write=[
@@ -377,9 +377,9 @@ lesson('a2-19', 'A2', 'Weather & weekends', 'מֶזֶג אֲוִויר',
   ])
 
 lesson('a2-20', 'A2', 'Work & study', 'עֲבוֹדָה',
-  "<p>Office life and the language of being busy: <b>עָמוּס, לָחוּץ, דֶּדְלַיין</b>. Join reasons with <b>בִּגְלַל</b> (because of + noun) and <b>כְּשֶׁ־</b> (when).</p><p>Verb course: hif'il <b>past</b> (<b>הִזְמַנְתִּי, הִתְחַלְנוּ</b>), pi'el commands, and hitpa'el's root and binyan.</p>",
+  "<p>Office life and the language of being busy: <b>עָמוּס, לָחוּץ, דֶּדְלַיין</b>. Join reasons with <b>בִּגְלַל</b> (because of + noun) and <b>כְּשֶׁ־</b> (when).</p><p>Verb course: hif'il <b>past</b> (<b>הִזְמַנְתִּי, הִתְחַלְנוּ</b>), and commands with לְדַבֵּר.</p>",
   S('work', 'misrad', 'pgisha', 'menahel', 'maskoret', 'amus', 'lachutz', 'deadline', 'hightech', 'ulpan', 'mivchan', 'chufsha') + S('connectors', 'kshe', 'biglal') + S('around', 'pkak') + S('time', 'meuchar', 'meacher'),
-  verbs=['hifil/hizmin@past', 'hifil/hitchil@past', 'hitpael/hitkasher@binyan', 'piel/diber@imp'],
+  verbs=['hifil/hizmin@past', 'hifil/hitchil@past', 'piel/diber@imp'],
   phrases=['challenge/c18', 'challenge/c19', 'challenge/c36',
            cp('cp22', 'הִזְמַנְתִּי לָנוּ שׁוּלְחָן לִשְׁמוֹנֶה.', 'I booked us a table for eight.', ['hifil/hizmin-past-1s', 'home/shulchan', 'numbers/8'])],
   write=[
@@ -392,7 +392,7 @@ lesson('a2-20', 'A2', 'Work & study', 'עֲבוֹדָה',
   ])
 
 lesson('a2-21', 'A2', 'Phone & messages', 'וַואטְסְאַפּ',
-  "<p>Israel runs on WhatsApp. Commands in messages use the future: <b>תִּשְׁלַח לִי מִיקוּם</b>, <b>תְּעַדְכֵּן אוֹתִי</b>, <b>תִּתְקַשֵּׁר אֵלַיי</b>.</p><p>Verb course: hitpa'el <b>present</b> — shape <b>mit·1a·2e3</b> (מִתְקַשֵּׁר) — and nif'al present (נִכְנָס).</p>",
+  "<p>Israel runs on WhatsApp. Commands in messages use the future: <b>תִּשְׁלַח לִי מִיקוּם</b>, <b>תְּעַדְכֵּן אוֹתִי</b>, <b>תִּתְקַשֵּׁר אֵלַיי</b>.</p><p>Verb course: <b>present</b> of לְהִתְקַשֵּׁר (מִתְקַשֵּׁר) and לְהִיכָּנֵס (נִכְנָס).</p>",
   S('tech', 'hodaa', 'whatsapp', 'solela', 'mitan', 'tmuna', 'letzalem', 'lishloach-mikum', 'teadken', 'kvutza', 'haklata') + S('verbs', 'lehitkasher') + S('time', 'daka', 'ma-hatochnit', 'beintayim'),
   verbs=['hitpael/hitkasher@present', 'nifal/nichnas@present'],
   phrases=['challenge/c12', 'challenge/c24', 'challenge/c42', 'challenge/c47', 'phrases2/q12',
@@ -424,7 +424,7 @@ lesson('a2-22', 'A2', 'Free time', 'פְּנַאי',
 lesson('a2-23', 'A2', 'Longer sentences', 'מִשְׁפָּטִים אֲרוּכִּים',
   "<p>Time to join everything together: <b>כְּשֶׁ־</b> (when), <b>אַחֲרֵי</b> (after), <b>לִפְנֵי</b> (before), <b>בִּגְלַל</b> (because of), and comparisons with <b>יוֹתֵר</b> and <b>הֲכִי</b>. See <a href=\"#/grammar/questions\">Questions &amp; connectors</a>.</p><p>Verb course: nif'al <b>past</b> (נִכְנַסְנוּ) and hitpa'el <b>future</b> (אֶתְקַשֵּׁר).</p>",
   S('connectors', 'adayin', 'bichlal', 'afilu', 'lifnei', 'beetzem', 'bekitzur', 'eize', 'harbe', 'ktzat', 'yoter', 'hachi') + S('adjectives', 'ragil', 'mahir') + S('verbs', 'lehavin', 'lehagid', 'ledaber') + S('health', 'chadar-kosher') + S('family', 'panui') + S('home', 'laavor-dira'),
-  verbs=['nifal/nichnas@past', 'hitpael/hitkasher@future', 'nifal/nishar@binyan'],
+  verbs=['nifal/nichnas@past', 'hitpael/hitkasher@future'],
   phrases=['phrases2/q06', 'phrases2/q10', 'phrases2/q30', 'challenge/c43', 'challenge/c33', 'challenge/c45', 'challenge/c31',
            cp('cp25', 'נִכְנַסְנוּ לְבָר קָטָן לְיַד הַיָּם.', 'We went into a small bar near the beach.', ['nifal/nichnas-past-1p', 'freetime/bar', 'adjectives/katan', 'around/leyad'])],
   write=[
@@ -437,9 +437,9 @@ lesson('a2-23', 'A2', 'Longer sentences', 'מִשְׁפָּטִים אֲרוּכ
   ])
 
 lesson('a2-24', 'A2', 'Life in Tel Aviv · A2 review', 'הַחַיִּים בְּתֵל אָבִיב',
-  "<p>The final lesson pulls everything together: the very Israeli words (<b>פְרַאיֶיר, בִּיט, וַעַד בַּיִת, מַמָּ״ד</b>) and long challenge sentences that use vocabulary from across the whole course.</p><p>Verb course: nif'al <b>future</b>, nif'al present of לְהִישָּׁאֵר, hif'il commands, and hitpa'el's root and binyan of לְהִתְרַגֵּשׁ.</p>",
+  "<p>The final lesson pulls everything together: the very Israeli words (<b>פְרַאיֶיר, בִּיט, וַעַד בַּיִת, מַמָּ״ד</b>) and long challenge sentences that use vocabulary from across the whole course.</p><p>Verb course: nif'al <b>future</b>, nif'al present of לְהִישָּׁאֵר, and commands with לְהַזְמִין.</p>",
   S('shopping', 'freier', 'bit', 'tashlumim') + S('feelings', 'chutzpa') + S('street', 'titchadesh') + S('home', 'vaad-bayit', 'mamad', 'lenakot') + S('family', 'lehitchaten', 'chatuna') + S('smalltalk', 'shutaf') + S('numbers', '1000'),
-  verbs=['nifal/nichnas@future', 'nifal/nishar@present', 'hifil/hizmin@imp', 'hitpael/hitragesh@binyan'],
+  verbs=['nifal/nichnas@future', 'nifal/nishar@present', 'hifil/hizmin@imp'],
   phrases=['challenge/c49', 'challenge/c40', 'challenge/c50', 'challenge/c46', 'challenge/c44',
            cp('cp26', 'אֲנִי אֶכָּנֵס רַק לְדַקָּה.', "I'll just pop in for a minute.", ['nifal/nichnas-future-1s', 'connectors/rak', 'time/daka'], alt=['אני איכנס רק לדקה', 'אכנס רק לדקה'])],
   write=[

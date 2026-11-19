@@ -6829,6 +6829,70 @@
    ]
   },
   {
+   "id": "x1805",
+   "en": "A friend calls. Say you're tidying the apartment and looking for work.",
+   "he": "אֲנִי מְסַדֵּר אֶת הַדִּירָה וּמְחַפֵּשׂ עֲבוֹדָה.",
+   "models": [
+    "אֲנִי מְסַדֵּר אֶת הַדִּירָה וּמְחַפֵּשׂ עֲבוֹדָה."
+   ],
+   "elements": [
+    {
+     "label": "לְסַדֵּר — present",
+     "any": [
+      "מסדר",
+      "מסדרת",
+      "מסדרים",
+      "מסדרות"
+     ]
+    },
+    {
+     "label": "apartment",
+     "any": [
+      "דירה"
+     ]
+    },
+    {
+     "label": "לְחַפֵּשׂ — present",
+     "any": [
+      "מחפש",
+      "מחפשת",
+      "מחפשים",
+      "מחפשות"
+     ]
+    },
+    {
+     "label": "work",
+     "any": [
+      "עבודה"
+     ]
+    }
+   ],
+   "req": [
+    "piel/sider-present-ms",
+    "around/dira",
+    "piel/chipes-present-ms",
+    "smalltalk/avoda"
+   ],
+   "covers": [
+    "piel/sider-present-ms",
+    "around/dira",
+    "piel/chipes-present-ms",
+    "smalltalk/avoda"
+   ],
+   "needsPrior": true,
+   "v": [
+    {
+     "w": "m"
+    },
+    {
+     "w": "f",
+     "models": [
+      "אֲנִי מְסַדֶּרֶת אֶת הַדִּירָה וּמְחַפֶּשֶׂת עֲבוֹדָה."
+     ]
+    }
+   ]
+  },
+  {
    "id": "x1901",
    "en": "Compare summer and winter in Tel Aviv: hot and sunny, versus cold and rainy.",
    "he": "בַּקַּיִץ חַם וְיֵשׁ שֶׁמֶשׁ, אֲבָל בַּחוֹרֶף קַר וְיֵשׁ גֶּשֶׁם.",

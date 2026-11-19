@@ -162,7 +162,7 @@
    "level": "A1",
    "title": "Where are you from?",
    "he": "מֵאֵיפֹה אַתָּה?",
-   "intro": "<p>Small talk survival kit: where you live, that you're learning Hebrew, and how to ask people to slow down or repeat.</p><p>Verb course: meet <b>roots and binyanim</b>. Almost every verb is three root letters poured into a pattern — <b>לָגוּר</b> and <b>לִקְנוֹת</b> are both in <i>pa'al</i>. Read <a href=\"#/verbs/learn/binyanim\">Roots &amp; binyanim</a> (10 minutes).</p>",
+   "intro": "<p>Small talk survival kit: where you live, that you're learning Hebrew, and how to ask people to slow down or repeat.</p><p>Verb course: <b>לִכְתּוֹב</b> (to write) — the verb you'll conjugate most in this course. Curious why so many verbs look alike? <a href=\"#/verbs/learn/binyanim\">Verb families</a> (optional, 10 minutes).</p>",
    "items": [
     "smalltalk/meeifo",
     "smalltalk/eifo-gar",
@@ -177,8 +177,6 @@
     "basics/od-paam"
    ],
    "verbs": [
-    "paal/gar@binyan",
-    "paal/kana@binyan",
     "paal/katav@inf"
    ],
    "phrases": [
@@ -242,7 +240,7 @@
    "level": "A1",
    "title": "Getting around",
    "he": "בָּעִיר",
-   "intro": "<p>Two verbs of movement: <b>לָלֶכֶת</b> (to go on foot / to go) and <b>לִנְסוֹעַ</b> (to go by bus, car or train). Directions are easy: <b>יָמִינָה, שְׂמֹאלָה, יָשָׁר</b>.</p><p>Verb course: <b>לִכְתּוֹב</b> — your model regular pa'al verb. Find its root and binyan.</p>",
+   "intro": "<p>Two verbs of movement: <b>לָלֶכֶת</b> (to go on foot / to go) and <b>לִנְסוֹעַ</b> (to go by bus, car or train). Directions are easy: <b>יָמִינָה, שְׂמֹאלָה, יָשָׁר</b>.</p><p>Verb course: <b>לִגְמוֹר</b> (to finish).</p>",
    "items": [
     "around/otobus",
     "around/tachana",
@@ -263,7 +261,6 @@
     "verbs/linsoa"
    ],
    "verbs": [
-    "paal/katav@binyan",
     "paal/gamar@inf"
    ],
    "phrases": [
@@ -288,7 +285,7 @@
    "level": "A1",
    "title": "Numbers & prices",
    "he": "כַּמָּה זֶה עוֹלֶה?",
-   "intro": "<p>For counting, prices and the time, people use the <b>feminine</b> numbers: אַחַת, שְׁתַּיִים, שָׁלוֹשׁ… And money stays singular: <b>עֶשְׂרִים שֶׁקֶל</b>. Details in <a href=\"#/grammar/numbers\">Numbers &amp; time</a>.</p><p>Verb course: present tense of <b>לִכְתּוֹב</b> — see the pa'al present shape <b>1o·2e3</b> (כּוֹתֵב).</p>",
+   "intro": "<p>For counting, prices and the time, people use the <b>feminine</b> numbers: אַחַת, שְׁתַּיִים, שָׁלוֹשׁ… And money stays singular: <b>עֶשְׂרִים שֶׁקֶל</b>. Details in <a href=\"#/grammar/numbers\">Numbers &amp; time</a>.</p><p>Verb course: present tense of <b>לִכְתּוֹב</b>: <b>כּוֹתֵב, כּוֹתֶבֶת, כּוֹתְבִים, כּוֹתְבוֹת</b> — one form for a man, a woman, men, women.</p>",
    "items": [
     "numbers/1",
     "numbers/2",
@@ -308,8 +305,7 @@
     "around/zol"
    ],
    "verbs": [
-    "paal/katav@present",
-    "paal/gamar@binyan"
+    "paal/katav@present"
    ],
    "phrases": [
     "phrases/p13",
@@ -376,7 +372,7 @@
    "level": "A1",
    "title": "Small talk",
    "he": "מָה אַתָּה עוֹשֶׂה בַּחַיִּים?",
-   "intro": "<p>The questions every new friend asks — and the fillers (<b>תַּכְלֶס, סְתָם, מַמָּשׁ</b>) that make your answers sound natural.</p><p>Verb course: the <b>past tense</b>. It's built with endings, so you don't need the pronoun: <b>כָּתַבְתִּי</b> = I wrote. Pa'al past shape: <b>1a·2a3</b>.</p>",
+   "intro": "<p>The questions every new friend asks — and the fillers (<b>תַּכְלֶס, סְתָם, מַמָּשׁ</b>) that make your answers sound natural.</p><p>Verb course: the <b>past tense</b>. It's built with endings, so you don't need the pronoun: <b>כָּתַבְתִּי</b> = I wrote. Same endings on every verb: <b>־תִּי</b> (I), <b>־תָּ / ־תְּ</b> (you), <b>־נוּ</b> (we).</p>",
    "items": [
     "smalltalk/ma-ata-ose",
     "smalltalk/avoda",
@@ -462,7 +458,7 @@
    "level": "A1",
    "title": "Street talk 2 · A1 review",
    "he": "אֵין מַצָּב!",
-   "intro": "<p>Reactions for good news and bad, plus a review of the whole A1 level: the challenge sentences here combine words from all the earlier lessons.</p><p>Verb course: your first <b>future</b> — pa'al future shape <b>yi·12o3</b> (יִכְתּוֹב).</p>",
+   "intro": "<p>Reactions for good news and bad, plus a review of the whole A1 level: the challenge sentences here combine words from all the earlier lessons.</p><p>Verb course: your first <b>future</b> — <b>אֶכְתּוֹב</b> (I'll write), <b>יִכְתּוֹב</b> (he'll write).</p>",
    "items": [
     "street/ein-matzav",
     "street/haval-al-hazman",
@@ -503,7 +499,7 @@
    "level": "A2",
    "title": "Home",
    "he": "הַבַּיִת",
-   "intro": "<p>Adjectives come <b>after</b> the noun and agree with it: <b>דִּירָה קְטַנָּה</b>, <b>חֶדֶר גָּדוֹל</b>. See <a href=\"#/grammar/adjectives\">Adjectives</a>.</p><p>Verb course: future of לִגְמוֹר and לִקְנוֹת, and the root and binyan of the pi'el verbs לְדַבֵּר and לְשַׁלֵּם.</p>",
+   "intro": "<p>Adjectives come <b>after</b> the noun and agree with it: <b>דִּירָה קְטַנָּה</b>, <b>חֶדֶר גָּדוֹל</b>. See <a href=\"#/grammar/adjectives\">Adjectives</a>.</p><p>Verb course: future of לִגְמוֹר and לִקְנוֹת.</p>",
    "items": [
     "home/bayit",
     "home/cheder",
@@ -524,9 +520,7 @@
    ],
    "verbs": [
     "paal/gamar@future",
-    "paal/kana@future",
-    "piel/diber@binyan",
-    "piel/shilem@binyan"
+    "paal/kana@future"
    ],
    "phrases": [
     "challenge/c16",
@@ -552,7 +546,7 @@
    "level": "A2",
    "title": "Shopping",
    "he": "קְנִיּוֹת",
-   "intro": "<p>Paying, sizes, sales and returns. Remember: <b>אֶפְשָׁר</b> + infinitive = \"can I…?\": <b>אֶפְשָׁר לִמְדּוֹד?</b> (can I try it on?).</p><p>Verb course: pi'el <b>present</b> — shape <b>me·1a·2e3</b>: מְדַבֵּר, מְשַׁלֵּם. And your first <b>commands</b> with לִכְתּוֹב.</p>",
+   "intro": "<p>Paying, sizes, sales and returns. Remember: <b>אֶפְשָׁר</b> + infinitive = \"can I…?\": <b>אֶפְשָׁר לִמְדּוֹד?</b> (can I try it on?).</p><p>Verb course: <b>present</b> of לְדַבֵּר and לְשַׁלֵּם — they start with מ: מְדַבֵּר, מְשַׁלֵּם. And your first <b>commands</b> with לִכְתּוֹב.</p>",
    "items": [
     "shopping/kesef",
     "shopping/mechir",
@@ -599,7 +593,7 @@
    "level": "A2",
    "title": "Food & cooking",
    "he": "אוֹכֶל",
-   "intro": "<p>Groceries and cooking. Lots of verbs this week — and four new infinitives in the verb course from two new binyanim: <b>לְהַזְמִין</b> and <b>לְהַתְחִיל</b> (hif'il), <b>לְסַדֵּר</b> and <b>לְחַפֵּשׂ</b> (pi'el).</p>",
+   "intro": "<p>Groceries and cooking. Lots of verbs this week — four new ones in the verb course: <b>לְהַזְמִין</b> (to order / invite), <b>לְהַתְחִיל</b> (to start), <b>לְסַדֵּר</b> (to tidy / arrange) and <b>לְחַפֵּשׂ</b> (to look for).</p>",
    "items": [
     "food/lechem",
     "food/chalav",
@@ -640,7 +634,7 @@
    "level": "A2",
    "title": "Family",
    "he": "מִשְׁפָּחָה",
-   "intro": "<p>Family words and Friday dinner. \"My\" is usually <b>שֶׁלִּי</b> after the noun (<b>הַהוֹרִים שֶׁלִּי</b>), except a few words like <b>אִשְׁתִּי, בַּעְלִי</b>.</p><p>Verb course: pi'el <b>past</b> — shape <b>1i·2e3</b>, spelled with an extra י: <b>דִּיבֵּר, שִׁילֵּם</b>. Plus two nif'al infinitives.</p>",
+   "intro": "<p>Family words and Friday dinner. \"My\" is usually <b>שֶׁלִּי</b> after the noun (<b>הַהוֹרִים שֶׁלִּי</b>), except a few words like <b>אִשְׁתִּי, בַּעְלִי</b>.</p><p>Verb course: <b>past</b> of לְדַבֵּר and לְשַׁלֵּם, spelled with an extra י: <b>דִּיבֵּר, שִׁילֵּם</b>. Plus two nif'al infinitives.</p>",
    "items": [
     "family/ima",
     "family/aba",
@@ -729,7 +723,7 @@
    "level": "A2",
    "title": "Health",
    "he": "בְּרִיאוּת",
-   "intro": "<p><b>כּוֹאֵב לִי</b> (it hurts me) agrees with the body part: <b>כּוֹאֵב לִי הָרֹאשׁ</b>, <b>כּוֹאֶבֶת לִי הַבֶּטֶן</b>. Sick days need an <b>אִישּׁוּר מַחֲלָה</b> from the קופת חולים.</p><p>Verb course: root and binyan of the hif'il verbs — shape <b>leha·12i3</b>.</p>",
+   "intro": "<p><b>כּוֹאֵב לִי</b> (it hurts me) agrees with the body part: <b>כּוֹאֵב לִי הָרֹאשׁ</b>, <b>כּוֹאֶבֶת לִי הַבֶּטֶן</b>. Sick days need an <b>אִישּׁוּר מַחֲלָה</b> from the קופת חולים.</p><p>Verb course: <b>present</b> of לְסַדֵּר and לְחַפֵּשׂ: מְסַדֵּר, מְחַפֵּשׂ.</p>",
    "items": [
     "health/rosh",
     "health/beten",
@@ -745,9 +739,8 @@
     "verbs/lishon"
    ],
    "verbs": [
-    "hifil/hizmin@binyan",
-    "hifil/hitchil@binyan",
-    "piel/sider@binyan"
+    "piel/sider@present",
+    "piel/chipes@present"
    ],
    "phrases": [
     "challenge/c11",
@@ -761,7 +754,8 @@
     "course-write/x1801",
     "course-write/x1802",
     "course-write/x1803",
-    "course-write/x1804"
+    "course-write/x1804",
+    "course-write/x1805"
    ],
    "links": []
   },
@@ -770,7 +764,7 @@
    "level": "A2",
    "title": "Weather & weekends",
    "he": "מֶזֶג אֲוִויר",
-   "intro": "<p>Real conditions use <b>אִם</b> + future: <b>אִם יִהְיֶה חַם, נֵלֵךְ לַיָּם</b>. Weather talk is a national hobby (especially <b>לַח</b> — humid).</p><p>Verb course: hif'il <b>present</b> — shape <b>ma·12i3</b>: מַזְמִין, מַתְחִיל. And meet nif'al: root and binyan of <b>לְהִיכָּנֵס</b>.</p>",
+   "intro": "<p>Real conditions use <b>אִם</b> + future: <b>אִם יִהְיֶה חַם, נֵלֵךְ לַיָּם</b>. Weather talk is a national hobby (especially <b>לַח</b> — humid).</p><p>Verb course: <b>present</b> of לְהַזְמִין and לְהַתְחִיל — they start with מַ: מַזְמִין, מַתְחִיל.</p>",
    "items": [
     "weather/cham",
     "weather/kar",
@@ -790,7 +784,6 @@
    "verbs": [
     "hifil/hizmin@present",
     "hifil/hitchil@present",
-    "nifal/nichnas@binyan",
     "nifal/nishar@inf"
    ],
    "phrases": [
@@ -815,7 +808,7 @@
    "level": "A2",
    "title": "Work & study",
    "he": "עֲבוֹדָה",
-   "intro": "<p>Office life and the language of being busy: <b>עָמוּס, לָחוּץ, דֶּדְלַיין</b>. Join reasons with <b>בִּגְלַל</b> (because of + noun) and <b>כְּשֶׁ־</b> (when).</p><p>Verb course: hif'il <b>past</b> (<b>הִזְמַנְתִּי, הִתְחַלְנוּ</b>), pi'el commands, and hitpa'el's root and binyan.</p>",
+   "intro": "<p>Office life and the language of being busy: <b>עָמוּס, לָחוּץ, דֶּדְלַיין</b>. Join reasons with <b>בִּגְלַל</b> (because of + noun) and <b>כְּשֶׁ־</b> (when).</p><p>Verb course: hif'il <b>past</b> (<b>הִזְמַנְתִּי, הִתְחַלְנוּ</b>), and commands with לְדַבֵּר.</p>",
    "items": [
     "work/misrad",
     "work/pgisha",
@@ -837,7 +830,6 @@
    "verbs": [
     "hifil/hizmin@past",
     "hifil/hitchil@past",
-    "hitpael/hitkasher@binyan",
     "piel/diber@imp"
    ],
    "phrases": [
@@ -863,7 +855,7 @@
    "level": "A2",
    "title": "Phone & messages",
    "he": "וַואטְסְאַפּ",
-   "intro": "<p>Israel runs on WhatsApp. Commands in messages use the future: <b>תִּשְׁלַח לִי מִיקוּם</b>, <b>תְּעַדְכֵּן אוֹתִי</b>, <b>תִּתְקַשֵּׁר אֵלַיי</b>.</p><p>Verb course: hitpa'el <b>present</b> — shape <b>mit·1a·2e3</b> (מִתְקַשֵּׁר) — and nif'al present (נִכְנָס).</p>",
+   "intro": "<p>Israel runs on WhatsApp. Commands in messages use the future: <b>תִּשְׁלַח לִי מִיקוּם</b>, <b>תְּעַדְכֵּן אוֹתִי</b>, <b>תִּתְקַשֵּׁר אֵלַיי</b>.</p><p>Verb course: <b>present</b> of לְהִתְקַשֵּׁר (מִתְקַשֵּׁר) and לְהִיכָּנֵס (נִכְנָס).</p>",
    "items": [
     "tech/hodaa",
     "tech/whatsapp",
@@ -979,8 +971,7 @@
    ],
    "verbs": [
     "nifal/nichnas@past",
-    "hitpael/hitkasher@future",
-    "nifal/nishar@binyan"
+    "hitpael/hitkasher@future"
    ],
    "phrases": [
     "phrases2/q06",
@@ -1009,7 +1000,7 @@
    "level": "A2",
    "title": "Life in Tel Aviv · A2 review",
    "he": "הַחַיִּים בְּתֵל אָבִיב",
-   "intro": "<p>The final lesson pulls everything together: the very Israeli words (<b>פְרַאיֶיר, בִּיט, וַעַד בַּיִת, מַמָּ״ד</b>) and long challenge sentences that use vocabulary from across the whole course.</p><p>Verb course: nif'al <b>future</b>, nif'al present of לְהִישָּׁאֵר, hif'il commands, and hitpa'el's root and binyan of לְהִתְרַגֵּשׁ.</p>",
+   "intro": "<p>The final lesson pulls everything together: the very Israeli words (<b>פְרַאיֶיר, בִּיט, וַעַד בַּיִת, מַמָּ״ד</b>) and long challenge sentences that use vocabulary from across the whole course.</p><p>Verb course: nif'al <b>future</b>, nif'al present of לְהִישָּׁאֵר, and commands with לְהַזְמִין.</p>",
    "items": [
     "shopping/freier",
     "shopping/bit",
@@ -1027,8 +1018,7 @@
    "verbs": [
     "nifal/nichnas@future",
     "nifal/nishar@present",
-    "hifil/hizmin@imp",
-    "hitpael/hitragesh@binyan"
+    "hifil/hizmin@imp"
    ],
    "phrases": [
     "challenge/c49",
