@@ -21,6 +21,7 @@ export function renderSettings(app) {
         <section class="card">
           <h2>Daily study</h2>
           <label class="switch"><span>New cards per day<div class="field-hint">10 is a comfortable pace. Each new card adds future reviews.</div></span><input type="number" min="0" max="100" data-set="newPerDay" value="${s.newPerDay}"></label>
+          <label class="switch"><span>Step-by-step new cards<div class="field-hint">A new card starts as a multiple choice, then you build it from tiles (or pick זֶה / זֹאת / אֵלֶּה), and only then type it from memory. Off = type every card from the start.</div></span><input type="checkbox" data-set="scaffold" ${s.scaffold !== false ? 'checked' : ''}></label>
           <label class="switch"><span>Maximum reviews per day</span><input type="number" min="10" max="2000" data-set="maxReviews" value="${s.maxReviews}"></label>
           <label class="switch"><span>Verb stages unlock<div class="field-hint">Strict waits until earlier forms survive a review on a later day — slower, but they stick.</div></span>
             <select data-set="verbUnlock"><option value="strict" ${s.verbUnlock !== 'fast' ? 'selected' : ''}>Strict (recommended)</option><option value="fast" ${s.verbUnlock === 'fast' ? 'selected' : ''}>As soon as learnt</option></select></label>

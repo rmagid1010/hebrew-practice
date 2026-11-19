@@ -80,6 +80,12 @@ export async function renderScenarios(app) {
   return () => { app.removeEventListener('click', onClick); app.removeEventListener('change', onChange); };
 }
 
+function shuffleWords(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+  return a;
+}
+
 export async function renderScenario(app, id) {
   await loadScenarios();
   const x = scenarioStatuses().find((y) => y.s.id === id);
@@ -101,6 +107,8 @@ export async function renderScenario(app, id) {
   let current = null;      // the current 'you' turn index
   let result = null;       // last check result
   let hint = false;
+  let tiles = null;        // word tiles for the current reply (help mode), or null
+  let assisted = false;    // used tiles on this reply → no first-try point
   let showEn = !!store.settings().scenarioEnglish;
   const shownEn = new Set();
 
@@ -116,7 +124,7 @@ export async function renderScenario(app, id) {
       if (t.t === 'npc') lastSpoken = fill(t.he, g);
       idx++;
     }
-    if (idx < s.turns.length) { current = idx; idx++; phase = 'ask'; tries = 0; hint = false; result = null; }
+    if (idx < s.turns.length) { current = idx; idx++; phase = 'ask'; tries = 0; hint = false; tiles = null; assisted = false; result = null; }
     else finish();
     draw();
     if (lastSpoken && store.settings().autoplay) tts.speak(lastSpoken);
@@ -137,7 +145,7 @@ export async function renderScenario(app, id) {
     const gender = checkAgreement(text, personaFor(s, current, g)).map((e) => e.msg);
     const ok = text.trim() && results.every((r) => r.ok) && !gender.length;
     tries++;
-    if (ok && tries === 1) score++;
+    if (ok && tries === 1 && !assisted) score++;
     result = { text, results, gender, ok, gaveUp: !text.trim() };
     log.push({ kind: 'you', turn: current, ...result });
     phase = 'answered';
@@ -181,9 +189,12 @@ export async function renderScenario(app, id) {
         <span class="who-mini who-t${to.g}">→ ${esc(to.name)} ${to.g === 'f' ? '♀' : '♂'}</span> ${esc(t.cue)}</div>
       ${hint ? `<div class="scen-hint small">Include: ${t.elements.map((el) => `<span><b>${esc(el.label)}</b> ${he(el.any[0])}</span>`).join(' · ')}</div>` : ''}
       <form data-form="say" autocomplete="off">
+        ${tiles ? `<div class="small muted scen-tiles-title">Tap words to add them — not all of them belong (watch the gender). You can still edit the text.</div>
+          <div class="tile-bank scen-tiles" dir="rtl" lang="he">${tiles.map((w, i) => `<button type="button" class="tile" data-wtile="${i}">${esc(heb(w))}</button>`).join('')}</div>` : ''}
         <textarea class="answer-input write-input" name="say" lang="he" dir="rtl" rows="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="${g === 'f' ? 'מָה אַתְּ אוֹמֶרֶת?' : 'מָה אַתָּה אוֹמֵר?'}" aria-label="Your reply in Hebrew"></textarea>
         <div class="input-actions">
           ${hint ? '' : '<button type="button" class="btn btn-ghost btn-sm" data-act="hint">Hint</button>'}
+          ${tiles ? '' : '<button type="button" class="btn btn-ghost btn-sm" data-act="tiles" title="Build the reply from word tiles (no first-try point)">🧩 Word tiles</button>'}
           <button type="button" class="btn btn-ghost btn-sm" data-act="giveup">I don't know</button>
           <span class="kbd-hint"><kbd>Enter</kbd> to say it</span>
           <button class="btn btn-primary" type="submit">Say it</button>
@@ -241,6 +252,15 @@ export async function renderScenario(app, id) {
   }
 
   function onClick(e) {
+    const wt = e.target.closest('[data-wtile]');
+    if (wt) {
+      const ta = app.querySelector('textarea');
+      const w = stripNiqqud(tiles[Number(wt.dataset.wtile)]);
+      ta.value = ta.value.trim() ? `${ta.value.trimEnd()} ${w}` : w;
+      wt.disabled = true; wt.classList.add('used');
+      ta.focus();
+      return;
+    }
     const en = e.target.closest('[data-en]');
     if (en) { shownEn.add(Number(en.dataset.en)); draw(); return; }
     const gb = e.target.closest('[data-g]');
@@ -249,7 +269,23 @@ export async function renderScenario(app, id) {
     if (!b) return;
     const act = b.dataset.act;
     if (act === 'start') advance();
-    else if (act === 'hint') { hint = true; draw(); }
+    else if (act === 'hint') { const d = app.querySelector('textarea')?.value || ''; hint = true; draw(); app.querySelector('textarea').value = d; }
+    else if (act === 'tiles') {
+      const d = app.querySelector('textarea')?.value || '';
+      const t = s.turns[current];
+      const mine = fill(t.model, g).split(/\s+/).filter(Boolean);
+      const keys = new Set(mine.map((w) => stripNiqqud(w)));
+      const other = fill(t.model, g === 'm' ? 'f' : 'm').split(/\s+/).filter((w) => w && !keys.has(stripNiqqud(w)));
+      other.forEach((w) => keys.add(stripNiqqud(w)));
+      // A few words from your other replies in this scenario, so it isn't just "use every tile".
+      const pool = shuffleWords(s.turns.filter((u, i) => u.t === 'you' && i !== current).flatMap((u) => fill(u.model, g).split(/\s+/)));
+      const extra = [];
+      for (const w of pool) { if (extra.length >= Math.max(2, 4 - other.length)) break; if (w && !keys.has(stripNiqqud(w))) { keys.add(stripNiqqud(w)); extra.push(w); } }
+      tiles = shuffleWords([...mine, ...other, ...extra]);
+      assisted = true;
+      draw();
+      app.querySelector('textarea').value = d;
+    }
     else if (act === 'giveup') { tries++; result = { text: '', results: [], gender: [], ok: false, gaveUp: true }; log.push({ kind: 'you', turn: current, ...result }); phase = 'answered'; draw(); }
     else if (act === 'retry') { phase = 'ask'; draw(); }
     else if (act === 'next') advance();

@@ -1,7 +1,8 @@
 // Rendering and checking for verb (conjugation) cards in the review screen.
 import { checkAnswer, stripNiqqud } from '../hebrew.js';
-import { answersFor, itemKey } from '../decks.js';
-import { BINYANIM, matchBinyan } from '../verbcheck.js';
+import { answersFor, itemKey, getDeck } from '../decks.js';
+import { BINYANIM, SHAPES, matchBinyan, rootLetters, skeleton, fillShape, withFinal } from '../verbcheck.js';
+import * as IX from './interact.js';
 import {
   PRONOUN, PERSON_EN, STAGES, clozeFrame, transformFrame, shapeFor, checkRoot, diagnose, registerNotes, githubIssueUrl,
 } from '../verbs.js';
@@ -31,19 +32,13 @@ function slotChips(item) {
 export function shapeSlots(spell) {
   return `<span class="slots" lang="he" dir="rtl">${[...spell].map((ch) => (/[123]/.test(ch) ? `<span class="slot">${ch}</span>` : `<span class="fix">${esc(ch)}</span>`)).join('')}</span>`;
 }
-/** Which root letter goes in which slot, right to left: ① כ  ② ת  ③ ב */
-function slotLegend(root) {
-  const letters = root.split(/[־\-\s]+/).filter(Boolean);
-  return `<div class="slot-legend" dir="rtl">${letters.map((l, i) => `<span><span class="slot">${i + 1}</span> = <b lang="he">${esc(l)}</b></span>`).join('')}</div>`;
-}
-
 function shapeHint(item) {
   const s = shapeFor(item);
   if (!s) return '';
   return `<p class="shape-hint">Shape for ${esc(item.verb.binyanName)} ${esc(TENSE_EN[item.tense])} (${esc(s.form)}): <b class="say">${esc(s.say)}</b> · spelled ${shapeSlots(s.spell)}</p>`;
 }
 
-export function promptHtml(c, format) {
+export function promptHtml(c, format, ix = null) {
   const item = c.item;
   const v = item.verb;
   const isNew = !store.get().cards[c.id];
@@ -51,21 +46,19 @@ export function promptHtml(c, format) {
   if (format === 'root') {
     return `<div class="conj-prompt"><div class="prompt-row"><span class="conj-verb">${he(v.inf)}</span></div>
       <div class="conj-verb-en">to ${esc(v.en)}</div>
-      <p class="prompt-hint">Type its three root letters (e.g. for לִכְתּוֹב: כתב).</p></div>`;
+      <p class="prompt-hint">Which three letters are its root? Prefixes like ל / לה / להת and the vowel letters ו / י are not part of it.</p></div>`;
   }
   if (format === 'binyan') {
     return `<div class="conj-prompt"><div class="prompt-row"><span class="conj-verb">${he(v.inf)}</span></div>
-      <div class="conj-verb-en">to ${esc(v.en)}</div>
-      <p class="prompt-hint">Which binyan is it? Type <i>pa'al, nif'al, pi'el, hif'il</i> or <i>hitpa'el</i> (Hebrew names work too).</p></div>`;
+      <div class="conj-verb-en">to ${esc(v.en)} · root ${he(v.root)}</div>
+      <p class="prompt-hint">Which binyan (verb pattern) is it? Compare the start and the vowels with each pattern.</p></div>`;
   }
   if (format === 'shape') {
-    const s = item.shape;
     return `<div class="conj-prompt">
-      <div class="shape-box"><div class="shape-title">${esc(item.binyan)} · ${esc(TENSE_EN[item.tense])}${item.slot ? ` · ${esc(PERSON_EN[item.slot])}` : ''}</div>
-        <div class="shape-spell">${shapeSlots(s.spell)}</div>
-        <div class="small muted">sounds like <b class="say">${esc(s.say)}</b> · slots ①②③ = the 3 root letters, read right to left</div></div>
-      <p class="prompt-hint">Put the root ${he(v.root)} (to ${esc(v.en)}) into the slots:</p>
-      ${slotLegend(v.root)}</div>`;
+      <div class="shape-title">${esc(item.binyan)} · ${esc(TENSE_EN[item.tense])}${item.slot ? ` · ${esc(PERSON_EN[item.slot])}` : ''}</div>
+      <div class="prompt-row"><span class="conj-verb">${he(v.root)}</span></div>
+      <div class="conj-verb-en">root of “to ${esc(v.en)}”</div>
+      <p class="prompt-hint">The grey letters belong to the ${esc(item.binyan)} pattern. Put the root letters into the numbered boxes — box 1 gets the first root letter (the rightmost).</p></div>`;
   }
   if (format === 'build') {
     return `<div class="conj-prompt">
@@ -91,7 +84,7 @@ export function promptHtml(c, format) {
   if (item.tense === 'inf') {
     return `<div class="conj-prompt"><div class="prompt-en">to ${esc(v.en)}</div>
       <div class="conj-verb-en">${esc(v.binyanName)}${isNew ? '' : ` · root ${he(v.root)}`}</div>
-      ${isNew ? '<p class="prompt-hint">Type the infinitive (the "to …" form).</p>' : ''}</div>`;
+      ${isNew && !ix ? '<p class="prompt-hint">Type the infinitive (the "to …" form).</p>' : ''}</div>`;
   }
   return `<div class="conj-prompt">
     <div class="prompt-row"><span class="conj-verb">${he(v.inf)}</span></div>
@@ -102,9 +95,10 @@ export function promptHtml(c, format) {
 }
 
 /** Check an answer for a verb card. Returns {verdict, target, note}. */
-export function check(c, format, input) {
+export function check(c, format, input, ix = null) {
   const item = c.item;
   const v = item.verb;
+  if (format === 'shape' && ix?.kind === 'boxes') return checkShape(item, ix);
   if (!input.trim()) return { verdict: 'wrong', target: item.he, note: '' };
   if (format === 'root') {
     return checkRoot(input, v.root)
@@ -123,6 +117,107 @@ export function check(c, format, input) {
     if (d) r.note = d + (r.note ? ' ' + r.note : '');
   }
   return r;
+}
+
+/** The letters that belong in a letter-box card's boxes (the root, in order). */
+export function boxTarget(c) {
+  return rootLetters(c.item.verb.root);
+}
+
+function checkShape(item, ix) {
+  const root = rootLetters(item.verb.root);
+  const got = ix.vals.map((x) => skeleton(x));
+  const lettersOk = root.every((l, i) => got[i] === l);
+  const soundOk = !ix.sound || ix.soundPick === ix.sound.answer;
+  const built = withFinal(fillShape(item.shape.spell, item.verb.root, item.binyan));
+  const notes = [];
+  if (!lettersOk) {
+    notes.push(`The root is ${root.join('־')}: box 1 = ${root[0]}, box 2 = ${root[1]}, box 3 = ${root[2]}.`);
+  }
+  if (!soundOk) notes.push(`It sounds like ${ix.sound.options[ix.sound.answer]}${ix.soundPick !== null ? `, not ${ix.sound.options[ix.soundPick]}` : ''}.`);
+  return {
+    verdict: lettersOk && soundOk ? 'correct' : lettersOk ? 'almost' : 'wrong',
+    target: item.he, note: notes.join(' ') + (lettersOk ? ` Spelled ${built}.` : ''),
+  };
+}
+
+/* ---------------- interactive widgets for verb cards ---------------- */
+
+const first = (f) => (Array.isArray(f) ? f[0] : f);
+
+/** Other real forms of this verb (and, for infinitives, other verbs) to use as wrong options. */
+function formDistractors(item, seed) {
+  const v = item.verb;
+  const accepted = new Set(answersFor(item).map((a) => skeleton(a)));
+  const out = [];
+  const push = (he, sub) => { if (he && !accepted.has(skeleton(he))) out.push({ he, sub }); };
+  if (item.tense === 'inf') {
+    const others = (getDeck(item.deck)?.items || []).filter((i) => i.tense === 'inf' && i.verb !== v).map((i) => i.he);
+    for (const he of IX.shuffle(others, seed)) push(he);
+    push(first(v.forms.present?.ms));
+    push(first(v.forms.past?.['3ms']));
+    return out;
+  }
+  const same = Object.entries(v.forms[item.tense] || {}).filter(([p]) => p !== item.slot).map(([, f]) => first(f));
+  // Forms that differ only in gender or person come first: that's the point of the drill.
+  for (const he of IX.shuffle(same, seed)) push(he);
+  const slotOf = { present: 'ms', past: '3ms', future: '3ms', imp: 'ms' };
+  for (const t of ['present', 'past', 'future', 'imp']) {
+    if (t === item.tense) continue;
+    push(first(v.forms[t]?.[item.slot] || v.forms[t]?.[slotOf[t]]));
+  }
+  push(v.inf);
+  return out;
+}
+
+/** The binyan's pronunciation patterns for one tense (for "how does it sound?"). */
+function soundChoice(binyan, tense, seed) {
+  const all = [...new Set(Object.values(SHAPES).map((b) => b[tense]?.say).filter(Boolean))];
+  const answer = SHAPES[binyan][tense].say;
+  const opts = IX.shuffle([answer, ...IX.shuffle(all.filter((x) => x !== answer), seed).slice(0, 3)], seed + 7);
+  return { options: opts, answer: opts.indexOf(answer) };
+}
+
+/**
+ * The interactive widget for a verb card, or null to type freely.
+ * reps: how many times the card has been answered; scaffold: choose → build → type.
+ */
+export function interaction(c, format, { reps = 0, scaffold = true, practice = false } = {}) {
+  const item = c.item;
+  const v = item.verb;
+  const seed = IX.hash(`${c.id}:${reps}`);
+  if (format === 'shape') {
+    const parts = [...item.shape.spell].map((ch) => (/[123]/.test(ch) ? { slot: Number(ch) - 1 } : { fixed: ch }));
+    const root = rootLetters(v.root);
+    return IX.boxes(parts, 3, reps < 3 ? IX.shuffle(root, seed) : null, {
+      title: `Build the ${item.binyan} ${TENSE_EN[item.tense]} of ${root.join('־')}`, sound: soundChoice(item.binyan, item.tense, seed),
+    });
+  }
+  if (format === 'root') {
+    let bank = null;
+    if (reps < 3) {
+      bank = [...stripNiqqud(v.inf).replace(/[^א-ת]/g, '')];
+      if (v.weak) for (const ch of 'הוינ') if (!bank.includes(ch)) bank.push(ch);
+    }
+    return IX.boxes([{ slot: 0 }, { slot: 1 }, { slot: 2 }], 3, bank, {
+      title: bank ? `Tap the 3 root letters, in order${v.weak ? ' (a weak root hides a letter — the extra tiles at the end can help)' : ''}` : 'Type the 3 root letters, one per box',
+    });
+  }
+  if (format === 'binyan') {
+    const names = ["pa'al", "nif'al", "pi'el", "hif'il", "hitpa'el"];
+    const ix = IX.choice(v.binyanName, names.filter((n) => n !== v.binyanName).map((n) => ({ he: n, sub: `${BINYANIM[n].he} · ${SHAPES[n].inf.say}` })), seed, { max: 5, latin: true, title: 'Which pattern?' });
+    for (const o of ix.options) if (o.ok) o.sub = `${BINYANIM[o.he].he} · ${SHAPES[o.he].inf.say}`;
+    ix.options.sort((a, b) => names.indexOf(a.he) - names.indexOf(b.he));
+    return ix;
+  }
+  if (!scaffold || practice || reps >= 2) return null;
+  const distractors = formDistractors(item, seed);
+  if (reps === 0 || /\s/.test(stripNiqqud(item.he).trim())) {
+    return IX.choice(item.he, distractors, seed, { title: item.tense === 'inf' ? 'Pick the right infinitive' : 'Pick the right form — watch the person and gender' });
+  }
+  const ix = IX.letterTiles(item.he, distractors.map((d) => d.he), seed);
+  ix.title = 'Build it from the letters — there are a couple of extras';
+  return ix;
 }
 
 function tenseTable(item) {
@@ -150,6 +245,10 @@ export function revealHtml(c, format, verdict, typed) {
     const s = shapeFor({ ...item, tense: 'inf' });
     if (s && !v.weak) parts.push(`<p class="shape-hint">${esc(v.binyanName)} infinitive shape: <b class="say">${esc(s.say)}</b> · spelled ${shapeSlots(s.spell)} → ${he(v.inf)}</p>`);
     if (v.weak) parts.push(`<p class="shape-hint">Weak root (${esc(v.weak)}): one root letter hides in some forms.</p>`);
+  } else if (format === 'shape') {
+    const s = item.shape;
+    parts.push(`<div class="prompt-row"><div class="answer-he">${he(item.he)}</div>${sayBtn(item.he)}</div>`);
+    parts.push(`<p class="shape-hint">Every regular ${esc(item.binyan)} ${esc(TENSE_EN[item.tense])} sounds like <b class="say">${esc(s.say)}</b> and is spelled ${shapeSlots(s.spell)}</p>`);
   } else {
     const target = verdict?.target || item.he;
     parts.push(`<div class="prompt-row"><div class="answer-he">${he(target)}</div>${sayBtn(target)}</div>`);

@@ -10,6 +10,8 @@ import * as VC from './verbcard.js';
 import * as WC from './writecard.js';
 import { getLesson } from '../course.js';
 import { pickFormat } from '../verbs.js';
+import * as IX from './interact.js';
+import { vocabInteraction } from './vocabix.js';
 import { pickFace, facesOf, checkFace, whoLabel, whoClass, GENDER_NAME, DEM } from '../gender.js';
 
 const RATING_NAMES = { 1: 'Again', 2: 'Hard', 3: 'Good', 4: 'Easy' };
@@ -23,6 +25,8 @@ export function renderReview(app, deckId, opts = {}) {
   let format = null;      // test format for verb cards
   let face = null;        // the version of a word/sentence shown this time (gender, speaker, listener)
   let typedAnswer = '';
+  let ix = null;          // interactive widget for this card (choice, tiles, letter boxes…), or null to type
+  let ixPicked = null;    // which option was chosen on a multiple-choice card
   let current = null;     // card id
   let phase = 'ask';      // 'ask' | 'answered'
   let suggested = 3;
@@ -43,8 +47,18 @@ export function renderReview(app, deckId, opts = {}) {
     format = c.item.kind === 'conj' ? pickFormat(c, { practice }) : null;
     face = c.item.kind === 'conj' || c.type === 'c' ? null : pickFace(c, st?.reps || 0, practice);
     typedAnswer = '';
+    ixPicked = null;
+    ix = pickInteraction(c, st);
     // If the next card is a learning card that isn't due yet, it was picked via "learn ahead". Fine.
     render(c, st);
+  }
+
+  function pickInteraction(c, st) {
+    const reps = st?.reps || 0;
+    const scaffold = store.settings().scaffold !== false;
+    if (c.item.kind === 'conj') return VC.interaction(c, format, { reps, scaffold, practice });
+    if (!scaffold || practice) return null;
+    return vocabInteraction(c, face, reps);
   }
 
   function header() {
@@ -81,7 +95,7 @@ export function renderReview(app, deckId, opts = {}) {
   function promptHtml(c) {
     const item = c.item;
     if (c.type === 'p') return WC.promptHtml(c, face);
-    if (item.kind === 'conj') return VC.promptHtml(c, format);
+    if (item.kind === 'conj') return VC.promptHtml(c, format, ix);
     const who = face?.w ? `<div class="who-badge ${whoClass(face.w)}">${esc(whoLabel(face.w))}</div>` : '';
     if (c.type === 'c') {
       const plain = stripNiqqud(item.he);
@@ -156,7 +170,7 @@ export function renderReview(app, deckId, opts = {}) {
 
   function verdictHtml(input, c) {
     if (!verdict) return '';
-    const titles = { correct: 'Correct!', almost: 'Almost', wrong: input.trim() ? 'Not quite' : "Here's the answer" };
+    const titles = { correct: 'Correct!', almost: 'Almost', wrong: input.trim() || ixPicked !== null || (ix && ix.kind !== 'choice' && typedAnswer) ? 'Not quite' : "Here's the answer" };
     let body = '';
     if (input.trim() && verdict.verdict !== 'correct') {
       const d = diff(input, verdict.target);
@@ -177,7 +191,9 @@ export function renderReview(app, deckId, opts = {}) {
   function render(c, _st, inputValue = '') {
     const write = c.type === 'w' || c.type === 'c' || c.type === 'p';
     let body = '';
-    if (phase === 'ask' && c.type === 'p') {
+    if (phase === 'ask' && ix) {
+      body = IX.askHtml(ix);
+    } else if (phase === 'ask' && c.type === 'p') {
       body = WC.formHtml();
     } else if (phase === 'answered' && c.type === 'p') {
       body = WC.answeredHtml(c, verdict, inputValue) + ratingsHtml(c);
@@ -193,6 +209,10 @@ export function renderReview(app, deckId, opts = {}) {
           </form>`
         : `<div class="row" style="justify-content:center"><button class="btn btn-primary btn-lg" data-act="show">Show answer</button></div>
            <p class="rate-hint"><kbd>Space</kbd> or <kbd>Enter</kbd></p>`;
+    } else if (ix?.kind === 'choice') {
+      body = IX.choiceResultHtml(ix, ixPicked) + verdictHtml('', c) + revealHtml(c) + ratingsHtml(c);
+    } else if (ix?.kind === 'boxes') {
+      body = IX.boxesResultHtml(ix, VC.boxTarget(c)) + verdictHtml('', c) + revealHtml(c) + ratingsHtml(c);
     } else {
       body = (write
         ? `<input class="answer-input ${verdict?.verdict || ''}" value="${esc(inputValue)}" lang="he" dir="rtl" disabled aria-label="Your answer">${verdictHtml(inputValue, c)}`
@@ -200,20 +220,43 @@ export function renderReview(app, deckId, opts = {}) {
     }
     app.innerHTML = `${header()}<div class="card flash">${metaRow(c)}${promptHtml(c)}${body}</div>`;
     if (phase === 'ask') {
-      if (write) app.querySelector('.answer-input').focus();
+      if (ix) focusIx();
+      else if (write) app.querySelector('.answer-input').focus();
       if (!write && store.settings().autoplay) tts.speak(face?.he || c.item.he);
     } else if (write && store.settings().autoplay) {
       tts.speak(verdict?.target || face?.he || c.item.he);
     }
   }
 
+  function focusIx() {
+    if (ix.kind === 'boxes') {
+      const k = ix.vals.findIndex((v) => !v);
+      app.querySelector(`[data-box="${k < 0 ? ix.n - 1 : k}"]`)?.focus({ preventScroll: true });
+    } else if (ix.kind === 'dem') app.querySelector('.answer-input')?.focus();
+  }
+
+  function redrawIx() {
+    const el = app.querySelector('.ix');
+    if (!el) return;
+    el.outerHTML = IX.askHtml(ix);
+    focusIx();
+  }
+
+  function ixCheck() {
+    if (!ix || phase !== 'ask') return;
+    check(IX.answerOf(ix, app));
+  }
+
   function check(input) {
     const c = cards().get(current);
     typedAnswer = input;
-    if (c.type === 'p') {
+    if (ix?.kind === 'choice' && c.type === 'r') {
+      const ok = ixPicked !== null && ix.options[ixPicked]?.ok;
+      verdict = { verdict: ok ? 'correct' : 'wrong', target: face.he, note: ok ? '' : `It means: ${face.en}` };
+    } else if (c.type === 'p') {
       verdict = WC.check(c, input, face);
     } else if (c.item.kind === 'conj') {
-      verdict = VC.check(c, format, input);
+      verdict = VC.check(c, format, input, ix);
     } else {
       const mode = c.type === 'c' && stripNiqqud(c.item.he).length <= 2 ? 'strict' : 'vocab';
       verdict = c.type === 'c'
@@ -268,13 +311,24 @@ export function renderReview(app, deckId, opts = {}) {
   }
 
   function onClick(e) {
+    if (ix && phase === 'ask') {
+      const w = e.target.closest('[data-choice], [data-pick], [data-unpick], [data-bank], [data-sound], [data-dem]');
+      if (w && app.contains(w)) {
+        const r = IX.onClick(ix, w);
+        if (r === 'render') redrawIx();
+        else if (r === 'dem') { app.querySelectorAll('[data-dem]').forEach((b) => b.classList.toggle('on', b.dataset.dem === ix.pick)); app.querySelector('.answer-input')?.focus(); }
+        else if (r?.answer !== undefined) { ixPicked = r.picked; check(r.answer); }
+        return;
+      }
+    }
     const t = e.target.closest('[data-act], [data-rate]');
     if (!t || !app.contains(t)) return;
     if (t.dataset.rate) return rate(Number(t.dataset.rate));
     const act = t.dataset.act;
     if (act === 'show') reveal();
     else if (act === 'cursive') { cursiveView = !cursiveView; store.setSetting('cursiveReading', cursiveView); render(cards().get(current)); }
-    else if (act === 'idk') check('');
+    else if (act === 'idk') { if (ix?.kind === 'boxes') ix.vals = ix.vals.map(() => ''); check(''); }
+    else if (act === 'ix-check') ixCheck();
     else if (act === 'again') { Object.assign(session, { done: 0, practiceResults: { right: 0, wrong: 0 }, history: [] }); session.buildPractice(); show(); }
     else if (act === 'flag-verb') {
       const c = cards().get(current);
@@ -298,7 +352,14 @@ export function renderReview(app, deckId, opts = {}) {
     const f = e.target.closest('[data-form="check"]');
     if (!f) return;
     e.preventDefault();
-    check(f.answer.value);
+    check(ix?.kind === 'dem' ? IX.answerOf(ix, app) : f.answer.value);
+  }
+
+  function onInput(e) {
+    if (ix?.kind === 'boxes' && e.target.matches('.box-in')) {
+      IX.onBoxInput(ix, e.target, app);
+      if (ix.bank) redrawIx(); // keep the letter bank in step with what's in the boxes
+    }
   }
 
   function onKey(e) {
@@ -306,9 +367,24 @@ export function renderReview(app, deckId, opts = {}) {
     if (e.target.matches('textarea.write-input') && e.key === 'Enter' && !e.shiftKey && !e.isComposing) {
       e.preventDefault(); check(e.target.value); return;
     }
+    if (ix && phase === 'ask' && e.target.matches('.box-in')) {
+      if (e.key === 'Enter') { e.preventDefault(); ixCheck(); }
+      else IX.onBoxKey(ix, e.target, e, app);
+      return;
+    }
     if (e.target.matches('input, textarea, select') && !e.target.disabled) return;
     if (e.metaKey || e.ctrlKey || e.altKey) return;
-    if (phase === 'ask' && current && cards().get(current).type === 'r' && (e.key === ' ' || e.key === 'Enter')) {
+    if (ix && phase === 'ask') {
+      if (ix.kind === 'choice' && /^[1-9]$/.test(e.key) && Number(e.key) <= ix.options.length) {
+        e.preventDefault(); ixPicked = Number(e.key) - 1; check(ix.options[ixPicked].he); return;
+      }
+      if (ix.kind === 'tiles') {
+        if (e.key === 'Enter') { e.preventDefault(); if (ix.picked.length) ixCheck(); return; }
+        if (IX.onTileKey(ix, e)) { e.preventDefault(); redrawIx(); return; }
+      }
+      if (ix.kind === 'boxes' && e.key === 'Enter') { e.preventDefault(); ixCheck(); return; }
+    }
+    if (phase === 'ask' && !ix && current && cards().get(current).type === 'r' && (e.key === ' ' || e.key === 'Enter')) {
       e.preventDefault(); reveal(); return;
     }
     if (phase === 'answered') {
@@ -322,6 +398,7 @@ export function renderReview(app, deckId, opts = {}) {
 
   app.addEventListener('click', onClick);
   app.addEventListener('submit', onSubmit);
+  app.addEventListener('input', onInput);
   document.addEventListener('keydown', onKey);
   show();
 
@@ -330,6 +407,7 @@ export function renderReview(app, deckId, opts = {}) {
     tts.stop();
     app.removeEventListener('click', onClick);
     app.removeEventListener('submit', onSubmit);
+    app.removeEventListener('input', onInput);
     document.removeEventListener('keydown', onKey);
   };
 }

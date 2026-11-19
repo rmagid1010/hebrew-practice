@@ -10,6 +10,7 @@ export const DEFAULT_SETTINGS = {
   audio: true,         // text-to-speech buttons
   autoplay: false,     // speak Hebrew automatically when shown
   cursiveReading: false, // show reading prompts in handwriting
+  scaffold: true,      // new cards: choose from options, then build from tiles, then type
   verbUnlock: 'strict',  // verb stages: 'strict' = learnt + one later review, 'fast' = learnt
   courseStart: '',     // lesson id to start the course from ('' = lesson 1); earlier lessons count as known
   rate: 0.9,           // speech rate

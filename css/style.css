@@ -608,3 +608,99 @@ ul.elements .he { font-size: 1.05rem; }
 .shape-spell .slots { font-size: 2rem; gap: 6px; }
 .slot-legend { display: flex; justify-content: center; gap: 18px; font-size: 1.25rem; margin: 2px 0 6px; }
 .slot-legend .slot { font-size: .8em; }
+
+/* ---------------- interactive answer widgets ---------------- */
+.ix { margin-top: 8px; }
+.ix-title { font-size: .9rem; color: var(--muted); text-align: center; margin-bottom: 10px; }
+.ix-sub { font-size: .9rem; color: var(--muted); text-align: center; margin: 14px 0 6px; }
+.choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+.choice-btn {
+  display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; position: relative;
+  min-height: 58px; padding: 10px 14px 10px 40px; border: 2px solid var(--border); border-radius: 12px;
+  background: var(--surface); color: var(--text); cursor: pointer; font: inherit; text-align: center;
+  transition: border-color .12s, background .12s, transform .06s;
+}
+.choice-btn .he { font-size: 1.45rem; }
+.choice-btn small { flex-basis: 100%; color: var(--muted); font-size: .8rem; }
+.choice-btn kbd { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); }
+button.choice-btn:hover { border-color: var(--primary); background: var(--primary-soft); }
+button.choice-btn:active { transform: scale(.98); }
+.ix-choice.done .choice-btn { cursor: default; padding-left: 14px; opacity: .65; }
+.ix-choice.done .choice-btn.right { border-color: var(--good); background: var(--good-soft); opacity: 1; font-weight: 600; }
+.ix-choice.done .choice-btn.wrong { border-color: var(--bad); background: var(--bad-soft); opacity: 1; }
+.ix-choice .input-actions, .ix-tiles .input-actions, .ix-boxes .input-actions { margin-top: 14px; }
+
+.tile-line {
+  min-height: 64px; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px;
+  padding: 10px; border-bottom: 2px solid var(--border); margin-bottom: 14px;
+}
+.tile-ghost { color: var(--muted); font-size: 1.4rem; }
+.tile-bank { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.tile {
+  font-family: var(--font-he); font-size: 1.35rem; min-width: 44px; padding: 7px 12px; border-radius: 10px;
+  border: 1px solid var(--border); border-bottom-width: 3px; background: var(--surface); color: var(--text); cursor: pointer;
+  transition: transform .06s, background .12s;
+}
+.ix-tiles.unit-letter .tile { font-size: 1.6rem; min-width: 48px; }
+.tile:hover:not(:disabled) { background: var(--primary-soft); border-color: var(--primary); }
+.tile:active:not(:disabled) { transform: translateY(2px); border-bottom-width: 1px; }
+.tile.placed { background: var(--primary-soft); border-color: var(--primary); }
+.tile.used { color: transparent; background: var(--surface-2); border-color: var(--surface-2); box-shadow: none; }
+
+.box-row { display: flex; justify-content: center; align-items: flex-end; gap: 6px; flex-wrap: wrap; margin: 6px 0 16px; }
+.box-cell { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.box-fixed {
+  font-family: var(--font-he); font-size: 2rem; width: 52px; height: 62px; display: flex; align-items: center; justify-content: center;
+  color: var(--muted); background: var(--surface-2); border-radius: 10px;
+}
+.box-in {
+  font-family: var(--font-he); font-size: 2rem; width: 52px; height: 62px; text-align: center; padding: 0;
+  border: 2px dashed var(--primary); border-radius: 10px; background: var(--surface); color: var(--text);
+}
+.box-in:focus { outline: none; border-style: solid; background: var(--primary-soft); }
+.box-num {
+  font-size: .75rem; font-weight: 700; color: var(--primary-ink); background: var(--primary);
+  width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; order: 2;
+}
+.box-cell:has(.box-fixed)::after { content: ''; height: 20px; }
+.sound-pick { justify-content: center; }
+.sound-pick .seg-btn { font-family: var(--font); letter-spacing: .02em; }
+
+.dem-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; justify-content: center; }
+.dem-row .answer-input { flex: 1 1 220px; }
+.dem-pick .seg-btn { font-family: var(--font-he); font-size: 1.3rem; padding: 6px 16px; }
+@media (max-width: 560px) {
+  .choices { grid-template-columns: 1fr; }
+  .box-fixed, .box-in { width: 42px; height: 52px; font-size: 1.6rem; }
+}
+.box-root {
+  font-family: var(--font-he); font-size: 2rem; width: 52px; height: 62px; display: flex; align-items: center; justify-content: center;
+  border: 2px solid var(--primary); background: var(--primary-soft); color: var(--text); border-radius: 10px; font-weight: 600;
+}
+.box-root.empty { border-style: dashed; color: var(--muted); background: var(--surface); }
+.box-in.sm { width: 38px; height: 42px; font-size: 1.3rem; }
+
+.lab { margin-top: 18px; }
+.lab-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
+.lab-controls { display: grid; gap: 10px; }
+.lab-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.lab-row > .small.muted:first-child { min-width: 56px; }
+.lab-row .seg-btn[lang="he"] { font-family: var(--font-he); font-size: 1.05rem; }
+.lab-own { display: inline-flex; gap: 4px; }
+.lab-out { text-align: center; margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border); }
+.lab-say { color: var(--muted); }
+.lab-word { font-size: 2rem; margin: 6px 0; }
+.lab-real { margin-top: 6px; display: inline-flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: center; }
+.lab-real .he { font-size: 1.4rem; }
+.scen-tiles-title { margin-bottom: 6px; }
+.scen-tiles { justify-content: flex-start; margin-bottom: 10px; }
+.scen-tiles .tile { font-size: 1.15rem; }
+@media (max-width: 560px) { .box-root { width: 42px; height: 52px; font-size: 1.6rem; } }
+.box-root.ok { border-color: var(--good); background: var(--good-soft); }
+.box-root.bad { border-color: var(--bad); background: var(--bad-soft); text-decoration: line-through; }
+.box-row.want .box-root { border-style: dashed; }
+.box-caption { text-align: center; margin-top: -8px; }
+.sound-result { display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+.sound-result .seg-btn { cursor: default; opacity: .55; }
+.sound-result .seg-btn.right { opacity: 1; border-color: var(--good); background: var(--good-soft); font-weight: 600; }
+.sound-result .seg-btn.wrong { opacity: 1; border-color: var(--bad); background: var(--bad-soft); text-decoration: line-through; }
