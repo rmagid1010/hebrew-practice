@@ -21,7 +21,7 @@ export async function renderVerbs(app) {
       <div class="row" style="margin-bottom:6px"><h1 style="margin:0">Verb course</h1><span class="spacer"></span>
         <a class="btn btn-sm" href="#/verbs/check">Check the tables</a>
         <a class="btn btn-sm" href="#/practice">Verb workout</a></div>
-      <p class="muted">Each verb moves through six stages. A stage unlocks only when every card in the one before is
+      <p class="muted">Each verb moves through five stages. A stage unlocks only when every card in the one before is
         ${strict ? '<b>learnt and has survived a later review</b>' : '<b>learnt</b>'} — so you can't skip ahead, and if an earlier form slips,
         the verb waits for you to fix it before adding new forms.</p>
       <div class="section-title"><h2>Learn: how verbs work</h2><span class="small muted">read these alongside the drills</span></div>
